@@ -1,0 +1,38 @@
+<div class="navbar">
+    <div class="left-div" (click)="toggledrop()">
+        <div></div>
+        <span>MENU</span>
+    </div>
+    <div class="right-div">
+        <div id="search-bar">
+            <img src="../../assets/search.png" alt="" srcset="">
+            &nbsp;
+            <input type="text" name="" id="" placeholder="Find your best book">
+        </div>
+        <div id="logo">
+            <span>BookFactory..</span>
+        </div>
+        <div id="login-user">
+            <span>REGISTER /&nbsp;</span>
+            <span>LOGIN</span>
+            <div id="cart">
+                <div id="cart-icon"></div>
+                <span>cart</span>
+            </div>
+        </div>
+    </div>
+    
+  </div>
+  <div class="dropdown-con" *ngIf="dropFlag">
+      <div id="drop1">
+          <div (click)="handleClose()" id="close-btn">CLOSE<span>X</span></div>
+        <div id="items">
+            <div class="item">Home</div>
+            <div class="item">About Us</div>
+            <div class="item">Career</div>
+            <div class="item">Item 4</div>
+            <div class="item">Item 5</div>
+    </div>
+      </div>
+      <div id="drop2"></div>
+  </div>
