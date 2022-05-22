@@ -114,10 +114,7 @@ input:focus {
 }
 /* Navbar End */
 /* DropDwon Start */
-<<<<<<< Updated upstream
-=======
-  
->>>>>>> Stashed changes
+
 .dropdown-con {
   position: fixed;
   width: 100%;
@@ -130,7 +127,6 @@ input:focus {
   left: 0%;
   right: 0%;
   bottom: 0%;
-  
 }
 #drop1 {
   background-color: #f4f7f6;
