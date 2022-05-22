@@ -42,12 +42,26 @@ public class BookService {
 		}
 	}
 
-	public ResponseEntity<?> update(Book cont) {
+	public ResponseEntity<?> update(Book cont,int pageNo, int pageSize, String sortBy) {
 		try {
 			bookRepository.save(cont);
 
-			List<Book> c1 = bookRepository.findAll();
-			return new ResponseEntity<List<Book>>(c1, HttpStatus.OK);
+			Map<String, Object> response = new HashMap<String, Object>();
+
+			Sort sort = Sort.by(sortBy);
+			Pageable page = PageRequest.of(pageNo, pageSize, sort);
+
+			Page<Book> employePage = bookRepository.findAll(page);
+
+			response.put("data", employePage.getContent());
+			response.put("TotalPage", employePage.getTotalPages());
+			response.put("TotalElement", employePage.getTotalElements());
+			response.put("CurrentPage", employePage.getNumber());
+
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+			
+			
+			
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
@@ -104,17 +118,20 @@ public class BookService {
 		}
 	}
 
-	public ResponseEntity<?> sortBy(String sortBy) {
+	public ResponseEntity<?> sortBy(int pageNo, int pageSize, String sortBy) {
 
 		try {
 			Map<String, Object> response = new HashMap<String, Object>();
 
 			Sort sort = Sort.by(sortBy);
-			Pageable page = PageRequest.of(0, 30, sort);
+			Pageable page = PageRequest.of(pageNo, pageSize, sort);
 
 			Page<Book> employePage = bookRepository.findAll(page);
 
 			response.put("data", employePage.getContent());
+			response.put("TotalPage", employePage.getTotalPages());
+			response.put("TotalElement", employePage.getTotalElements());
+			response.put("CurrentPage", employePage.getNumber());
 
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 		} catch (Exception e) {

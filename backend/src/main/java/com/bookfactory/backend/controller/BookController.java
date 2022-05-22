@@ -37,8 +37,11 @@ public class BookController {
 
 	// update
 	@PutMapping("/")
-	public ResponseEntity<?> update(@RequestBody Book book) {
-		return bookService.update(book);
+	public ResponseEntity<?> update(@RequestBody Book book,
+			@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
+			@RequestParam(name = "pagesize", defaultValue = "5") int pageSize,
+			@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
+		return bookService.update(book, pageNo, pageSize, sortBy);
 	}
 
 	// delete
@@ -57,8 +60,10 @@ public class BookController {
 
 	// sortBy
 	@GetMapping("/sortby")
-	public ResponseEntity<?> sortBy(@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
-		return bookService.sortBy(sortBy);
+	public ResponseEntity<?> sortBy(@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
+			@RequestParam(name = "pagesize", defaultValue = "5") int pageSize,
+			@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
+		return bookService.sortBy(pageNo, pageSize, sortBy);
 	}
 
 	// search by title
@@ -72,11 +77,11 @@ public class BookController {
 	public ResponseEntity<?> getOne(@PathVariable String id) {
 		return bookService.getOne(id);
 	}
-	
+
 	// getByPrice greater than
-		@GetMapping("/price")
-		public ResponseEntity<?> getAllByPrice(@RequestParam(name = "price") float price) {
-			return bookService.getAllBySalaryGreaterThan(price);
-		}
+	@GetMapping("/price")
+	public ResponseEntity<?> getAllByPrice(@RequestParam(name = "price") float price) {
+		return bookService.getAllBySalaryGreaterThan(price);
+	}
 
 }
