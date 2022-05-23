@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.container > h1 {
+  padding: 10px 0;
+  margin-top: 100px;
+}
+.container > hr {
+  margin-bottom: 20px;
+}
+.cart {
+  display: flex;
+}
+.products {
+  flex: 0.75;
+}
+.product {
+  display: flex;
+  /* width: 100%; */
+  width: 950px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid silver;
+  margin-bottom: 20px;
+}
+.product:hover {
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transform: scale(1, 01);
+}
+.product-image > img {
+  width: 300px;
+  height: 200px;
+  /* object-fit: cover; */
+}
+.product-name {
+  cursor: pointer;
+}
+.product-image > img:hover {
+  transform: scale(1.04);
+}
+.product-info {
+  padding: 20px;
+  width: 100%;
+}
+.product-price {
+  padding: 20px;
+  font-size: larger;
+  font-weight: 900;
+}
+
+.product-name,
+.product-publisher,
+.paperback,
+.stock {
+  margin-bottom: 10px;
+}
+
+.product-quantity {
+  display: flex;
+}
+.product-quantity,
+div,
+p {
+  margin-right: 10px;
+}
+.product-qty {
+  cursor: pointer;
+}
+.product-delete {
+  color: red;
+  cursor: pointer;
+}
+.product-route {
+  color: blueviolet;
+  cursor: pointer;
+}
+.siz {
+  color: #bdbdbd;
+  font-size: larger;
+}
+.cart-total {
+  float: right;
+  font-size: larger;
+  font-weight: 900;
+  margin-bottom: 100px;
+}
+
+.show-final-price-container {
+  /* width: 300px;
+  border: 1px solid silver;
+  padding: 10px; */
+
+  flex: 0.25;
+  margin-left: 20px;
+  padding: 20px;
+  height: 200px;
+  border: 1px solid silver;
+  border-radius: 5px;
+
+  position: fixed;
+  right: 5%;
+}
+.show-final-price-container:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.show-final-price-container p {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.proceed-to-checkout {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background-color: #49c5b6;
+  color: white;
+  text-decoration: none;
+}
+
+.proceed-to-checkout:hover {
+  background-color: #1d8176;
+}
+
+.inputfield {
+  display: flex;
+}
+
+.check {
+  width: 15px;
+  height: 15px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  margin-right: 7px;
+}
+.inputfield .check input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.inputfield .check .checkmark {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #49c5b6;
+  display: block;
+  position: relative;
+}
+
+.inputfield .check .checkmark:before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 5px;
+  height: 2px;
+  border: 2px solid;
+  border-color: transparent transparent #fff #fff;
+  transform: rotate(-45deg);
+  display: none;
+}
+
+.inputfield .check input[type="checkbox"]:checked ~ .checkmark {
+  background: #49c5b6;
+}
+
+.inputfield .check input[type="checkbox"]:checked ~ .checkmark:before {
+  display: block;
+}
+
+@media screen and (max-width: 900px) {
+  .cart {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 1220px) {
+  .container {
+    max-width: 95%;
+  }
+}
