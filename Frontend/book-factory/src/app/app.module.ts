@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
+import { PostNewBookFormComponent } from './Admin/post-new-book-form/post-new-book-form.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
     NavbarComponent,
     HomeComponent,
     LoginRegisterComponent,
+    PostNewBookFormComponent,
   ],
   imports: [
     BrowserModule,
