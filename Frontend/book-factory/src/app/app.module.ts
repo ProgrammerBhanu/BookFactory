@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { PostNewBookFormComponent } from './Admin/post-new-book-form/post-new-book-form.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
+import { PaymentPageComponent } from './payment-page/payment-page.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
     LoginRegisterComponent,
     PostNewBookFormComponent,
     CartPageComponent,
+    PaymentPageComponent,
   ],
   imports: [
     BrowserModule,
