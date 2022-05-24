@@ -19,7 +19,7 @@ import com.bookfactory.backend.model.Book;
 import com.bookfactory.backend.service.BookService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:50110") 
+@CrossOrigin(origins = "http://localhost:4200") 
 @RequestMapping("/book")
 public class BookController {
 	@Autowired
