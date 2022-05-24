@@ -9,6 +9,8 @@ export class AllBookComponent implements OnInit {
   filterFlag: string = '';
 
   booksData: any;
+  TotalPage: any;
+  CurrentPageNo: any;
   constructor(private bookService: BooksServiceService) {}
 
   ngOnInit(): void {
@@ -19,6 +21,8 @@ export class AllBookComponent implements OnInit {
 
   setBookdata(data: any) {
     this.booksData = data.data;
+    this.CurrentPageNo = data.CurrentPage;
+    this.TotalPage = data.TotalPage;
   }
 
   handleFilters(val: any): void {
