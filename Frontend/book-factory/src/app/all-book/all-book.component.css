@@ -84,7 +84,7 @@
     display: grid;
     min-height: 100vh;
     grid-template-columns: repeat(5,18%);
-    gap: 2%;
+    gap:1.5%;
     grid-auto-rows: 400px;
     width: 100%;
     background-color: #f4f7f6;
