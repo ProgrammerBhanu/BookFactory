@@ -113,7 +113,7 @@ input:focus {
   background-image: url(../../assets/shopping-cart.png);
   background-size: 100% 100%;
 }
-#cart-count{
+#cart-count {
   background-color: red;
   border-radius: 50%;
   color: #fff;
@@ -123,16 +123,11 @@ input:focus {
   top: 6px;
   right: 6.5vw;
   text-align: center;
-
-
 }
 
 /* Navbar End */
 /* DropDwon Start */
-<<<<<<< HEAD
-=======
 
->>>>>>> d45e4a55c7324a618529356fb89262d7cde2d7b6
 .dropdown-con {
   position: fixed;
   width: 100%;
