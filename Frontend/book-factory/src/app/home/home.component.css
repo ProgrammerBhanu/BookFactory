@@ -51,9 +51,13 @@
     font-weight: 500;
 
 }
+
 .book-card>img{
     width: 190px;
     height: 190px;
     margin: 0 10px;  
+}
+.book-card>img:hover{
+    height: 200px;
 }
 /* Genre -card end */

@@ -11,6 +11,7 @@
   color: #202121;
   font-weight: 600;
   border: 1px solid gainsboro;
+  z-index: 999;
 }
 .left-div {
   /* border: 1px solid red; */
@@ -112,12 +113,22 @@ input:focus {
   background-image: url(../../assets/shopping-cart.png);
   background-size: 100% 100%;
 }
+#cart-count{
+  background-color: red;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 6px;
+  right: 6.5vw;
+  text-align: center;
+
+
+}
+
 /* Navbar End */
 /* DropDwon Start */
-<<<<<<< Updated upstream
-=======
-  
->>>>>>> Stashed changes
 .dropdown-con {
   position: fixed;
   width: 100%;
@@ -137,7 +148,7 @@ input:focus {
   border-bottom: 1px solid #e6eaea;
 }
 #drop2 {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 #close-btn {
   line-height: 40px;

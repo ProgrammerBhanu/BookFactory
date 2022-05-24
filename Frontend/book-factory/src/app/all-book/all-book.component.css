@@ -1,0 +1,115 @@
+#main{
+    width: 100vw;
+    position:rel;
+    z-index: -1;
+}
+#allBook-con{
+    width: 100%;
+    top: 72px;
+    position: fixed;
+    left: 0%;    
+  
+}
+
+#filter-div{
+    width: 100%;
+    height: 70px;
+    border: 1px solid gainsboro;
+    background-color: #f4f7f6;
+    border-top: none;
+    display: flex;
+}
+.filter_,.filter_h{
+    display: flex;
+    align-items: center;
+    font-family: "apercu",sans-serif;
+    border-right: 1px solid gainsboro;
+    cursor: pointer;
+    padding: 0px 15px;
+}
+.filter_>p{
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.filter_h>p{
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.filter_:hover{
+    background-color: #fff;
+}
+
+/* Filter dropdwon start */
+#filter-dropdowns{
+    position: relative;
+    width: 100vw;
+    height: 20vh;
+    box-sizing: border-box;
+    background-color: #fff;
+    position: absolute;
+    border: 1px solid #c9cbcb;
+}
+
+.price{
+   display: flex;
+   flex-wrap: wrap;
+}
+.price p{
+    width: fit-content;
+    padding: 5px 20px;
+    margin: 20px 20px;
+    border: 1px solid gainsboro;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.close-btn{
+    font-size: 18px;
+    position: absolute;
+    right: 3vw;
+    top: 2vh;
+    padding: 5px 10px;
+    border: 1px solid #202121;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.price p:hover,
+.close-btn:hover{
+    border:1px solid #49c5b6;
+    color: #49c5b6;
+}
+/* Filter dropdwon end */
+
+#main-body{
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: repeat(5,18%);
+    gap: 2%;
+    grid-auto-rows: 400px;
+    width: 100%;
+    background-color: #f4f7f6;
+    padding-top: 200px;
+    justify-content: center;
+    padding-bottom: 10vh;
+}
+.book-card{
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+}
+.book-card:hover{
+    -webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+}
+.book-card>img{
+    padding-top: 20px;
+    width: 200px;
+    height: 310px;
+}
+.book-card p{
+    text-transform: uppercase;
+    font-size: 13px;
+}

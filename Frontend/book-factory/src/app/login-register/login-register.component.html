@@ -1,1 +1,34 @@
-<p>login-register works!</p>
+<div id="login-con">
+    <form id="form" #form="ngForm" action="form" (ngSubmit)="flag?handleRegister(form.value):handleLogin(form.value)"
+        action="" class="hidden">
+        <h2 id="formHeading">
+            <span>{{flag?"Register":"Login"}}</span>
+            User
+        </h2>
+        <div class="email-mod-add" *ngIf="flag">
+            <p>Your Name</p>
+            <input type="text" class="naam" name="name" id="name" placeholder="Full Name" ngModel />
+        </div>
+        <div class="email-mod-add">
+            <p>Email</p>
+            <input type="email" name="email" id="email" placeholder="Add an email" ngModel />
+        </div>
+        <div class="email-mod-add" *ngIf="flag">
+            <P>Mobile number</P>
+            <input type="number" name="mobile" id="mobile" placeholder="Enter the Mobile no." ngModel />
+        </div>
+        <div class="email-mod-add">
+            <p>Password</p>
+            <input type="text" name="password" id="password" placeholder="At least 6 characters" ngModel />
+        </div>
+        <div class="email-mod-add">
+            <button id="form-add"type="submit">{{flag?"Register":"Login"}}</button>
+        </div>
+        <p *ngIf="flag">Already have an account? <span class="toggle-val" (click)="loginRoute()" routerLink="login">Sign In</span>  </p>
+        <p *ngIf="!flag">Create your new account <span class="toggle-val"  (click)="registerRoute()" routerLink="register">Register</span> </p>
+        <div class="social-auth" *ngIf="!flag">
+            <img src="../../assets/google.png" alt="">
+            <img src="../../assets/facebook2.png" alt="" srcset="">
+        </div>
+    </form>
+</div>

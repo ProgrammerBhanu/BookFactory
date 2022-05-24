@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
+import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { AllBookComponent } from './all-book/all-book.component';
 
 
 @NgModule({
@@ -13,10 +16,13 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
     NavbarComponent,
     HomeComponent,
     LoginRegisterComponent,
+    FooterComponent,
+    AllBookComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
