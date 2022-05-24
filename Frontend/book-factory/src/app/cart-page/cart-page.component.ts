@@ -9,6 +9,7 @@ import { BooksServiceService } from '../services/books-service.service';
 export class CartPageComponent implements OnInit {
   subTotal: any;
   total: any;
+  discount: boolean = false;
   cart: any = [
     {
       id: '628cc7b2bf824caa369eae60',
@@ -66,6 +67,10 @@ export class CartPageComponent implements OnInit {
   // }
   deleteItem(index: number) {
     this.cart.splice(index, 1);
+    this.findTotal();
+    if ((this.discount == true)) {
+      this.total = (this.total * 0.7).toFixed(2);
+    }
   }
   changeQuantity(value: any, index: number) {
     this.cart[index].quantity = value.target.value;
@@ -83,6 +88,17 @@ export class CartPageComponent implements OnInit {
   }
 
   applyDiscount() {
-    this.total = (this.total * 0.7).toFixed(2);
+    if (this.discount == false) {
+      this.discount = true;
+    } else {
+      this.discount = false;
+    }
+
+    if (this.discount == true) {
+      this.total = (this.total * 0.7).toFixed(2);
+    }
+    if (this.discount == false) {
+      this.total = (this.total / 0.7).toFixed(2);
+    }
   }
 }
