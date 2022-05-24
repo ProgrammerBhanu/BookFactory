@@ -4,6 +4,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.bookfactory.backend.model.Book;
 import com.bookfactory.backend.service.BookService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:50110") 
 @RequestMapping("/book")
 public class BookController {
 	@Autowired
@@ -26,7 +28,7 @@ public class BookController {
 	// get
 	@GetMapping("/")
 	public ResponseEntity<?> getAll() {
-		return bookService.getAll();
+		return ResponseEntity.ok(bookService.getAll());
 	}
 
 	// post
@@ -39,7 +41,7 @@ public class BookController {
 	@PutMapping("/")
 	public ResponseEntity<?> update(@RequestBody Book book,
 			@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
-			@RequestParam(name = "pagesize", defaultValue = "5") int pageSize,
+			@RequestParam(name = "pagesize", defaultValue = "10") int pageSize,
 			@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
 		return bookService.update(book, pageNo, pageSize, sortBy);
 	}
@@ -53,7 +55,7 @@ public class BookController {
 	// pagination
 	@GetMapping("/page")
 	public ResponseEntity<?> getAllBookInPage(@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
-			@RequestParam(name = "pagesize", defaultValue = "5") int pageSize,
+			@RequestParam(name = "pagesize", defaultValue = "10") int pageSize,
 			@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
 		return bookService.getAllBookInPage(pageNo, pageSize, sortBy);
 	}
@@ -61,7 +63,7 @@ public class BookController {
 	// sortBy
 	@GetMapping("/sortby")
 	public ResponseEntity<?> sortBy(@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
-			@RequestParam(name = "pagesize", defaultValue = "5") int pageSize,
+			@RequestParam(name = "pagesize", defaultValue = "10") int pageSize,
 			@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
 		return bookService.sortBy(pageNo, pageSize, sortBy);
 	}

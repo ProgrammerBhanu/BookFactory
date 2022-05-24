@@ -12,7 +12,7 @@ import { AllBookComponent } from './all-book/all-book.component';
 import { PostNewBookFormComponent } from './Admin/post-new-book-form/post-new-book-form.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
-
+import { HttpClientModule} from "@angular/common/http"
 
 
 @NgModule({
@@ -31,7 +31,8 @@ import { PaymentPageComponent } from './payment-page/payment-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
