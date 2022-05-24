@@ -1,0 +1,83 @@
+<div id="main">
+<div id="allBook-con">
+    <div id="filter-div">
+        <div class="filter_">
+            <img src="../../assets/filter.png" alt="">
+        </div>
+        <div class="filter_h">
+            <p>Filter By </p>
+        </div>
+        <div class="filter_" (click)="handleFilters('a')">
+            <p>PRICE ▾</p>
+        </div>
+        <div class="filter_" (click)="handleFilters('b')">
+            <p>GENRE ▾</p>
+        </div>
+        <div class="filter_" (click)="handleFilters('c')">
+            <p>LANGUAGE ▾</p>
+        </div>
+        <div class="filter_" (click)="handleFilters('d')">
+           <p> PUBLISHED YEAR ▾</p>
+        </div>
+        <div class="filter_h" (click)="handleFilters('e')">
+           <p> Sort by</p>
+           </div>
+    </div>
+    <div *ngIf="filterFlag" id="filter-dropdowns" [ngSwitch]="filterFlag">
+        <div class="dropdown price" *ngSwitchCase="'a'">
+            <p>Under ₹100</p>
+            <p>₹100 - ₹200</p>
+            <p>₹200 - ₹500</p>
+            <p>₹500 - ₹1,000</p>
+            <p>Over ₹1,000</p>
+            <div class="close-btn" (click)="handleFilters('')">X</div>
+        </div>
+        <div class="dropdown price" *ngSwitchCase="'b'">
+            <p>Literature & Fiction</p>
+            <p>Crime & thriller</p>
+            <p>Romance</p>
+            <p>Horror</p>
+            <p>Classics</p>
+            <p>Indian writing</p>
+            <p>Biographical</p>
+            <p>Bussiness & Economics</p>
+            <p>Self help, Personality development</p>
+            <div class="close-btn " (click)="handleFilters('')">X</div>
+        </div>
+        <div class="dropdown price" *ngSwitchCase="'c'">
+            <p>Hindi</p>
+            <p>English</p>
+            <p>Marathi</p>
+            <p>Gujraati</p>
+            <p>Bangla</p>
+            <p>Other Languages</p>
+            <div class="close-btn " (click)="handleFilters('')">X</div>
+        </div>
+        <div class="dropdown price" *ngSwitchCase="'d'">
+            <p>Under 2000</p>
+            <p>2000 - 2005</p>
+            <p>2006 - 2010</p>
+            <p>2011 - 2015</p>
+            <p>2016 - 2020</p>
+            <p>2021 - present</p>
+            <div class="close-btn " (click)="handleFilters('')">X</div>
+        </div>
+        <div class="dropdown price" *ngSwitchCase="'e'">
+            <p>Low - High (price)</p>
+            <p>High - low (price)</p>
+            <p>Low - High (year)</p>
+            <p>High - low (year)</p>
+            <div class="close-btn " (click)="handleFilters('')">X</div>
+        </div>
+    </div>
+</div>
+<div id="main-body">
+    <div class="book-card"  *ngFor="let item of booksData;let i = index">
+        <img src="{{item.images[0]}}" alt="" srcset="">
+        <p>{{item.title}}</p>
+        <strong>{{item.publisher}}</strong>
+        <span>₹ {{item.price}}</span>
+
+    </div>
+</div>
+</div>
