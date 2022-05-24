@@ -14,7 +14,7 @@ public interface BookRepository extends MongoRepository<Book, String> {
 
 	List<Book> findByTitleStartingWith(String word);
 
-	@Query(value = "{'price':{$gte:?0}}")
+	@Query(value = "{'price':{$lt:?0}}")
 	List<Book> getAllBySalaryGreaterThan(float price);
 	
 	
