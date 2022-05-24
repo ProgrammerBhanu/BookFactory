@@ -129,6 +129,10 @@ input:focus {
 
 /* Navbar End */
 /* DropDwon Start */
+<<<<<<< HEAD
+=======
+
+>>>>>>> d45e4a55c7324a618529356fb89262d7cde2d7b6
 .dropdown-con {
   position: fixed;
   width: 100%;
@@ -141,7 +145,6 @@ input:focus {
   left: 0%;
   right: 0%;
   bottom: 0%;
-  
 }
 #drop1 {
   background-color: #f4f7f6;

@@ -1,0 +1,155 @@
+<div style="margin-top: 150px"></div>
+<div class="wrapper">
+  <div class="title">Add New Books</div>
+  <form class="form">
+    <div class="inputfield">
+      <label>Enter isbn</label>
+      <input
+        class="input"
+        type="text"
+        name="isbn"
+        placeholder="9780415924986"
+        ngModel
+        required
+        #isbn
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter Language</label>
+      <input
+        class="input"
+        type="text"
+        name="lang"
+        placeholder="eng"
+        ngModel
+        required
+        #lang
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter Year Of Publishing</label>
+      <input
+        class="input"
+        type="text"
+        name="year"
+        placeholder="2021"
+        ngModel
+        required
+        #year
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter Title Of Book</label>
+      <input
+        class="input"
+        type="text"
+        name="title"
+        placeholder="Encyclopedia of analytical chemistry"
+        ngModel
+        required
+        #title
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter Author Name </label>
+      <input
+        class="input"
+        type="text"
+        name="author"
+        placeholder="Mikulesky, Beatrice S."
+        ngModel
+        required
+        #author
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter price</label>
+      <input
+        class="input"
+        type="number"
+        name="price"
+        placeholder="250"
+        ngModel
+        required
+        #price
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter Publisher Name </label>
+      <input
+        class="input"
+        type="text"
+        name="publisher"
+        placeholder="Longman"
+        ngModel
+        required
+        #publisher
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter Publisher City </label>
+      <input
+        class="input"
+        type="text"
+        name="publisherCity"
+        placeholder="White Plains, NY"
+        ngModel
+        required
+        #publisherCity
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter Physical Description</label>
+      <input
+        class="input"
+        type="text"
+        name="physicalDescription"
+        placeholder="Physical Description Of Book Summary"
+        ngModel
+        required
+        #physicalDescription
+      />
+    </div>
+    <div class="inputfield">
+      <label>Enter Images Urls</label>
+     
+      <textarea
+        class="textarea"
+        type="text"
+        name="images"
+        placeholder="Enter 3 image url with ',' "
+        ngModel
+        required
+        #images
+      ></textarea>
+    </div>
+    <div class="inputfield">
+      <label>Enter Genre</label>
+      <input
+        class="input"
+        type="text"
+        name="genre"
+        placeholder="Enter genre  with ',' "
+        ngModel
+        required
+        #genre
+      />
+    </div>
+
+    <div class="inputfield">
+      <label>Enter Category</label>
+      <input
+        class="input"
+        type="text"
+        name="category"
+        placeholder="BestSeller"
+        ngModel
+        required
+        #category
+      />
+    </div>
+    <div class="inputfield">
+      <button class="btn" type="submit">Submit form</button>
+    </div>
+  </form>
+</div>
