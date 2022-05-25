@@ -22,6 +22,7 @@ export class AllBookComponent implements OnInit {
   setAllBook(data: any) {
     this.AllBook = data.body;
     console.log(this.AllBook);
+    // fdskhfewrhoirewo
   }
 
   setBookdata(data: any) {
