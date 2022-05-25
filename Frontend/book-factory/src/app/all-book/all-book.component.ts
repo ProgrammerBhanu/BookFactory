@@ -8,24 +8,32 @@ import { BooksServiceService } from '../services/books-service.service';
 export class AllBookComponent implements OnInit {
   filterFlag: string = '';
 
-  booksData: any;
-  TotalPage: any;
-  CurrentPageNo: any;
-  constructor(private bookService: BooksServiceService) {}
-
-  ngOnInit(): void {
-    this.bookService
-      .getAllBooksWithPaggination()
-      .subscribe((data) => this.setBookdata(data));
+  booksData: Array<any>;
+  TotalRecords: any;
+  CurrentPageNo: any = 1;
+  constructor(private bookService: BooksServiceService) {
+    this.booksData = new Array<any>();
   }
 
+  
+  getAllBooks(){
+    this.bookService
+      .getBookWithGivenPage(this.CurrentPageNo)
+      .subscribe((data) => this.setBookdata(data));
+  }
   setBookdata(data: any) {
     this.booksData = data.data;
     this.CurrentPageNo = data.CurrentPage;
-    this.TotalPage = data.TotalPage;
+    this.TotalRecords = data.TotalElement;
   }
-
+  ngOnInit(): void {
+    this.getAllBooks();
+  }
   handleFilters(val: any): void {
     this.filterFlag = val;
+  }
+  handlePageChange(data:any){
+    this.CurrentPageNo = data;
+    this.getAllBooks();
   }
 }

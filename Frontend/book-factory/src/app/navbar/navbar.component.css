@@ -11,7 +11,7 @@
   color: #202121;
   font-weight: 600;
   border: 1px solid gainsboro;
-  z-index: 999;
+  z-index: 2 !important;
 }
 .left-div {
   /* border: 1px solid red; */
@@ -106,6 +106,7 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 #cart-icon {
   width: 32px;

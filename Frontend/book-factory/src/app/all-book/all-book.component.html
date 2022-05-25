@@ -72,12 +72,18 @@
     </div>
 </div>
 <div id="main-body">
-    <div class="book-card"  *ngFor="let item of booksData;let i = index">
+    <div routerLink="bookdetails" class="book-card"  *ngFor="let item of booksData | paginate: { id: 'foo',
+    itemsPerPage: 10,
+    currentPage: CurrentPageNo,
+    totalItems: TotalRecords }" [state]="{data:item}" >
         <img src="{{item.images[0]}}" alt="" srcset="">
-        <p>{{item.title}}</p>
+        <h4>{{item.title}}</h4>
         <strong>{{item.publisher}}</strong>
-        <span>₹ {{item.price}}</span>
-
+        <p class="price-data">₹ {{item.price}}<span>.00</span></p>
+        <p class="rating">⭐⭐⭐⭐⭐</p>
     </div>
+</div>
+<div id="pagination" >
+    <pagination-controls (pageChange)="handlePageChange($event)" id="foo" ></pagination-controls>
 </div>
 </div>

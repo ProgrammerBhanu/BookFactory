@@ -7,7 +7,8 @@
     width: 100%;
     top: 72px;
     position: fixed;
-    left: 0%;    
+    left: 0%;  
+    z-index: 1;  
   
 }
 
@@ -79,16 +80,17 @@
     color: #49c5b6;
 }
 /* Filter dropdwon end */
-
+/* Body part start*/
 #main-body{
     display: grid;
-    min-height: 100vh;
+    /* min-height: fit-content; */
     grid-template-columns: repeat(5,18%);
     gap:1.5%;
+    row-gap: 100px;
     grid-auto-rows: 400px;
     width: 100%;
     background-color: #f4f7f6;
-    padding-top: 200px;
+    padding-top: 150px;
     justify-content: center;
     padding-bottom: 10vh;
 }
@@ -98,18 +100,49 @@
     flex-direction: column;
     align-items: center;
     background-color: #fff;
+    cursor: pointer;
+  pointer-events: all;
+  box-shadow: 5px 5px 0px 0 #c9cbcb;
+  overflow: hidden;
+  border-radius: 10px;
+  object-fit:cover;
+  z-index: 0;
 }
 .book-card:hover{
-    -webkit-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	transform: scale(1.1);
+    filter: grayscale(0);
+    transform: scale(1.05);
 }
 .book-card>img{
     padding-top: 20px;
     width: 200px;
     height: 310px;
+
+  transition: transform 1s;
+  transform: scale(1.05);
 }
-.book-card p{
+.book-card h4{
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom:1% ;
 }
+
+#pagination{
+    width: 40vw;
+    margin: auto;
+}
+.rating{
+    margin-top: 0%;
+}
+.price-data{
+    display: inline-block;
+    margin: 4px;
+    color: #202121;
+    font-weight: 600;
+}
+.price-data>span{
+    font-size: 13px;
+    font-weight: normal;
+}
+/* Body part end*/

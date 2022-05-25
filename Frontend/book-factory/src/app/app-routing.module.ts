@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllBookComponent } from './all-book/all-book.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
@@ -21,7 +22,16 @@ const routes: Routes = [
   },
   {
     path: 'allbooks',
-    component: AllBookComponent,
+    children:[
+      {
+        path:"",
+        component: AllBookComponent,
+      },
+      {
+        path:"bookdetails",
+        component: BookDetailsComponent
+      }
+    ]
   },
   {
     path: 'cart',

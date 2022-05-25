@@ -1,0 +1,53 @@
+<div id="book-details">
+    <div id="left">
+        <img (click)="changeImg(0)" class="img" src="{{bookDetail.images[0]}}" alt="" srcset="">
+        <img (click)="changeImg(1)" class="img" src="{{bookDetail.images[1]}}" alt="" srcset="">
+        <img (click)="changeImg(2)" class="img" src="{{bookDetail.images[2]}}" alt="" srcset="">
+    </div>
+    <div id="middle">
+        <img id="render-img" src="{{imageSrc}}" alt="" srcset="">
+        <div id="buy-btn">
+            <button (click)="addToCart()" id="btn1"><svg width="21" height="20" fill="black" xmlns="http://www.w3.org/2000/svg" color="black"
+                    class="Icon-sc-1iwi4w1-0 hJhqKY ProductCard__GhostButtonBigStyled-sc-camkhj-2 dJVGxi"
+                    btnType="ghost" ml="4" mr="4" stroke="transparent" iconSize="20">
+                    <g clip-path="url(#go-to-cart_svg__clip0_9773_3456)" fill-rule="evenodd" clip-rule="evenodd"
+                        fill="#333">
+                        <path
+                            d="M.75 1.5A.75.75 0 011.5.75h2.084a1.75 1.75 0 011.68 1.262L6.05 4.72h12.625a1.75 1.75 0 011.683 2.23L18.661 12.9a1.75 1.75 0 01-1.683 1.27H8.303a1.75 1.75 0 01-1.695-1.315l-1.845-7.19-.94-3.236a.25.25 0 00-.24-.18H1.5a.75.75 0 01-.75-.75zm5.703 4.719l1.608 6.264a.25.25 0 00.242.188h8.675a.25.25 0 00.24-.181l1.698-5.952a.25.25 0 00-.24-.319H6.452zM9.923 16.238a.5.5 0 00-.493.506.5.5 0 00.493.506.5.5 0 00.493-.506.5.5 0 00-.493-.506zm-1.993.506a2 2 0 011.993-2.006 2 2 0 011.993 2.006 2 2 0 01-1.993 2.006 2 2 0 01-1.993-2.006zM15.72 16.238a.5.5 0 00-.493.506.5.5 0 00.493.506.5.5 0 00.493-.506.5.5 0 00-.493-.506zm-1.993.506a2 2 0 011.993-2.006 2 2 0 011.993 2.006 2 2 0 01-1.993 2.006 2 2 0 01-1.993-2.006z">
+                        </path>
+                    </g>
+                    <defs>
+                        <clipPath id="go-to-cart_svg__clip0_9773_3456">
+                            <path fill="#fff" transform="translate(.5)" d="M0 0h20v20H0z"></path>
+                        </clipPath>
+                    </defs>
+                </svg>Add to Cart</button>
+            <button id="btn2">Buy Now</button>
+        </div>
+    </div>
+    <div id="right">
+        <div class="right-part book-text">
+            <h3>{{bookDetail.title}} <span>Language : {{bookDetail.lang}}</span></h3>
+            <p id="author">By <span>{{bookDetail.author}}</span> published Year - September
+                <span>{{bookDetail.year}}</span></p>
+            <p class="price-data">₹ {{bookDetail.price}}<span>.00</span></p>
+            <p class="rating">⭐⭐⭐⭐⭐</p>
+            <p id="pub">Publisher - <span>{{bookDetail.publisher}}</span> Publisher City - <span>
+                    {{bookDetail.publisherCity}} </span></p>
+            <p id="genre">Genre - <span>{{bookDetail.genre}}</span>
+                <span> {{bookDetail.genre[1]}}</span>
+                <span>{{bookDetail.genre[2]}}</span>
+            </p>
+        </div>
+        <div class="right-part key-feature">
+            <h3>About Book </h3>
+            <h4>Now in an expanded hardcover edition with new stories—the New York Times bestseller from the founder of
+                To Write Love on Her Arms!</h4>
+            <p>In 2006 Jamie Tworkowski wrote a story called “{{bookDetail.title}},” about helping a friend through her
+                struggle with drug addiction, depression, and self-injury. The piece was so hauntingly beautiful that it
+                quickly went viral, giving birth to a non-profit organization of the same name. </p>
+            <p>Now, To Write Love on Her Arms (TWLOHA) is an internationally recognized leader in suicide prevention and
+                a source of hope, encouragement, and support for people worldwide.</p>
+        </div>
+    </div>
+</div>
