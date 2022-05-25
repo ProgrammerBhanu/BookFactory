@@ -10,48 +10,49 @@ export class CartPageComponent implements OnInit {
   subTotal: any;
   total: any;
   discount: boolean = false;
-  cart: any = [
-    {
-      id: '628cc7b2bf824caa369eae60',
-      isbn: '9780136127802',
-      lang: 'english',
-      year: '?2010',
-      title: 'From reading to writing 2',
-      price: 250.0,
-      author: 'Blanchard, Karen',
-      publisher: 'Pearson Education',
-      publisherCity: 'New York',
-      physicalDescription: '196 p.',
-      images: [
-        'https://images-na.ssl-images-amazon.com/images/I/516pmXNNmCL._SX324_BO1,204,203,200_.jpg',
-        'https://www.clearias.com/up/ias-books-upsc-exam.png',
-        'https://www.clearias.com/up/ias-books-upsc-exam.png',
-      ],
-      genre: ['horror', 'classical', 'biography', 'lifeslice'],
-      category: 'NewRelease',
-      quantity: 1,
-    },
-    {
-      id: '628cc7b2bf824caa369eae60',
-      isbn: '9780136127802',
-      lang: 'english',
-      year: '?2010',
-      title: 'zingal bell',
-      price: 1999.0,
-      author: 'Blanchard, Karen',
-      publisher: 'Pearson Education',
-      publisherCity: 'New York',
-      physicalDescription: '196 p.',
-      images: [
-        'https://images-na.ssl-images-amazon.com/images/I/516pmXNNmCL._SX324_BO1,204,203,200_.jpg',
-        'https://www.clearias.com/up/ias-books-upsc-exam.png',
-        'https://images-na.ssl-images-amazon.com/images/I/516pmXNNmCL._SX324_BO1,204,203,200_.jpg',
-      ],
-      genre: ['horror', 'classical', 'biography', 'lifeslice'],
-      category: 'NewRelease',
-      quantity: 1,
-    },
-  ];
+  cart: any;
+  // = [
+  //   {
+  //     id: '628cc7b2bf824caa369eae60',
+  //     isbn: '9780136127802',
+  //     lang: 'english',
+  //     year: '?2010',
+  //     title: 'From reading to writing 2',
+  //     price: 250.0,
+  //     author: 'Blanchard, Karen',
+  //     publisher: 'Pearson Education',
+  //     publisherCity: 'New York',
+  //     physicalDescription: '196 p.',
+  //     images: [
+  //       'https://images-na.ssl-images-amazon.com/images/I/516pmXNNmCL._SX324_BO1,204,203,200_.jpg',
+  //       'https://www.clearias.com/up/ias-books-upsc-exam.png',
+  //       'https://www.clearias.com/up/ias-books-upsc-exam.png',
+  //     ],
+  //     genre: ['horror', 'classical', 'biography', 'lifeslice'],
+  //     category: 'NewRelease',
+  //     quantity: 1,
+  //   },
+  //   {
+  //     id: '628cc7b2bf824caa369eae60',
+  //     isbn: '9780136127802',
+  //     lang: 'english',
+  //     year: '?2010',
+  //     title: 'zingal bell',
+  //     price: 1999.0,
+  //     author: 'Blanchard, Karen',
+  //     publisher: 'Pearson Education',
+  //     publisherCity: 'New York',
+  //     physicalDescription: '196 p.',
+  //     images: [
+  //       'https://images-na.ssl-images-amazon.com/images/I/516pmXNNmCL._SX324_BO1,204,203,200_.jpg',
+  //       'https://www.clearias.com/up/ias-books-upsc-exam.png',
+  //       'https://images-na.ssl-images-amazon.com/images/I/516pmXNNmCL._SX324_BO1,204,203,200_.jpg',
+  //     ],
+  //     genre: ['horror', 'classical', 'biography', 'lifeslice'],
+  //     category: 'NewRelease',
+  //     quantity: 1,
+  //   },
+  // ];
 
   constructor(private bookService: BooksServiceService) {}
 
@@ -60,13 +61,21 @@ export class CartPageComponent implements OnInit {
     //   .getAllBooksWithPaggination()
     //   .subscribe((data) => this.setCart(data));
     this.findTotal();
+    this.setCartDataFromLocalStorage();
   }
 
-  // setCart(data: any) {
-  //   this.cart = data;
-  // }
+  setCartDataFromLocalStorage() {
+    let data: any = localStorage.getItem('cart');
+    data = JSON.parse(data);
+    this.cart = data;
+  }
+
   deleteItem(index: number) {
     this.cart.splice(index, 1);
+    let data: any = localStorage.getItem('cart');
+    data = JSON.parse(data);
+    data.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(data));
     this.findTotal();
     if (this.discount == true) {
       this.total = (this.total * 0.7).toFixed(2);
@@ -75,6 +84,10 @@ export class CartPageComponent implements OnInit {
   changeQuantity(value: any, index: number) {
     this.cart[index].quantity = value.target.value;
     this.findTotal();
+    let data: any = localStorage.getItem('cart');
+    data = JSON.parse(data);
+    data[index].quantity = value.target.value;
+    localStorage.setItem('cart', JSON.stringify(data));
   }
 
   findTotal() {
@@ -104,5 +117,11 @@ export class CartPageComponent implements OnInit {
 
   setToPaymentVariable() {
     this.bookService.setToPaymentPage(this.total);
+    let data: any = localStorage.getItem('total');
+    if (JSON.parse(data) == null) {
+      localStorage.setItem('total', JSON.stringify(this.total));
+    } else {
+      localStorage.setItem('total', JSON.stringify(this.total));
+    }
   }
 }
