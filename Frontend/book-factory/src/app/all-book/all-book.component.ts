@@ -7,7 +7,7 @@ import { BooksServiceService } from '../services/books-service.service';
 })
 export class AllBookComponent implements OnInit {
   filterFlag: string = '';
-
+  AllBook:any;
   booksData: Array<any>;
   TotalRecords: any;
   CurrentPageNo: any = 1;
@@ -21,6 +21,13 @@ export class AllBookComponent implements OnInit {
       .getBookWithGivenPage(this.CurrentPageNo)
       .subscribe((data) => this.setBookdata(data));
   }
+
+  setAllBook(data: any) {
+    this.AllBook = data.body;
+    console.log(this.AllBook);
+    // fdskhfewrhoirewo
+  }
+
   setBookdata(data: any) {
     this.booksData = data.data;
     this.CurrentPageNo = data.CurrentPage;
