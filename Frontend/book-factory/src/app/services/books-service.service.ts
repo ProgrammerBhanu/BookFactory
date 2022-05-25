@@ -27,10 +27,7 @@ export class BooksServiceService {
     //get all books with out pagination
     return this.http.get('http://localhost:8080/book/');
   }
-  // public getContactById(id: string) {
 
-  //   return this.http.get("http://localhost:8080/getContact/" + id);
-  // }
   public addBooks(data: any) {
     return this.http.post('http://localhost:8080/book/', data);
   }
@@ -63,7 +60,11 @@ export class BooksServiceService {
     return this.http.get('http://localhost:8080/book/get/one/' + id);
   }
 
-  public getBooksForLessThanPrice(price: number) {
-    return this.http.get('http://localhost:8080/book/price/?price=' + price);
+  public getBooksForLessThanPrice(price: number,pageno:number) {
+    return this.http.get('http://localhost:8080/book/price/?price=' + price+"&pageno="+pageno);
   }
+
+  public getBooksForLanguage(lang: string,pageno:number) {
+    return this.http.get('http://localhost:8080/book/search/language/?lang=' + lang+"&pageno="+pageno);
+  } 
 }
