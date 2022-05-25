@@ -19,7 +19,7 @@ import com.bookfactory.backend.model.Book;
 import com.bookfactory.backend.service.BookService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200") 
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/book")
 public class BookController {
 	@Autowired
@@ -73,6 +73,14 @@ public class BookController {
 	public ResponseEntity<?> searchName(@RequestParam(name = "title") String word) {
 		return bookService.searchName(word);
 	}
+	
+	// search by language
+		@GetMapping("/search/language")
+		public ResponseEntity<?> searchLanguage(@RequestParam(name = "lang") String word,@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
+				@RequestParam(name = "pagesize", defaultValue = "10") int pageSize,
+				@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
+			return bookService.searchLanguage(word,pageNo, pageSize, sortBy);
+		}
 
 	// getById
 	@GetMapping("/get/one/{id}")
@@ -80,10 +88,15 @@ public class BookController {
 		return bookService.getOne(id);
 	}
 
-	// getByPrice greater than
+	// getByPrice less than
 	@GetMapping("/price")
-	public ResponseEntity<?> getAllByPrice(@RequestParam(name = "price") float price) {
-		return bookService.getAllBySalaryGreaterThan(price);
+	public ResponseEntity<?> getAllByPrice(@RequestParam(name = "price") float price,
+			@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
+			@RequestParam(name = "pagesize", defaultValue = "10") int pageSize,
+			@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
+		return bookService.getAllBySalaryGreaterThan(price,pageNo,pageSize,sortBy);
 	}
+	
+	
 
 }

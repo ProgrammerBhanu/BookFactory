@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { BooksServiceService } from '../services/books-service.service';
 @Component({
   selector: 'app-payment-page',
   templateUrl: './payment-page.component.html',
@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class PaymentPageComponent implements OnInit {
   public selectedNumber: String = 'a';
   public finalPayment = false;
-  constructor() {}
+  finalTotal: number = 0;
+  constructor(private bookService: BooksServiceService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.finalTotal = this.bookService.getToPaymentPage();
+  }
 
   showBlock(value: String) {
     console.log(value);
@@ -23,4 +26,6 @@ export class PaymentPageComponent implements OnInit {
     console.log(this.finalPayment);
     this.finalPayment = true;
   }
+
+  
 }

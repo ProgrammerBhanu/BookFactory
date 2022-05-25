@@ -387,3 +387,8 @@ p {
   box-sizing: border-box;
   margin: 10px 0;
 }
+.total,
+.finalAmount {
+  
+  font-weight: bolder;
+}

@@ -1,5 +1,3 @@
-
-
 <div class="payment">
   <div class="paymOption">
     <p>Choose Payment Options</p>
@@ -74,7 +72,9 @@
             <button class="paymentBtn">Pay Securely</button>
           </div>
         </div>
-        <div class="creditCard" class="nA" *ngSwitchCase="'c'">NOT AVAILABLE</div>
+        <div class="creditCard" class="nA" *ngSwitchCase="'c'">
+          NOT AVAILABLE
+        </div>
         <div *ngSwitchCase="'d'" class="wallet" class="nA">NOT AVAILABLE</div>
         <div *ngSwitchCase="'e'" class="iBanking" class="nA">NOT AVAILABLE</div>
         <div *ngSwitchCase="'f'" class="emi" class="nA">NOT AVAILABLE</div>
@@ -120,18 +120,22 @@
     <div>
       <h3>Address</h3>
       <p class="addDel"></p>
-      <strong class="nameFirst"></strong>
-      <p class="fullAddress"></p>
-      <p class="phone"></p>
+      <strong class="nameFirst">username</strong>
+      <p class="fullAddress">NM-398 wcl colony nagpur</p>
+      <p class="phone">9766984527</p>
     </div>
     <div>
       <h3>Order Summary</h3>
 
-      <p>Total MRP <span class="total"></span></p>
-      <p>Total Discount <span class="dis"></span></p>
-      <p>Shipping Charges 1000</p>
+      <p>
+        Total MRP <span class="total">₹ {{ finalTotal }}</span>
+      </p>
+      <p><span class="dis"></span></p>
+      <p>Shipping Charges ₹ 00.00</p>
       <hr />
-      <p>Final Payable <span class="finalAmount"></span></p>
+      <p>
+        Final Payable <span class="finalAmount"> ₹ {{ finalTotal }}</span>
+      </p>
     </div>
   </div>
 </div>

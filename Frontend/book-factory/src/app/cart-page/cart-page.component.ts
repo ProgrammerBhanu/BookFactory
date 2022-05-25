@@ -68,7 +68,7 @@ export class CartPageComponent implements OnInit {
   deleteItem(index: number) {
     this.cart.splice(index, 1);
     this.findTotal();
-    if ((this.discount == true)) {
+    if (this.discount == true) {
       this.total = (this.total * 0.7).toFixed(2);
     }
   }
@@ -100,5 +100,9 @@ export class CartPageComponent implements OnInit {
     if (this.discount == false) {
       this.total = (this.total / 0.7).toFixed(2);
     }
+  }
+
+  setToPaymentVariable() {
+    this.bookService.setToPaymentPage(this.total);
   }
 }

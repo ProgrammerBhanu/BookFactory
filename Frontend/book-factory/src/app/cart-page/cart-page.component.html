@@ -59,7 +59,7 @@
         <span>₹ {{ total }}</span>
       </p>
 
-      <div class="proceed-to-checkout" routerLink="/cart/payment">
+      <div class="proceed-to-checkout" (click)="setToPaymentVariable()" routerLink="/cart/payment">
         Proceed to Checkout
       </div>
     </div>
