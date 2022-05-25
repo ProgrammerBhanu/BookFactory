@@ -3,65 +3,170 @@
   <hr />
   <div class="cart">
     <div class="products">
-      <div class="product" *ngFor="let item of cart; let i = index">
+      <div class="product">
         <div class="product-image">
-          <img src="{{ item.images[2] }}" />
+          <img src="https://www.clearias.com/up/ias-books-upsc-exam.png" />
         </div>
         <div class="product-info">
-          <h3 class="product-name">{{ item.title }}</h3>
-          <h4 class="product-publisher">by {{ item.publisher }}</h4>
+          <h3 class="product-name">Vinay the legend</h3>
+          <h4 class="product-publisher">by Vinay</h4>
           <h5 class="paperback">Paperback</h5>
           <h5 style="color: green" class="stock">In stock</h5>
           <div class="product-quantity">
             <p class="product-qty">
               Qty:
-              <select (change)="changeQuantity($event, i)">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10+</option>
               </select>
             </p>
             <div class="siz">|</div>
-            <div class="product-delete" (click)="deleteItem(i)">Delete</div>
+            <div class="product-delete">Delete</div>
             <div class="siz">|</div>
             <div class="product-route">See Similar Books</div>
           </div>
         </div>
-        <div class="product-price">₹{{ item.price * item.quantity }}</div>
+        <div class="product-price">₹1000</div>
       </div>
+      <!--  -->
+      <div class="product">
+        <div class="product-image">
+          <img src="https://www.clearias.com/up/ias-books-upsc-exam.png" />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Vinay the legend</h3>
+          <h4 class="product-publisher">by Vinay</h4>
+          <h5 class="paperback">Paperback</h5>
+          <h5 style="color: green" class="stock">In stock</h5>
+          <div class="product-quantity">
+            <p class="product-qty">
+              Qty:
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10+</option>
+              </select>
+            </p>
+            <div class="siz">|</div>
+            <div class="product-delete">Delete</div>
+            <div class="siz">|</div>
+            <div class="product-route">See Similar Books</div>
+          </div>
+        </div>
+        <div class="product-price">₹1000</div>
+      </div>
+      <!--  -->
 
-      <div class="cart-total">
-        SubTotal ({{ cart.length }} items): ₹{{ subTotal }}.00
+      <!--  -->
+      <div class="product">
+        <div class="product-image">
+          <img src="https://www.clearias.com/up/ias-books-upsc-exam.png" />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Vinay the legend</h3>
+          <h4 class="product-publisher">by Vinay</h4>
+          <h5 class="paperback">Paperback</h5>
+          <h5 style="color: green" class="stock">In stock</h5>
+          <div class="product-quantity">
+            <p class="product-qty">
+              Qty:
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10+</option>
+              </select>
+            </p>
+            <div class="siz">|</div>
+            <div class="product-delete">Delete</div>
+            <div class="siz">|</div>
+            <div class="product-route">See Similar Books</div>
+          </div>
+        </div>
+        <div class="product-price">₹1000</div>
       </div>
+      <!--  -->
+      <!--  -->
+      <div class="product">
+        <div class="product-image">
+          <img
+            src="https://images-na.ssl-images-amazon.com/images/I/51irsfz72HL._SX320_BO1,204,203,200_.jpg"
+          />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Vinay the legend</h3>
+          <h4 class="product-publisher">by Vinay</h4>
+          <h5 class="paperback">Paperback</h5>
+          <h5 style="color: green" class="stock">In stock</h5>
+          <div class="product-quantity">
+            <p class="product-qty">
+              Qty:
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10+</option>
+              </select>
+            </p>
+            <div class="siz">|</div>
+            <div class="product-delete">Delete</div>
+            <div class="siz">|</div>
+            <div class="product-route">See Similar Books</div>
+          </div>
+        </div>
+        <div class="product-price">₹1000</div>
+      </div>
+      <!--  -->
+
+      <div class="cart-total">Total (2 items): ₹1,054.00</div>
     </div>
+    <!--  -->
 
     <div class="show-final-price-container">
       <div class="inputfield terms">
         <label class="check">
-          <input type="checkbox" (click)="applyDiscount()" />
+          <input type="checkbox" />
           <span class="checkmark"></span>
         </label>
         <p style="color: #49c5b6">30% off on Promocode</p>
       </div>
       <p>
         <span>Total items : </span>
-        <span>{{ cart.length }}</span>
+        <span>2</span>
       </p>
       <p>
         <span>Total : </span>
-        <span>₹ {{ total }}</span>
+        <span>₹ 1,000</span>
       </p>
 
-      <div class="proceed-to-checkout" (click)="setToPaymentVariable()" routerLink="/cart/payment">
-        Proceed to Checkout
-      </div>
+      <div class="proceed-to-checkout" routerLink="/cart/payment">Proceed to Checkout</div>
     </div>
     <!--  -->
   </div>

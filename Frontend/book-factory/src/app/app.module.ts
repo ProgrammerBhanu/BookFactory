@@ -12,7 +12,9 @@ import { AllBookComponent } from './all-book/all-book.component';
 import { PostNewBookFormComponent } from './Admin/post-new-book-form/post-new-book-form.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
-import { HttpClientModule} from "@angular/common/http"
+import { HttpClientModule} from "@angular/common/http";
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 
 @NgModule({
@@ -26,13 +28,16 @@ import { HttpClientModule} from "@angular/common/http"
     PostNewBookFormComponent,
     CartPageComponent,
     PaymentPageComponent,
+    BookDetailsComponent,
+    
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

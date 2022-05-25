@@ -1,33 +1,35 @@
-<div class="payment">
-  <div class="paymOption">
+
+
+<div id="payment">
+  <div id="paymOption">
     <p>Choose Payment Options</p>
-    <div class="method">
-      <div class="options">
-        <p class="upiPara" (click)="showBlock('a')">Pay Using UPI</p>
-        <p class="dcPara" (click)="showBlock('b')">Debit Card</p>
-        <p class="ccPara" (click)="showBlock('c')">Credit Card</p>
-        <p class="walletPara" (click)="showBlock('d')">Wallets</p>
-        <p class="ibPara" (click)="showBlock('e')">Internet Banking</p>
-        <p class="emiPara" (click)="showBlock('f')">EMI or Pay Later</p>
-        <p class="codPara" (click)="showBlock('g')">Cash On Delivery</p>
+    <div id="method">
+      <div id="options">
+        <p id="upiPara" (click)="showBlock('a')">Pay Using UPI</p>
+        <p id="dcPara" (click)="showBlock('b')">Debit Card</p>
+        <p id="ccPara" (click)="showBlock('c')">Credit Card</p>
+        <p id="walletPara" (click)="showBlock('d')">Wallets</p>
+        <p id="ibPara" (click)="showBlock('e')">Internet Banking</p>
+        <p id="emiPara" (click)="showBlock('f')">EMI or Pay Later</p>
+        <p id="codPara" (click)="showBlock('g')">Cash On Delivery</p>
       </div>
-      <div class="process" [ngSwitch]="selectedNumber">
-        <div class="upi" *ngSwitchCase="'a'">
+      <div id="process" [ngSwitch]="selectedNumber">
+        <div id="upi" *ngSwitchCase="'a'">
           <p>Please enter your UPI ID</p>
           <div>
             <img src="https://img1.hkrtcdn.com/1179/paytm-upi.png" alt="" />
             <br />
-            <input class="inp" type="text" placeholder="MobileNumber@upi" />
-            <button class="btn1">Verify</button>
-            <p class="valclass">Please enter a valid UPI ID</p>
+            <input id="inp" type="text" placeholder="MobileNumber@upi" />
+            <button id="btn1">Verify</button>
+            <p id="valid">Please enter a valid UPI ID</p>
             <br />
             <input type="checkbox" />
             <span>Securely saved for faster payments</span>
             <br />
-            <button class="btn2">Pay Securely</button>
+            <button id="btn2">Pay Securely</button>
           </div>
         </div>
-        <div class="debitCard" *ngSwitchCase="'b'">
+        <div id="debitCard" *ngSwitchCase="'b'">
           <div>
             <p>Enter Card Details</p>
             <input
@@ -38,15 +40,15 @@
 
             <input class="inputCard" type="text" placeholder="Card Number" />
 
-            <select class="expiry" name="" class="">
+            <select class="expiry" name="" id="">
               <option value="Expiry MM">Expiry MM</option>
             </select>
 
-            <select class="expiry" name="" class="">
+            <select class="expiry" name="" id="">
               <option value="Expiry YY">Expiry YY</option>
             </select>
 
-            <input class="cvv" type="text" placeholder="CVV" />
+            <input id="cvv" type="text" placeholder="CVV" />
             <input type="checkbox" />
             <span>Securely saved for faster payments</span>
 
@@ -72,13 +74,11 @@
             <button class="paymentBtn">Pay Securely</button>
           </div>
         </div>
-        <div class="creditCard" class="nA" *ngSwitchCase="'c'">
-          NOT AVAILABLE
-        </div>
-        <div *ngSwitchCase="'d'" class="wallet" class="nA">NOT AVAILABLE</div>
-        <div *ngSwitchCase="'e'" class="iBanking" class="nA">NOT AVAILABLE</div>
-        <div *ngSwitchCase="'f'" class="emi" class="nA">NOT AVAILABLE</div>
-        <div class="cod" *ngSwitchCase="'g'">
+        <div id="creditCard" class="nA" *ngSwitchCase="'c'">NOT AVAILABLE</div>
+        <div *ngSwitchCase="'d'" id="wallet" class="nA">NOT AVAILABLE</div>
+        <div *ngSwitchCase="'e'" id="iBanking" class="nA">NOT AVAILABLE</div>
+        <div *ngSwitchCase="'f'" id="emi" class="nA">NOT AVAILABLE</div>
+        <div id="cod" *ngSwitchCase="'g'">
           <div>
             <div>
               <div></div>
@@ -96,7 +96,7 @@
 
             <h4>Sure about the address?</h4>
             <p>
-              <input class="codCheckbox" type="checkbox" />
+              <input id="codCheckbox" type="checkbox" />
               <span
                 >Check the box here to confirm & complete your purchase through
                 Cash On Delivery option.</span
@@ -110,40 +110,36 @@
               HK Cash is not valid on Cash on Delivery orders. Use Prepaid
               Payment Mode to Earn & Redeem HK Cash.
             </p>
-            <button class="codButton" (click)="toggle()">Pay Later</button>
+            <button id="codButton" (click)="toggle()">Pay Later</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="paymPrice">
+  <div id="paymPrice">
     <div>
       <h3>Address</h3>
-      <p class="addDel"></p>
-      <strong class="nameFirst">username</strong>
-      <p class="fullAddress">NM-398 wcl colony nagpur</p>
-      <p class="phone">9766984527</p>
+      <p id="addDel"></p>
+      <strong id="nameFirst"></strong>
+      <p id="fullAddress"></p>
+      <p id="phone"></p>
     </div>
     <div>
       <h3>Order Summary</h3>
 
-      <p>
-        Total MRP <span class="total">₹ {{ finalTotal }}</span>
-      </p>
-      <p><span class="dis"></span></p>
-      <p>Shipping Charges ₹ 00.00</p>
+      <p>Total MRP <span id="total"></span></p>
+      <p>Total Discount <span id="dis"></span></p>
+      <p>Shipping Charges 1000</p>
       <hr />
-      <p>
-        Final Payable <span class="finalAmount"> ₹ {{ finalTotal }}</span>
-      </p>
+      <p>Final Payable <span id="finalAmount"></span></p>
     </div>
   </div>
 </div>
 
-<div class="thankyou" *ngIf="finalPayment">
+<div id="thankyou" *ngIf="finalPayment">
   <h3>Congratulations! You Have Successfully Made Your Order</h3>
-  <div>Your Order ID: <span class="orderNo"></span></div>
+  <div>Your Order ID: <span id="orderNo"></span></div>
   <p>Thank You!</p>
   <div>Be Safe, Be Healthy</div>
-  <button class="thankBtn">Continue Shopping</button>
+  <button id="thankBtn">Continue Shopping</button>
 </div>
