@@ -31,7 +31,7 @@ p {
   color: #3c3c3c;
 }
 
-#payment {
+.payment {
   /* background-color: red; */
   width: 100%;
   display: flex;
@@ -39,20 +39,21 @@ p {
   column-gap: 10px;
   justify-content: center;
   margin-top: 120px;
+  margin-bottom: 50px;
 }
 
-#paymOption {
+.paymOption {
   width: 57%;
   margin-top: 10px;
   box-shadow: 2px 2px 5px 2px grey;
   background-color: rgb(255, 255, 255);
 }
 
-#method {
+.method {
   display: flex;
 }
 
-#paymOption > p {
+.paymOption > p {
   width: 100%;
   /* background-color: rgb(240, 240, 240); */
   background-color: rgb(255, 255, 255);
@@ -64,14 +65,14 @@ p {
   box-sizing: border-box;
 }
 
-#options {
+.options {
   width: 30%;
   /* background-color: salmon; */
   display: flex;
   flex-direction: column;
 }
 
-#options p {
+.options p {
   padding: 12% 8%;
   border: 1px solid rgb(214, 211, 211);
   font-weight: bold;
@@ -79,13 +80,13 @@ p {
   cursor: pointer;
 }
 
-#options p:nth-child(7) {
+.options p:nth-child(7) {
   /* padding: 8%; */
   border: 1px solid rgb(214, 211, 211);
   /* border-bottom: none; */
 }
 
-#process {
+.process {
   width: 70%;
   /* background-color: slateblue;  */
   border: 1px solid rgb(214, 211, 211);
@@ -103,13 +104,13 @@ p {
   box-sizing: border-box;
 }
 
-#paymPrice {
+.paymPrice {
   width: 23%;
   height: 400px;
   margin-top: 10px;
 }
 
-#paymPrice > div:nth-child(1) {
+.paymPrice > div:nth-child(1) {
   width: 100%;
   height: 180px;
   display: flex;
@@ -121,7 +122,7 @@ p {
   margin: 0 0 20px 0;
 }
 
-#paymPrice > div:nth-child(2) {
+.paymPrice > div:nth-child(2) {
   width: 100%;
   height: 230px;
   display: flex;
@@ -135,7 +136,7 @@ p {
 
 /* upi ki css */
 
-#upi {
+.upi {
   /* background-color: slategray; */
   height: 100%;
   width: 100%;
@@ -145,16 +146,16 @@ p {
   box-sizing: border-box;
 }
 
-#upi > p {
+.upi > p {
   color: #f5c8bd;
 }
 
-#upi div {
+.upi div {
   padding: 5%;
   box-sizing: border-box;
 }
 
-#inp {
+.inp {
   width: 50%;
   height: 45px;
   padding: 0 5%;
@@ -163,7 +164,7 @@ p {
   box-sizing: border-box;
 }
 
-#upi #btn1 {
+.upi .btn1 {
   background-color: #e1edf4;
   width: 25%;
   border: none;
@@ -175,11 +176,11 @@ p {
   border-radius: 5px;
 }
 
-#upi #valid {
+.upi .valid {
   color: red;
 }
 
-#upi #btn2 {
+.upi .btn2 {
   background-color: #f5c8bd;
   width: 75%;
   margin: 30px 0;
@@ -193,7 +194,7 @@ p {
 
 /* debit card  ki css */
 
-#debitCard {
+.debitCard {
   /* background-color: rgb(32, 96, 160); */
   height: 100%;
   width: 100%;
@@ -203,7 +204,7 @@ p {
   box-sizing: border-box;
 }
 
-#debitCard > div {
+.debitCard > div {
   /* border: 2px solid red; */
   display: flex;
   flex-wrap: wrap;
@@ -230,7 +231,7 @@ p {
   box-sizing: border-box;
 }
 
-#cvv {
+.cvv {
   width: 14%;
   height: 45px;
   text-align: center;
@@ -238,7 +239,7 @@ p {
   box-sizing: border-box;
 }
 
-#debitCard > div > div {
+.debitCard > div > div {
   /* border: 2px solid red; */
   height: 30px;
   display: flex;
@@ -246,7 +247,7 @@ p {
   column-gap: 2%;
 }
 
-#debitCard > div > div img {
+.debitCard > div > div img {
   height: 100%;
   /* filter: saturate(50); */
   filter: grayscale();
@@ -254,7 +255,7 @@ p {
 
 /* debit card  ki css */
 
-#creditCard {
+.creditCard {
   background-color: rgb(72, 160, 32);
   height: 100%;
   width: 100%;
@@ -262,7 +263,7 @@ p {
   position: absolute;
 }
 
-#wallet {
+.wallet {
   background-color: rgb(50, 61, 44);
   height: 100%;
   width: 100%;
@@ -270,7 +271,7 @@ p {
   position: absolute;
 }
 
-#iBanking {
+.iBanking {
   background-color: rgb(51, 32, 160);
   height: 100%;
   width: 100%;
@@ -278,7 +279,7 @@ p {
   position: absolute;
 }
 
-#emi {
+.emi {
   background-color: rgb(230, 97, 97);
   height: 100%;
   width: 100%;
@@ -286,7 +287,7 @@ p {
   position: absolute;
 }
 
-#cod {
+.cod {
   /* background-color: rgb(109, 7, 7); */
   height: 100%;
   width: 100%;
@@ -295,13 +296,13 @@ p {
   padding: 4%;
 }
 
-#cod > div:nth-child(1) {
+.cod > div:nth-child(1) {
   display: flex;
   align-items: center;
   column-gap: 10px;
 }
 
-#cod > div > div:nth-child(1) {
+.cod > div > div:nth-child(1) {
   /* background-color: red; */
   border: 2px solid green;
   height: 25px;
@@ -314,14 +315,14 @@ p {
   box-sizing: border-box;
 }
 
-#cod > div > div:nth-child(1) > div {
+.cod > div > div:nth-child(1) > div {
   background-color: green;
   height: 100%;
   width: 100%;
   border-radius: 50%;
 }
 
-#cod > div:nth-child(2) {
+.cod > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -330,11 +331,11 @@ p {
   row-gap: 3%;
 }
 
-#cod > div:nth-child(2) li {
+.cod > div:nth-child(2) li {
   list-style-type: disc;
 }
 
-#cod > div:nth-child(2) button {
+.cod > div:nth-child(2) button {
   width: 80%;
   height: 45px;
   box-sizing: border-box;
@@ -343,7 +344,7 @@ p {
   color: white;
 }
 
-#codCheck {
+.codCheck {
   width: 80%;
   height: 45px;
   box-sizing: border-box;
@@ -358,7 +359,7 @@ p {
   color: #d3cfcf;
 }
 
-#thankyou {
+.thankyou {
   width: 50%;
   position: absolute;
   background-color: #00bfbf;
@@ -370,11 +371,11 @@ p {
   padding: 20px;
   box-shadow: 2px 2px 5px 2px grey;
 }
-#thankyou > p {
+.thankyou > p {
   font-size: 30px;
   margin-top: 20px;
 }
-#thankBtn {
+.thankBtn {
   background-color: #ce4928;
   width: 40%;
   /* margin: 30px 0; */
@@ -385,4 +386,9 @@ p {
   height: 45px;
   box-sizing: border-box;
   margin: 10px 0;
+}
+.total,
+.finalAmount {
+  
+  font-weight: bolder;
 }

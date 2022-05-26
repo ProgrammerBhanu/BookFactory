@@ -37,7 +37,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

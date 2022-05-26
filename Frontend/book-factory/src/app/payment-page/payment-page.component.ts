@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { BooksServiceService } from '../services/books-service.service';
 @Component({
   selector: 'app-payment-page',
   templateUrl: './payment-page.component.html',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class PaymentPageComponent implements OnInit {
   public selectedNumber: String = 'a';
   public finalPayment = false;
-  constructor() {}
+  finalTotal: number = 0;
+  constructor(private bookService: BooksServiceService, private router:Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.finalTotal = history.state.val;
+  }
 
   showBlock(value: String) {
     console.log(value);
@@ -22,5 +26,12 @@ export class PaymentPageComponent implements OnInit {
   toggle() {
     console.log(this.finalPayment);
     this.finalPayment = true;
+  }
+
+  handleThanku():void{
+    localStorage.setItem("cart",JSON.stringify([]));
+    setTimeout(()=>{
+        this.router.navigateByUrl("");
+    },2000)
   }
 }

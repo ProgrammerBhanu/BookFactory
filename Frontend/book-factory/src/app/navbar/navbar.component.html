@@ -7,7 +7,16 @@
         <div id="search-bar">
             <img src="../../assets/search.png" alt="" srcset="">
             &nbsp;
-            <input type="text" name="" id="" placeholder="Find your best book">
+            <input (input)="search($event)" [value]="textVal"  type="text" name="" id="" placeholder="Find your best book">
+            <div *ngIf="cardFlag" id="search-bar-con">
+                <div (click)="searchCard()" routerLink="allbooks/bookdetails" class="cards" *ngFor="let item of searchData; let i = index" [state]="{data:item}">
+                    <img src="{{item.images[0]}}" alt="" srcset="">
+                    <div class="card-data">
+                        <p>{{item.title}}</p>
+                        <h4>₹ {{item.price}}</h4>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="logo">
             <span routerLink="">BookFactory..</span>

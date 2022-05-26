@@ -59,9 +59,15 @@ export class BooksServiceService {
     return this.http.get("http://localhost:8080/book/get/one/"+id);
   }
 
-  public getBooksForLessThanPrice(price:number) {
-    
-    return this.http.get("http://localhost:8080/book/price/?price="+price);
+  public getBooksForLessThanPrice(price: number,pageno:number) {
+    return this.http.get('http://localhost:8080/book/price/?price=' + price+"&pageno="+pageno);
   }
+
+  public getBooksForLanguage(lang: string,pageno:number) {
+    return this.http.get('http://localhost:8080/book/search/language/?lang=' + lang+"&pageno="+pageno);
+  } 
+  public getDataWithSearch(lang: string) {
+    return this.http.get('http://localhost:8080/book/search/?title=' + lang);
+  } 
   
 }

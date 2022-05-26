@@ -36,11 +36,17 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartPageComponent,
+    children:[
+      {
+        path: "",
+        component: CartPageComponent,
+      },
+    ]
   },
   {
-    path: 'cart/payment',
+    path: "cart/payment",
     component: PaymentPageComponent,
-  },
+  }
 ];
 
 @NgModule({

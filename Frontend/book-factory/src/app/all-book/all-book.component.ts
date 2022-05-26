@@ -35,6 +35,10 @@ export class AllBookComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllBooks();
+    this.bookService
+    .getAllBooksWithPaggination()
+    .subscribe((data) => this.setBookdata(data));
+    this.bookService.getAllBooks().subscribe((data) => this.setAllBook(data));
   }
   handleFilters(val: any): void {
     this.filterFlag = val;
@@ -42,5 +46,26 @@ export class AllBookComponent implements OnInit {
   handlePageChange(data:any){
     this.CurrentPageNo = data;
     this.getAllBooks();
+  }
+  setPriceLessThanWithPageNo(price: number, pageno: number) {
+    this.bookService
+      .getBooksForLessThanPrice(price, pageno)
+      .subscribe((data) => this.setBookdata(data));
+  }
+
+  setLanguage(lang: string, pageno: number) {
+    this.bookService.getBooksForLanguage(lang, pageno)
+      .subscribe((data) => this.setBookdata(data));
+  }
+
+  filterByGenre(gen: string) {
+    let newObj = {};
+    let myData = this.AllBook;
+
+    let arr = myData.filter((el: any) => el.genre.includes(gen) === true);
+
+    this.booksData = arr.slice(0, 10);
+    this.CurrentPageNo = 0;
+    this.TotalRecords = 1;
   }
 }

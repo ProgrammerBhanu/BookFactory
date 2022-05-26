@@ -20,6 +20,7 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
 .img:nth-child(2){
     margin: 20px 0px;
 }
