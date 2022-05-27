@@ -27,7 +27,7 @@ export class BooksServiceService {
 
     return this.http.post("http://localhost:8080/book/", data);
   }
-  public put(para: string, data: any) {
+  public putBooks(data: any) {
 
     return this.http.put("http://localhost:8080/book", data);
   }

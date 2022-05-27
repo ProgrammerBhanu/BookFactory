@@ -6,7 +6,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
-
+import { PostNewBookFormComponent } from './Admin/post-new-book-form/post-new-book-form.component';
 const routes: Routes = [
   {
     path: '',
@@ -22,31 +22,35 @@ const routes: Routes = [
   },
   {
     path: 'allbooks',
-    children:[
+    children: [
       {
-        path:"",
+        path: '',
         component: AllBookComponent,
       },
       {
-        path:"bookdetails",
-        component: BookDetailsComponent
-      }
-    ]
+        path: 'bookdetails',
+        component: BookDetailsComponent,
+      },
+    ],
   },
   {
     path: 'cart',
     component: CartPageComponent,
-    children:[
+    children: [
       {
-        path: "",
+        path: '',
         component: CartPageComponent,
       },
-    ]
+    ],
   },
   {
-    path: "cart/payment",
+    path: 'cart/payment',
     component: PaymentPageComponent,
-  }
+  },
+  {
+    path: 'admin/postUpdate',
+    component: PostNewBookFormComponent,
+  },
 ];
 
 @NgModule({

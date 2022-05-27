@@ -1,7 +1,7 @@
 <div style="margin-top: 150px"></div>
 <div class="wrapper">
-  <div class="title">Add New Books</div>
-  <form class="form">
+  <div class="title">{{ flag ? "Add" : "Update" }} New Books</div>
+  <form #mainForm="ngForm" (ngSubmit)="getValue(mainForm.value)" class="form">
     <div class="inputfield">
       <label>Enter isbn</label>
       <input
@@ -112,12 +112,12 @@
     </div>
     <div class="inputfield">
       <label>Enter Images Urls</label>
-     
+
       <textarea
         class="textarea"
         type="text"
         name="images"
-        placeholder="Enter 3 image url with ',' "
+        placeholder="Enter 3 image url with ',' Ex: www.image1.com,www.image2.com,www.image3.com "
         ngModel
         required
         #images
@@ -125,15 +125,15 @@
     </div>
     <div class="inputfield">
       <label>Enter Genre</label>
-      <input
-        class="input"
+      <textarea
+        class="textarea"
         type="text"
         name="genre"
-        placeholder="Enter genre  with ',' "
+        placeholder="Enter genre  with ',' Ex: indianWriting,classical,school,lifeslice "
         ngModel
         required
         #genre
-      />
+      ></textarea>
     </div>
 
     <div class="inputfield">
@@ -149,7 +149,8 @@
       />
     </div>
     <div class="inputfield">
-      <button class="btn" type="submit">Submit form</button>
+      <button *ngIf="flag" class="btn" type="submit">Submit Post</button>
+      <button *ngIf="!flag" class="btn" type="submit">Submit Update</button>
     </div>
   </form>
 </div>
