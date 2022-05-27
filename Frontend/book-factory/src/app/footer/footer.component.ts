@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-
+import { BooksServiceService } from '../services/books-service.service';
 @Component({
   selector: 'app-footerCom',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
+  constructor(private bookService: BooksServiceService) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  suggestionBoxContaint(data: any) {
+    this.bookService
+      .sendEmailWithBody(data.value)
+      .subscribe((data) => console.log(data));
   }
-
 }
