@@ -6,10 +6,20 @@ import { HttpClient } from '@angular/common/http';
 export class BooksServiceService {
   private cartValue: number = 0;
 
-  constructor(private http: HttpClient) {}
+  private adminFlag:boolean = false;
+  constructor(private http: HttpClient ) {}
+
 
   getCartVal() {
     return this.cartValue;
+  }
+
+  setAdminFlag(val:any): void {
+    this.adminFlag = val;
+  }
+
+  getAdminFlag() {
+    return this.adminFlag;
   }
 
   setCardVal(val: number): void {

@@ -24,25 +24,26 @@
         <div id="login-user">
             <span routerLink="register" [state]="{ flag:true}">REGISTER /&nbsp;</span>
             <span routerLink="login" [state]="{ flag:false}">LOGIN</span>
-            <div id="cart" routerLink="cart">
+            <div *ngIf="!adminFlag" id="cart" routerLink="cart">
                 <div id="cart-icon"></div>
                 <span>cart</span>
             </div>
             
         </div>
     </div>
-    <span id="cart-count">{{cartVal}}
+    <span *ngIf="!adminFlag" id="cart-count">{{cartVal}}
     </span>
   </div>
   <div class="dropdown-con" *ngIf="dropFlag">
       <div id="drop1">
           <div (click)="handleClose()" id="close-btn">CLOSE<span>X</span></div>
         <div id="items">
+            <div class="item" (click)="handleAdmin()" routerLink="">Admin</div>
+            <div class="item" (click)="handleUser()" routerLink="">User</div>
             <div class="item"(click)="handleClose()" routerLink="">Home</div>
             <div class="item" (click)="handleClose()" routerLink="allbooks">All Books</div>
             <div class="item">Trending Books</div>
             <div class="item">About Us</div>
-            <div class="item">Career</div>
     </div>
       </div>
       <div id="drop2"></div>

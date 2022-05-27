@@ -7,7 +7,7 @@ import { BooksServiceService } from '../services/books-service.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  // serarchVal:string = "";
+  adminFlag:boolean = false;
   dropFlag: boolean = false;
   cartVal: number = 0;
   textVal: string = "";
@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     let data: any = localStorage.getItem('cart');
     this.cartVal = JSON.parse(data).length;
+    this.adminFlag = this.dataService.getAdminFlag();
     
   }
 
@@ -47,11 +48,28 @@ export class NavbarComponent implements OnInit {
       }
     )
     this.cardFlag = true;
-    console.log("Aa gya data",this.searchData)
+
 }
 searchCard():void{
   this.cardFlag = false;
   this.textVal = "";
 }
   // SEARCHING AND DEBOUNCING END
+
+
+// Admin part starts
+
+handleAdmin():void{
+  alert("Welcome to Admin Panel");
+  this.adminFlag = true
+  this.dataService.setAdminFlag(true);
+  this.handleClose();
+}
+
+handleUser():void{
+  alert("Welcome to User Panel");
+  this.adminFlag = false;
+  this.dataService.setAdminFlag(false);
+  this.handleClose();
+}
 }

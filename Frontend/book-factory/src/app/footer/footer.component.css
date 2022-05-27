@@ -130,10 +130,18 @@ footer {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+
+/* Suggestion Start */
 .emailBox {
+  position:absolute;
+  right: 3vw;
   border: 1px solid #d5dbd9;
   width: 500px;
-  height: 250px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .textarea {
   outline: none;
@@ -141,8 +149,8 @@ footer {
   font-size: 15px;
   border-radius: 3px;
   transition: all 0.3s ease;
-  width: 100%;
-  height: 85px;
+  width: 450px;
+  height: 100px;
   resize: none;
 }
 .textarea:focus {
@@ -150,7 +158,7 @@ footer {
 }
 
 .emailboxBtn {
-  width: 100%;
+  width: 450px;
   
   padding: 8px 10px;
   font-size: 15px;
@@ -165,3 +173,4 @@ footer {
 .emailboxBtn:hover {
   background: #20a09a;
 }
+/* Suggestion End */

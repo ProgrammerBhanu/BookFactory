@@ -9,6 +9,7 @@ export class PostNewBookFormComponent implements OnInit {
   flag: Boolean = true;
   obj: any;
 
+
   @ViewChild('isbn', { static: true }) isbnElement: ElementRef;
   @ViewChild('lang', { static: true }) langElement: ElementRef;
   @ViewChild('year', { static: true }) yearElement: ElementRef;
@@ -53,7 +54,10 @@ export class PostNewBookFormComponent implements OnInit {
     this.categoryElement = categoryElement;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.flag = history.state.flag;
+  }
+
 
   getValue(val: any) {
     this.obj = {

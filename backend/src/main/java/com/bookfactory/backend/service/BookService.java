@@ -1,5 +1,6 @@
 package com.bookfactory.backend.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,13 +13,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.bookfactory.backend.model.Book;
 import com.bookfactory.backend.repository.BookRepository;
 
 @Service
-public class BookService {
+public class BookService{
 
 	@Autowired
 	BookRepository bookRepository;
@@ -178,10 +183,9 @@ public class BookService {
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
-		
-		
-		//		List<Book> c1 = bookRepository.findByTitleStartingWith(word);
-//		return new ResponseEntity<List<Book>>(c1, HttpStatus.OK);
 	}
+		
+//------------------------------Security part Start ----------------------------------------------------------------------------//
+
 
 }

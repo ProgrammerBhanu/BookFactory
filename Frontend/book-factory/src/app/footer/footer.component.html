@@ -31,11 +31,12 @@
         <div class="link">My Shopping Bag</div>
         <div class="link">My Wishlist</div>
       </div>
+      <!-- ------------------------Suggestion Start--------->
       <div class="emailBox">
         <h4 class="linkHeader" style="text-align: center">
           Suggestion Or Complains
         </h4>
-        <div style="width: 80%; margin-left: auto; margin-right: auto">
+        <div >
           <textarea
             class="textarea"
             type="text"
@@ -45,22 +46,16 @@
           >
           </textarea>
         </div>
-        <div
-          style="
-            width: 85%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 15px;
-          "
-        >
+        <div>
           <button
-            class="emailboxBtn"
-            (click)="suggestionBoxContaint(SuggestionBox)"
+          class="emailboxBtn"
+          (click)="suggestionBoxContaint(SuggestionBox)"
           >
-            Send Mail
-          </button>
-        </div>
+          Send Mail
+        </button>
       </div>
+    </div>
+    <!-- ------------------------Suggestion End-->
     </div>
     <div class="news"></div>
   </div>
