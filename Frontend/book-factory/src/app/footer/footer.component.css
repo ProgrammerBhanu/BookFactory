@@ -139,13 +139,11 @@ footer {
   outline: none;
   border: 1px solid #d5dbd9;
   font-size: 15px;
-  padding: 8px 10px;
   border-radius: 3px;
   transition: all 0.3s ease;
   width: 100%;
-  height: 125px;
+  height: 85px;
   resize: none;
-  align-items: center;
 }
 .textarea:focus {
   border: 1px solid #49c5b6;
@@ -153,7 +151,7 @@ footer {
 
 .emailboxBtn {
   width: 100%;
-
+  
   padding: 8px 10px;
   font-size: 15px;
   border: 0px;

@@ -7,7 +7,7 @@ import { BooksServiceService } from '../services/books-service.service';
 })
 export class AllBookComponent implements OnInit {
   filterFlag: string = '';
-  AllBook:any;
+  AllBook: any;
   booksData: Array<any>;
   TotalRecords: any;
   CurrentPageNo: any = 1;
@@ -15,8 +15,7 @@ export class AllBookComponent implements OnInit {
     this.booksData = new Array<any>();
   }
 
-  
-  getAllBooks(){
+  getAllBooks() {
     this.bookService
       .getBookWithGivenPage(this.CurrentPageNo)
       .subscribe((data) => this.setBookdata(data));
@@ -34,16 +33,30 @@ export class AllBookComponent implements OnInit {
     this.TotalRecords = data.TotalElement;
   }
   ngOnInit(): void {
-    this.getAllBooks();
-    this.bookService
-    .getAllBooksWithPaggination()
-    .subscribe((data) => this.setBookdata(data));
-    this.bookService.getAllBooks().subscribe((data) => this.setAllBook(data));
+    if (history.state.val == '' || history.state.val == undefined) {
+      this.bookService
+        .getAllBooksWithPaggination()
+        .subscribe((data) => this.setBookdata(data));
+      this.bookService.getAllBooks().subscribe((data) => this.setAllBook(data));
+    } else if (typeof history.state.val == 'number') {
+      console.log(history.state.val);
+      this.setPriceLessThanWithPageNo(history.state.val, history.state.val2);
+    } else if (
+      typeof history.state.val == 'string' &&
+      typeof history.state.val2 == 'number'
+    ) {
+      console.log(history.state.val);
+      // this.bookService.getAllBooks().subscribe((data) => this.setAllBook(data));
+      // this.filterByGenre(history.state.val);
+    } else if (typeof history.state.val == 'string') {
+      console.log(history.state.val);
+      this.setLanguage(history.state.val, 0);
+    }
   }
   handleFilters(val: any): void {
     this.filterFlag = val;
   }
-  handlePageChange(data:any){
+  handlePageChange(data: any) {
     this.CurrentPageNo = data;
     this.getAllBooks();
   }
@@ -54,16 +67,16 @@ export class AllBookComponent implements OnInit {
   }
 
   setLanguage(lang: string, pageno: number) {
-    this.bookService.getBooksForLanguage(lang, pageno)
+    this.bookService
+      .getBooksForLanguage(lang, pageno)
       .subscribe((data) => this.setBookdata(data));
   }
 
   filterByGenre(gen: string) {
-    let newObj = {};
     let myData = this.AllBook;
-
+    console.log('myData', myData);
     let arr = myData.filter((el: any) => el.genre.includes(gen) === true);
-
+    console.log('arr', arr);
     this.booksData = arr.slice(0, 10);
     this.CurrentPageNo = 0;
     this.TotalRecords = 1;
