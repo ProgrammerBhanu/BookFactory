@@ -3,17 +3,18 @@ package com.bookfactory.backend;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.bookfactory.backend.model.Book;
-import com.bookfactory.backend.model.JwtRequest;
 import com.bookfactory.backend.repository.BookRepository;
 import com.bookfactory.backend.repository.UserRepository;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @SpringBootApplication
 public class BackendApplication implements CommandLineRunner {
@@ -24,21 +25,22 @@ public class BackendApplication implements CommandLineRunner {
 	@Autowired
 	private static UserRepository userRepo;
 
-	@PostConstruct
-	public static void saveUser() {
-		JwtRequest user = new JwtRequest("Bhanu","Bhanu123");
-		try {
-			userRepo.save(user);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
 	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/userdetails").allowedOrigins("http://localhost:4200");
+			}
+		};
+	}
+		
 	@Override
 	public void run(String... args) throws Exception {
 		List<Book> listOfBooks = new ArrayList<Book>();
