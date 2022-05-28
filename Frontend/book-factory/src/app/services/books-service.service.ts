@@ -110,14 +110,11 @@ export class BooksServiceService {
   }
 
   public sendEmailWithUserEmail(toEmail: string) {
-    return this.http.get(
-      'http://localhost:8080/book/sendEmail/?toemail=' + toEmail
-    );
+    return this.http.get('http://localhost:8080/book/sendEmail/?toemail=' + toEmail);
   }
   public sendEmailWithBody(body: string) {
     return this.http.get(
-      'http://localhost:8080/book/suggestion/?body=' + body
-    );
+      'http://localhost:8080/book/suggestion/?body=' + body);
   }
 
   public registerUser(data: any) {

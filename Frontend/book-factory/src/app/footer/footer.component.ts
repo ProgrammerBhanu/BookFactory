@@ -14,5 +14,6 @@ export class FooterComponent implements OnInit {
     this.bookService
       .sendEmailWithBody(data.value)
       .subscribe((data) => console.log(data));
+      alert("suggeetion has been sent to admin ")
   }
 }

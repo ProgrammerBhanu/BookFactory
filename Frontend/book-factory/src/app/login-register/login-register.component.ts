@@ -9,6 +9,7 @@ import { BooksServiceService } from '../services/books-service.service';
 export class LoginRegisterComponent implements OnInit {
   flag: boolean = false;
   token: any;
+
   constructor(
     private router: Router,
     private bookService: BooksServiceService
@@ -36,7 +37,7 @@ export class LoginRegisterComponent implements OnInit {
     });
 
     localStorage.setItem('token', JSON.stringify(this.token));
-    
+
   }
   handleRegister(data: any) {
     console.log(data);
@@ -63,10 +64,14 @@ export class LoginRegisterComponent implements OnInit {
     }
 
     this.bookService.registerUser(data).subscribe((data) => console.log(data));
+    this.bookService.sendEmailWithUserEmail(data.email).subscribe(data=> console.log(data))
   }
   registerRoute() {
-    this.router.navigateByUrl('register');
+
+    
     this.flag = true;
+    this.router.navigateByUrl('register');
+   
   }
   loginRoute() {
     this.router.navigateByUrl('login');

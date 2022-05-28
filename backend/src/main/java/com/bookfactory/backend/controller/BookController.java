@@ -104,7 +104,7 @@ public class BookController {
 	
 	
   // sendEmailSuggestion to admin
-	@PostMapping("/suggestion")
+	@GetMapping("/suggestion")
 	public void suggestion(@RequestParam(name = "body") String messageBody) {
 	service.sendSimpleEmail("vinaymakade3000@gmail.com",
 			 messageBody,
@@ -112,7 +112,7 @@ public class BookController {
   }
 	
 	// sendEmailAfter Registration to user
-	@PostMapping("/sendEmail")
+	@GetMapping("/sendEmail")
 		public void EmailAfterRegistration(@RequestParam(name = "toemail") String toEmail) {
 		service.sendSimpleEmail(toEmail,
 				 "you have successfully registered on BookFactory website ",
