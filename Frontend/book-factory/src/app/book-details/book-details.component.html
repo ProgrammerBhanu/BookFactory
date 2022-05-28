@@ -8,7 +8,7 @@
         <img id="render-img" src="{{imageSrc}}" alt="" srcset="">
         <div id="buy-btn">
             <button (click)="!adminFlag?addToCart():deleteBook(bookDetail.id)" id="btn1">{{!adminFlag?"Add to Cart":"Delete"}}</button>
-            <button id="btn2" routerLink="bookdetails/updatebook" [state]="{data:bookDetail,flag:false}" (click)="!adminFlag?buyNow():updateBook()" id="btn1">{{!adminFlag?"BuyNow":"UpdateBook"}}</button>
+            <button id="btn2" routerLink="updatebook" (click)="!adminFlag?buyNow():updateBook()" id="btn1"  [state]="{flag:false}">{{!adminFlag?"BuyNow":"UpdateBook"}}</button>
         </div>
     </div>
     <div id="right">

@@ -45,6 +45,6 @@ export class BookDetailsComponent implements OnInit {
 
   }
   updateBook():void{
-      this.router.navigateByUrl("allbooks/bookdetails/updatebook");
+      this.router.navigateByUrl("/updatebook");
   }
 }
