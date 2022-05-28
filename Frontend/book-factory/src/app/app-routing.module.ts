@@ -7,6 +7,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: LoginRegisterComponent,
+  },
+  {
+    path: 'userdetails',
+    component: UserDetailsComponent,
   },
   {
     path: 'allbooks',

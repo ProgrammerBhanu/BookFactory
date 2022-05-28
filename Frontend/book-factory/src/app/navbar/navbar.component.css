@@ -221,3 +221,54 @@ input:focus {
   background-color: transparentize(black, 0.8);
 }
 /* DropDown End */
+
+
+/* Logout Box Start */
+#logout-box{
+  width: 40px;
+  height:40px;
+  background-image: url(../../assets/account.png);
+  background-size: 100% 100%;
+  margin-right: 5.5vw;
+  margin-left: 2vw;
+}
+
+#login-dropdown{
+    position: absolute;
+    background-color: white;
+    right: 11vw;
+    top: 65px;
+    width: 180px;
+    height: 120px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
+}
+#login-dropdown::after{
+  content: ' ';
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid white;
+    border-right: 10px solid transparent;
+    position: absolute;
+    bottom: 100%;
+    left: 41%;
+}
+#login-dropdown p{
+  cursor: pointer;
+  line-height: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  width: 80%;
+  margin: 20px auto;
+  
+}
+#login-dropdown p:hover{
+  border: 1px solid #49c5b6;
+  border-radius: 10px;
+  box-shadow: #37afa1 0px 2px 8px 0px;
+}
+
+/* Logout Box End */
