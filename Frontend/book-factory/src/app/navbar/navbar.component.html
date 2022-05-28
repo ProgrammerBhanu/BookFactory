@@ -22,13 +22,18 @@
             <span routerLink="">BookFactory..</span>
         </div>
         <div id="login-user">
-            <span routerLink="register" [state]="{ flag:true}">REGISTER /&nbsp;</span>
-            <span routerLink="login" [state]="{ flag:false}">LOGIN</span>
+            <span *ngIf="!loginFlag" routerLink="register" [state]="{ flag:true}">REGISTER /&nbsp;</span>
+            <span *ngIf="!loginFlag" routerLink="login" [state]="{ flag:false}">LOGIN</span>
+            <div (click)="toggleDrop()" *ngIf="loginFlag" id="logout-box">
+                <div *ngIf="toggleflag" id="login-dropdown">
+                    <p routerLink="userdetails">Profile</p>
+                    <p (click)="handleLogout()">Logout</p>
+                </div>
+            </div>
             <div *ngIf="!adminFlag" id="cart" routerLink="cart">
                 <div id="cart-icon"></div>
                 <span>cart</span>
             </div>
-            
         </div>
     </div>
     <span *ngIf="!adminFlag" id="cart-count">{{cartVal}}

@@ -8,12 +8,24 @@ export class BooksServiceService {
   someData:any;
   private adminFlag: boolean = false;
   constructor(private http: HttpClient) {}
+  private loginFlag:boolean = true;
+
+
+
 
   getCartVal() {
     return this.cartValue;
   }
 
-  setAdminFlag(val: any): void {
+  
+  setloginFlag(val:any): void {
+    this.loginFlag = val;
+  }
+
+  getloginFlag() {
+    return this.loginFlag;
+  }
+  setAdminFlag(val:any): void {
     this.adminFlag = val;
   }
 

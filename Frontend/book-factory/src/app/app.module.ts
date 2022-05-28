@@ -15,6 +15,7 @@ import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { HttpClientModule} from "@angular/common/http";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     CartPageComponent,
     PaymentPageComponent,
     BookDetailsComponent,
+    UserDetailsComponent,
     
 
   ],

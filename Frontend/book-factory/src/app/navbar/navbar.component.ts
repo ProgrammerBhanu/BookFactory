@@ -13,6 +13,9 @@ export class NavbarComponent implements OnInit {
   textVal: string = "";
   searchData:any;
   cardFlag:boolean = false;
+  loginFlag:boolean = false;
+
+  toggleflag:boolean = false;
   constructor(private dataService: BooksServiceService) {
     this.showLength();
   }
@@ -21,6 +24,7 @@ export class NavbarComponent implements OnInit {
     let data: any = localStorage.getItem('cart');
     this.cartVal = JSON.parse(data).length;
     this.adminFlag = this.dataService.getAdminFlag();
+    this.loginFlag = this.dataService.getloginFlag();
     
   }
 
@@ -71,5 +75,14 @@ handleUser():void{
   this.adminFlag = false;
   this.dataService.setAdminFlag(false);
   this.handleClose();
+}
+
+
+handleLogout():void{
+  
+}
+
+toggleDrop():void{
+  this.toggleflag = !this.toggleflag;
 }
 }
