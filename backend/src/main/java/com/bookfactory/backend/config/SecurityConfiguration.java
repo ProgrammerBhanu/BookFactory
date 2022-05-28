@@ -40,11 +40,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.csrf().disable().authorizeRequests().antMatchers("/login", "/register","/book/**").permitAll()
-		.anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http
+		.csrf()
+		.disable()
+		.authorizeRequests()
+		.antMatchers("/login","/book/suggestion/","/book/sendEmail/", "/register","/book/","/book/page","/book/page/","/book/sortby/","/book/search/","/book/search/language/","/book/price/").permitAll()
+		.anyRequest().authenticated()
+		.and()
+		.sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
-		http.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
-		http.cors();
+		http
+		.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
+		http
+		.cors();
 	}
 	
 	//to not encode password

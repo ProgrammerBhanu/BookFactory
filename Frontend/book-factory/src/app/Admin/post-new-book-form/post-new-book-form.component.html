@@ -8,6 +8,7 @@
         class="input"
         type="text"
         name="isbn"
+        [value]="bookData.isbn"
         placeholder="9780415924986"
         ngModel
         required
@@ -20,8 +21,9 @@
         class="input"
         type="text"
         name="lang"
+        [value]="bookData.lang"
         placeholder="eng"
-        ngModel
+        
         required
         #lang
       />
@@ -32,8 +34,9 @@
         class="input"
         type="text"
         name="year"
+        [value]="bookData.year"
         placeholder="2021"
-        ngModel
+       
         required
         #year
       />
@@ -44,8 +47,9 @@
         class="input"
         type="text"
         name="title"
+        [value]="bookData.title"
         placeholder="Encyclopedia of analytical chemistry"
-        ngModel
+        
         required
         #title
       />
@@ -56,8 +60,9 @@
         class="input"
         type="text"
         name="author"
+        [value]="bookData.author"
         placeholder="Mikulesky, Beatrice S."
-        ngModel
+       
         required
         #author
       />
@@ -68,8 +73,9 @@
         class="input"
         type="number"
         name="price"
+        [value]="bookData.price"
         placeholder="250"
-        ngModel
+       
         required
         #price
       />
@@ -80,8 +86,9 @@
         class="input"
         type="text"
         name="publisher"
+        [value]="bookData.publisher"
         placeholder="Longman"
-        ngModel
+       
         required
         #publisher
       />
@@ -92,8 +99,9 @@
         class="input"
         type="text"
         name="publisherCity"
+        [value]="bookData.publisherCity"
         placeholder="White Plains, NY"
-        ngModel
+       
         required
         #publisherCity
       />
@@ -104,8 +112,9 @@
         class="input"
         type="text"
         name="physicalDescription"
+        [value]="bookData.physicalDescription"
         placeholder="Physical Description Of Book Summary"
-        ngModel
+        
         required
         #physicalDescription
       />
@@ -117,8 +126,9 @@
         class="textarea"
         type="text"
         name="images"
+        [value]="bookData.images.join(',')"
         placeholder="Enter 3 image url with ',' Ex: www.image1.com,www.image2.com,www.image3.com "
-        ngModel
+       
         required
         #images
       ></textarea>
@@ -129,8 +139,9 @@
         class="textarea"
         type="text"
         name="genre"
+        [value]="bookData.genre.join(',')"
         placeholder="Enter genre  with ',' Ex: indianWriting,classical,school,lifeslice "
-        ngModel
+       
         required
         #genre
       ></textarea>
@@ -142,8 +153,9 @@
         class="input"
         type="text"
         name="category"
+        [value]="bookData.category"
         placeholder="BestSeller"
-        ngModel
+       
         required
         #category
       />

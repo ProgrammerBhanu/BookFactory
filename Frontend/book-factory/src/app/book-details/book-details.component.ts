@@ -44,7 +44,9 @@ export class BookDetailsComponent implements OnInit {
   buyNow():void{
 
   }
-  updateBook():void{
+  updateBook(data:any):void{
+      this.dataService.sendDataToPost(data);
+
       this.router.navigateByUrl("/updatebook");
   }
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bookfactory.backend.model.Book;
 import com.bookfactory.backend.service.BookService;
+import com.bookfactory.backend.service.EmailSenderService;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,6 +27,9 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 
+	@Autowired
+	private EmailSenderService service;
+	
 	// get
 	@GetMapping("/")
 	public ResponseEntity<?> getAll() {
@@ -32,13 +37,13 @@ public class BookController {
 	}
 
 	// post
-	@PostMapping("/")
+	@PostMapping("/add")
 	public ResponseEntity<?> addBook(@RequestBody Book book) {
 		return bookService.addBook(book);
 	}
 
 	// update
-	@PutMapping("/")
+	@PutMapping("/update")
 	public ResponseEntity<?> update(@RequestBody Book book,
 			@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
 			@RequestParam(name = "pagesize", defaultValue = "10") int pageSize,
@@ -47,7 +52,7 @@ public class BookController {
 	}
 
 	// delete
-	@DeleteMapping("/")
+	@DeleteMapping("/delete")
 	public ResponseEntity<?> delete(@PathParam("id") String id) {
 		return bookService.delete(id);
 	}
@@ -97,6 +102,22 @@ public class BookController {
 		return bookService.getAllBySalaryGreaterThan(price,pageNo,pageSize,sortBy);
 	}
 	
+	
+  // sendEmailSuggestion to admin
+	@PostMapping("/suggestion")
+	public void suggestion(@RequestParam(name = "body") String messageBody) {
+	service.sendSimpleEmail("vinaymakade3000@gmail.com",
+			 messageBody,
+			"suggestions");
+  }
+	
+	// sendEmailAfter Registration to user
+	@PostMapping("/sendEmail")
+		public void EmailAfterRegistration(@RequestParam(name = "toemail") String toEmail) {
+		service.sendSimpleEmail(toEmail,
+				 "you have successfully registered on BookFactory website ",
+				"registration completed");
+	  }
 	
 
 }

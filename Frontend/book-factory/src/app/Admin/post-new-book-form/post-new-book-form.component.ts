@@ -6,8 +6,11 @@ import { BooksServiceService } from '../../services/books-service.service';
   styleUrls: ['./post-new-book-form.component.css'],
 })
 export class PostNewBookFormComponent implements OnInit {
-  flag: Boolean = true;
+  flag: Boolean = false;
   obj: any;
+  bookData: any;
+
+
 
   @ViewChild('isbn', { static: true }) isbnElement: ElementRef;
   @ViewChild('lang', { static: true }) langElement: ElementRef;
@@ -56,7 +59,9 @@ export class PostNewBookFormComponent implements OnInit {
   ngOnInit(): void {
     this.flag = history.state.flag;
     this.obj = history.state.data;
-    console.log("Object ", this.flag);
+    this.bookData = this.bookService.getDataToPost();
+
+ 
   }
 
   getValue(val: any) {
@@ -129,9 +134,9 @@ export class PostNewBookFormComponent implements OnInit {
         .addBooks(this.obj)
         .subscribe((data) => console.log('form post request', data));
     } else {
-      // this.bookService
-      //   .putBooks(this.obj)
-      //   .subscribe((data) => console.log('form update request', data));
+      this.bookService
+        .putBooks(this.obj)
+        .subscribe((data) => console.log('form update request', data));
     }
 
     // this.isbnElement.nativeElement.value = null;

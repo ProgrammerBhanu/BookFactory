@@ -1,39 +1,85 @@
 <div id="book-details">
-    <div id="left">
-        <img (click)="changeImg(0)" class="img" src="{{bookDetail.images[0]}}" alt="" srcset="">
-        <img (click)="changeImg(1)" class="img" src="{{bookDetail.images[1]}}" alt="" srcset="">
-        <img (click)="changeImg(2)" class="img" src="{{bookDetail.images[2]}}" alt="" srcset="">
+  <div id="left">
+    <img
+      (click)="changeImg(0)"
+      class="img"
+      src="{{ bookDetail.images[0] }}"
+      alt=""
+      srcset=""
+    />
+    <img
+      (click)="changeImg(1)"
+      class="img"
+      src="{{ bookDetail.images[1] }}"
+      alt=""
+      srcset=""
+    />
+    <img
+      (click)="changeImg(2)"
+      class="img"
+      src="{{ bookDetail.images[2] }}"
+      alt=""
+      srcset=""
+    />
+  </div>
+  <div id="middle">
+    <img id="render-img" src="{{ imageSrc }}" alt="" srcset="" />
+    <div id="buy-btn">
+      <button
+        (click)="!adminFlag ? addToCart() : deleteBook(bookDetail.id)"
+        id="btn1"
+      >
+        {{ !adminFlag ? "Add to Cart" : "Delete" }}
+      </button>
+      <button
+        id="btn2"
+        
+        (click)="!adminFlag ? buyNow() : updateBook(bookDetail)"
+        id="btn1"
+      >
+        {{ !adminFlag ? "BuyNow" : "UpdateBook" }}
+      </button>
     </div>
-    <div id="middle">
-        <img id="render-img" src="{{imageSrc}}" alt="" srcset="">
-        <div id="buy-btn">
-            <button (click)="!adminFlag?addToCart():deleteBook(bookDetail.id)" id="btn1">{{!adminFlag?"Add to Cart":"Delete"}}</button>
-            <button id="btn2" routerLink="updatebook" (click)="!adminFlag?buyNow():updateBook()" id="btn1"  [state]="{flag:false}">{{!adminFlag?"BuyNow":"UpdateBook"}}</button>
-        </div>
+  </div>
+  <div id="right">
+    <div class="right-part book-text">
+      <h3>
+        {{ bookDetail.title }} <span>Language : {{ bookDetail.lang }}</span>
+      </h3>
+      <p id="author">
+        By <span>{{ bookDetail.author }}</span> published Year - September
+        <span>{{ bookDetail.year }}</span>
+      </p>
+      <p class="price-data">₹ {{ bookDetail.price }}<span>.00</span></p>
+      <p class="rating">⭐⭐⭐⭐⭐</p>
+      <p id="pub">
+        Publisher - <span>{{ bookDetail.publisher }}</span> Publisher City -
+        <span> {{ bookDetail.publisherCity }} </span>
+      </p>
+      <p id="genre">
+        Genre - <span>{{ bookDetail.genre }}</span>
+        <span> {{ bookDetail.genre[1] }}</span>
+        <span>{{ bookDetail.genre[2] }}</span>
+      </p>
     </div>
-    <div id="right">
-        <div class="right-part book-text">
-            <h3>{{bookDetail.title}} <span>Language : {{bookDetail.lang}}</span></h3>
-            <p id="author">By <span>{{bookDetail.author}}</span> published Year - September
-                <span>{{bookDetail.year}}</span></p>
-            <p class="price-data">₹ {{bookDetail.price}}<span>.00</span></p>
-            <p class="rating">⭐⭐⭐⭐⭐</p>
-            <p id="pub">Publisher - <span>{{bookDetail.publisher}}</span> Publisher City - <span>
-                    {{bookDetail.publisherCity}} </span></p>
-            <p id="genre">Genre - <span>{{bookDetail.genre}}</span>
-                <span> {{bookDetail.genre[1]}}</span>
-                <span>{{bookDetail.genre[2]}}</span>
-            </p>
-        </div>
-        <div class="right-part key-feature">
-            <h3>About Book </h3>
-            <h4>Now in an expanded hardcover edition with new stories—the New York Times bestseller from the founder of
-                To Write Love on Her Arms!</h4>
-            <p>In 2006 Jamie Tworkowski wrote a story called “{{bookDetail.title}},” about helping a friend through her
-                struggle with drug addiction, depression, and self-injury. The piece was so hauntingly beautiful that it
-                quickly went viral, giving birth to a non-profit organization of the same name. </p>
-            <p>Now, To Write Love on Her Arms (TWLOHA) is an internationally recognized leader in suicide prevention and
-                a source of hope, encouragement, and support for people worldwide.</p>
-        </div>
+    <div class="right-part key-feature">
+      <h3>About Book</h3>
+      <h4>
+        Now in an expanded hardcover edition with new stories—the New York Times
+        bestseller from the founder of To Write Love on Her Arms!
+      </h4>
+      <p>
+        In 2006 Jamie Tworkowski wrote a story called “{{ bookDetail.title }},”
+        about helping a friend through her struggle with drug addiction,
+        depression, and self-injury. The piece was so hauntingly beautiful that
+        it quickly went viral, giving birth to a non-profit organization of the
+        same name.
+      </p>
+      <p>
+        Now, To Write Love on Her Arms (TWLOHA) is an internationally recognized
+        leader in suicide prevention and a source of hope, encouragement, and
+        support for people worldwide.
+      </p>
     </div>
+  </div>
 </div>

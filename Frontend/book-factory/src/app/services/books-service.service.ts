@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class BooksServiceService {
   private cartValue: number = 0;
-
-  private adminFlag:boolean = false;
-  constructor(private http: HttpClient ) {}
-
+  someData:any;
+  private adminFlag: boolean = false;
+  constructor(private http: HttpClient) {}
 
   getCartVal() {
     return this.cartValue;
   }
 
-  setAdminFlag(val:any): void {
+  setAdminFlag(val: any): void {
     this.adminFlag = val;
   }
 
@@ -34,20 +33,47 @@ export class BooksServiceService {
   //   return this.http.get("http://localhost:8080/getContact/" + id);
   // }
   public addBooks(data: any) {
-    return this.http.post('http://localhost:8080/book/', data);
+    let token: any = localStorage.getItem('token');
+    token = JSON.parse(token);
+
+    console.log(token.response);
+
+    let headers = new HttpHeaders()
+    .set('content-type','application/json')
+    .set('Authorization',  `Bearer ${token.response}`)
+
+    return this.http.post('http://localhost:8080/book/add', data,{headers});
   }
   public putBooks(data: any) {
-    return this.http.put('http://localhost:8080/book', data);
+    let token: any = localStorage.getItem('token');
+    token = JSON.parse(token);
+
+    console.log(token.response);
+
+    let headers = new HttpHeaders()
+    .set('content-type','application/json')
+    .set('Authorization',  `Bearer ${token.response}`)
+    return this.http.put('http://localhost:8080/book/update', data);
   }
   public delete(id: string) {
-    return this.http.delete('http://localhost:8080/book/?id=' + id);
+    let token: any = localStorage.getItem('token');
+    token = JSON.parse(token);
+
+    console.log(token.response);
+
+    let headers = new HttpHeaders()
+    .set('content-type','application/json')
+    .set('Authorization',  `Bearer ${token.response}`)
+    return this.http.delete('http://localhost:8080/book/delete/?id=' + id,{headers});
   }
   public getAllBooksWithPaggination() {
+    
     //get all books with  pagination
     return this.http.get('http://localhost:8080/book/page');
   }
 
   public getBookWithGivenPage(pageno: number) {
+    
     //get  books with  pagination
     return this.http.get('http://localhost:8080/book/page/?pageno=' + pageno);
   }
@@ -85,12 +111,26 @@ export class BooksServiceService {
 
   public sendEmailWithUserEmail(toEmail: string) {
     return this.http.get(
-      'http://localhost:8080/book/sendOnRegister/?toemail=' + toEmail
+      'http://localhost:8080/book/sendEmail/?toemail=' + toEmail
     );
   }
   public sendEmailWithBody(body: string) {
     return this.http.get(
-      'http://localhost:8080/book/sendSuggestions/?body=' + body
+      'http://localhost:8080/book/suggestion/?body=' + body
     );
   }
+
+  public registerUser(data: any) {
+    return this.http.post('http://localhost:8080/register', data);
+  }
+  public loginUser(data: any) {
+    return this.http.post('http://localhost:8080/login', data);
+  }
+
+  public sendDataToPost(data:any){
+       this.someData = data 
+  }
+  public getDataToPost(){
+    return this.someData 
+}
 }
