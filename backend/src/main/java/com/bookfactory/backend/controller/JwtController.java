@@ -1,90 +1,90 @@
 package com.bookfactory.backend.controller;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookfactory.backend.helper.JwtUtils;
-
-import com.bookfactory.backend.model.JwtRequest;
-import com.bookfactory.backend.model.JwtResponse;
+import com.bookfactory.backend.model.AuthenticationRequest;
+import com.bookfactory.backend.model.AuthenticationResponse;
+import com.bookfactory.backend.model.UserModel;
+import com.bookfactory.backend.repository.UserRepository;
 import com.bookfactory.backend.service.UserService;
 
+
+
 @RestController
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class JwtController {
-	@Autowired
-	private UserService userService;
 	
 	@Autowired
-	private AuthenticationManager authenticationManager; 
+	private UserRepository userRepo;
+	
+	@Autowired 
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private JwtUtils jwtUtils;
 	
 	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception{
+	@GetMapping("/dashboard")
+	private String testingToken() {
+		return "Welcome to the Dashboard "+SecurityContextHolder.getContext().getAuthentication().getName();
+	}
+	
+	@PostMapping("/register")
+	private ResponseEntity<?> subscribeClient(@RequestBody UserModel authenticationRequest){
+		
 		try {
+			userService.findDuplicate(authenticationRequest);
 			
-			this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
-		} catch (UsernameNotFoundException e) {
-			e.printStackTrace();
-			throw new Exception("Bad Credentials!!");
-		} catch (BadCredentialsException e) {
-			e.printStackTrace();
-			throw new Exception("Bad Credentials!!");
+		}catch (Exception e) {
+			return ResponseEntity.ok(new AuthenticationResponse("Error during client Register "));
 		}
-		
-		UserDetails userDetails = this.userService.loadUserByUsername(jwtRequest.getUsername());
-		String token = this.jwtUtils.generateToken(userDetails);
-		System.out.print("JWT" + token);
-		
-		return ResponseEntity.ok(new JwtResponse(token));
+		return ResponseEntity.ok(new AuthenticationResponse("Succesfull Registered client "));
 	}
 	
-	//getUser
-	@GetMapping("/alluser")
-	public ResponseEntity<?> getAllUser(){
-		return ResponseEntity.ok(userService.getAll());
+	@PostMapping("/login")
+	private ResponseEntity<?> authenticateClient(@RequestBody AuthenticationRequest authenticationRequest){
+		String username = authenticationRequest.getUsername();
+		String password = authenticationRequest.getPassword();
+		try {
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//			return ResponseEntity.ok(new AuthenticationResponse("Succesfull authentication of client "+username));
+		}catch (Exception e) {
+			return ResponseEntity.ok(new AuthenticationResponse("Error during client authentication"));
+		}
+
+		UserDetails loadedUser = userService.loadUserByUsername(username);
+		String generatedToken = jwtUtils.generateToken(loadedUser);
+		
+		return ResponseEntity.ok(new AuthenticationResponse(generatedToken));
+		
+//		return ResponseEntity.ok(new AuthenticationResponse("Success"));
 	}
 	
-	   // post
-		@PostMapping("/register")
-		public ResponseEntity<?> addUser(@RequestBody JwtRequest user ) {
-			return userService.addUser(user);
+	@GetMapping("/userdetails")
+	public ResponseEntity<?> user(@RequestHeader(value="Authorization") String token ) {
+		System.out.println(token);
+		System.out.print("ksjhfskjfhdkfghjdfjghjkdfghjkdfghkjdfgh");
+		try {
+			return new ResponseEntity<>("working fine",HttpStatus.OK);
+		}catch (Exception e) {
+			return new ResponseEntity<>("Error during client Subscription ",HttpStatus.NOT_FOUND);
 		}
-
-		// update
-		@PutMapping("/updateuser")
-		public ResponseEntity<?> update(@RequestBody JwtRequest user,
-				@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
-				@RequestParam(name = "pagesize", defaultValue = "10") int pageSize,
-				@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
-			return userService.update(user, pageNo, pageSize, sortBy);
-		}
-
-		// delete
-		@DeleteMapping("/deleteuser")
-		public ResponseEntity<?> delete(@PathParam("id") String id) {
-			return userService.delete(id);
-		}
-	
-	
+	}
 }
+
