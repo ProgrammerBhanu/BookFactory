@@ -51,6 +51,14 @@ export class BookDetailsComponent implements OnInit {
   }
 
   addToCart(): void {
+    let token: any = localStorage.getItem('token');
+    token = JSON.parse(token);
+
+    if(token === null){
+      this.router.navigateByUrl("/login")
+      return;
+    }
+
     this.dataService.getUserDetails().subscribe((data) => this.setUserBookInCart(data));
 
 
