@@ -1,25 +1,24 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { PostNewBookFormComponent } from './post-new-book-form.component';
+import { PostNewBookFormComponent } from './post-new-book-form.component';
 
-// describe('PostNewBookFormComponent', () => {
-//   let component: PostNewBookFormComponent;
-//   let fixture: ComponentFixture<PostNewBookFormComponent>;
+describe('PostNewBookFormComponent', () => {
+  let component: PostNewBookFormComponent;
+  let fixture: ComponentFixture<PostNewBookFormComponent>;
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ PostNewBookFormComponent ]
-//     })
-//     .compileComponents();
-//   });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [PostNewBookFormComponent],
+    }).compileComponents();
+  });
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(PostNewBookFormComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PostNewBookFormComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

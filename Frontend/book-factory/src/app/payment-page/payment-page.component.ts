@@ -21,27 +21,19 @@ export class PaymentPageComponent implements OnInit {
       this.finalTotal = this.bookService.getState();
     } else {
       this.finalTotal = history.state.val;
-      console.log('val', history.state.val);
     }
   }
 
   showBlock(value: String) {
-    console.log(value);
-    console.log(typeof value);
     this.selectedNumber = value;
-    console.log(this.selectedNumber);
   }
 
   toggle() {
-    console.log(this.finalPayment);
     this.finalPayment = true;
-
     this.bookService
       .getUserDetails()
       .subscribe((data) => this.setCartValuetoZeroFromLocalStorage(data));
 
-
-    console.log(this.user.email);
     this.bookService.sendEmailWithThankyou(this.user.email);
   }
 
@@ -57,11 +49,9 @@ export class PaymentPageComponent implements OnInit {
 
   setCartValuetoZeroFromLocalStorage(data: any) {
     this.user = data;
-
     let cart: any = localStorage.getItem('cart');
     cart = JSON.parse(cart);
     let name = this.user.username;
-    console.log('name', name);
 
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].hasOwnProperty(`${name}`) == true) {

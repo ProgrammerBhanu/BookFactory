@@ -6,61 +6,46 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BooksServiceService {
   private cartValue: number = 0;
-  userRole:any ;
-  someData:any;
+  userRole: any;
+  someData: any;
   // private adminFlag: boolean = false;
 
-  
-  someState:any;
+  someState: any;
   constructor(private http: HttpClient) {}
- 
-  setState(data:any){
+
+  setState(data: any) {
     this.someState = data;
   }
-  getState(){
-   return this.someState;
+  getState() {
+    return this.someState;
   }
-
-
 
   // Login
   private loginFlag = new BehaviorSubject<boolean>(false);
   newLoginFlag = this.loginFlag.asObservable();
 
-  changeInFlag(val:boolean){
+  changeInFlag(val: boolean) {
     this.loginFlag.next(val);
   }
 
   private adminFlag = new BehaviorSubject<boolean>(false);
   newAdminFlag = this.adminFlag.asObservable();
 
-  changeInAdminFlag(val:boolean){
+  changeInAdminFlag(val: boolean) {
     this.adminFlag.next(val);
   }
- 
-
-
-
 
   getCartVal() {
     return this.cartValue;
   }
 
-
-  setloginFlag(val:any): void {
+  setloginFlag(val: any): void {
     this.loginFlag = val;
   }
 
   getloginFlag() {
     return this.loginFlag;
   }
-  // setAdminFlag(val:any): void {
-  //   this.adminFlag = val;
-  // }
-
-  // getAdminFlag() {
-  //   return this.adminFlag;
-  // }
 
   setCardVal(val: number): void {
     this.cartValue = val;
@@ -73,47 +58,38 @@ export class BooksServiceService {
   public addBooks(data: any) {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-
-    console.log(token.response);
-
     let headers = new HttpHeaders()
-    .set('content-type','application/json')
-    .set('Authorization',  `Bearer ${token.response}`)
+      .set('content-type', 'application/json')
+      .set('Authorization', `Bearer ${token.response}`);
 
-    return this.http.post('http://localhost:8080/book/add', data,{headers});
+    return this.http.post('http://localhost:8080/book/add', data, { headers });
   }
   public putBooks(data: any) {
-    console.log(data,"yess")
-    // let token: any = localStorage.getItem('token');
-    // token = JSON.parse(token);
-
-    // console.log(token.response);
-
     let headers = new HttpHeaders()
-    .set('content-type','application/json')
-    .set('Access-Control-Allow-Origin','*')
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
     // .set('Authorization',  `Bearer ${token.response}`)
-    return this.http.put('http://localhost:8080/book/update', data,{headers});
+    return this.http.put('http://localhost:8080/book/update', data, {
+      headers,
+    });
   }
   public delete(id: string) {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
 
-    console.log(token.response);
-
     let headers = new HttpHeaders()
-    .set('content-type','application/json')
-    .set('Authorization',  `Bearer ${token.response}`)
-    return this.http.delete('http://localhost:8080/book/delete?id=' + id,{headers});
+      .set('content-type', 'application/json')
+      .set('Authorization', `Bearer ${token.response}`);
+    return this.http.delete('http://localhost:8080/book/delete?id=' + id, {
+      headers,
+    });
   }
   public getAllBooksWithPaggination() {
-    
     //get all books with  pagination
     return this.http.get('http://localhost:8080/book/page');
   }
 
   public getBookWithGivenPage(pageno: number) {
-    
     //get  books with  pagination
     return this.http.get('http://localhost:8080/book/page/?pageno=' + pageno);
   }
@@ -150,14 +126,17 @@ export class BooksServiceService {
   }
 
   public sendEmailWithUserEmail(toEmail: string) {
-    return this.http.get('http://localhost:8080/book/sendEmail/?toemail=' + toEmail);
+    return this.http.get(
+      'http://localhost:8080/book/sendEmail/?toemail=' + toEmail
+    );
   }
   public sendEmailWithThankyou(toEmail: string) {
-    return this.http.get('http://localhost:8080/book/sendEmailThankyou/?toemail=' + toEmail);
+    return this.http.get(
+      'http://localhost:8080/book/sendEmailThankyou/?toemail=' + toEmail
+    );
   }
   public sendEmailWithBody(body: string) {
-    return this.http.get(
-      'http://localhost:8080/book/suggestion/?body=' + body);
+    return this.http.get('http://localhost:8080/book/suggestion/?body=' + body);
   }
 
   public registerUser(data: any) {
@@ -167,22 +146,19 @@ export class BooksServiceService {
     return this.http.post('http://localhost:8080/login', data);
   }
 
-  public sendDataToPost(data:any){
-       this.someData = data 
+  public sendDataToPost(data: any) {
+    this.someData = data;
   }
-  public getDataToPost(){
-    return this.someData 
-}
+  public getDataToPost() {
+    return this.someData;
+  }
 
-public getUserDetails(){
-  let token: any = localStorage.getItem('token');
+  public getUserDetails() {
+    let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-
-    console.log(token.response);
-
     let headers = new HttpHeaders()
-    .set('content-type','application/json')
-    .set('Authorization',  `Bearer ${token.response}`)
-  return this.http.get('http://localhost:8080/userdetails',{headers});
-}
+      .set('content-type', 'application/json')
+      .set('Authorization', `Bearer ${token.response}`);
+    return this.http.get('http://localhost:8080/userdetails', { headers });
+  }
 }

@@ -1,71 +1,156 @@
 <div class="wrapper">
   <div class="title">{{ flag ? "Add" : "Update" }} New Books</div>
-  <form #mainForm="ngForm" (ngSubmit)="flag?addBook(mainForm.value):updateBook(mainForm.value)" class="form">
+  <form
+    #mainForm="ngForm"
+    (ngSubmit)="flag ? addBook(mainForm.value) : updateBook(mainForm.value)"
+    class="form"
+  >
     <div class="inputfield">
       <label>Enter isbn</label>
-      <input class="input" (change)="handleChange($event)" type="text" name="isbn" [(value)]="isbn"
-        placeholder="9780415924986" />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="isbn"
+        [(value)]="isbn"
+        placeholder="9780415924986"
+      />
     </div>
     <div class="inputfield">
       <label>Enter Language</label>
-      <input class="input" (change)="handleChange($event)" type="text" name="lang" [(value)]="lang" placeholder="eng"
-        required />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="lang"
+        [(value)]="lang"
+        placeholder="eng"
+        required
+      />
     </div>
     <div class="inputfield">
       <label>Enter Year Of Publishing</label>
-      <input class="input" (change)="handleChange($event)" type="text" name="year" [(value)]="year" placeholder="2021"
-        required />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="year"
+        [(value)]="year"
+        placeholder="2021"
+        required
+      />
     </div>
     <div class="inputfield">
       <label>Enter Title Of Book</label>
-      <input class="input" (change)="handleChange($event)" type="text" name="title" [(value)]="title"
-        placeholder="Encyclopedia of analytical chemistry" required />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="title"
+        [(value)]="title"
+        placeholder="Encyclopedia of analytical chemistry"
+        required
+      />
     </div>
     <div class="inputfield">
       <label>Enter Author Name </label>
-      <input class="input" (change)="handleChange($event)" type="text" name="author" [(value)]="author"
-        placeholder="Mikulesky, Beatrice S." required />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="author"
+        [(value)]="author"
+        placeholder="Mikulesky, Beatrice S."
+        required
+      />
     </div>
     <div class="inputfield">
       <label>Enter price</label>
-      <input class="input" (change)="handleChange($event)" type="number" name="price" [(value)]="price"
-        placeholder="250" required />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="number"
+        name="price"
+        [(value)]="price"
+        placeholder="250"
+        required
+      />
     </div>
     <div class="inputfield">
       <label>Enter Publisher Name </label>
-      <input class="input" (change)="handleChange($event)" type="text" name="publisher" [(value)]="publisher"
-        placeholder="Longman" required />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="publisher"
+        [(value)]="publisher"
+        placeholder="Longman"
+        required
+      />
     </div>
     <div class="inputfield">
       <label>Enter Publisher City </label>
-      <input class="input" (change)="handleChange($event)" type="text" name="publisherCity" [(value)]="publisherCity"
-        placeholder="White Plains, NY" required />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="publisherCity"
+        [(value)]="publisherCity"
+        placeholder="White Plains, NY"
+        required
+      />
     </div>
     <div class="inputfield">
       <label>Enter Physical Description</label>
-      <input class="input" (change)="handleChange($event)" type="text" name="physicalDescription"
-        [(value)]="physicalDescription" placeholder="Physical Description Of Book Summary" required />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="physicalDescription"
+        [(value)]="physicalDescription"
+        placeholder="Physical Description Of Book Summary"
+        required
+      />
     </div>
     <div class="inputfield">
       <label>Enter Images Urls</label>
-      <textarea class="textarea" (change)="handleChange($event)" type="text" name="images" [(value)]="images"
-        placeholder="Enter 3 image url with ',' Ex: www.image1.com,www.image2.com,www.image3.com " required
+      <textarea
+        class="textarea"
+        (change)="handleChange($event)"
+        type="text"
+        name="images"
+        [(value)]="images"
+        placeholder="Enter 3 image url with ',' Ex: www.image1.com,www.image2.com,www.image3.com "
+        required
       ></textarea>
     </div>
     <div class="inputfield">
       <label>Enter Genre</label>
-      <textarea class="textarea" (change)="handleChange($event)" type="text" name="genre" [(value)]="genre"
-        placeholder="Enter genre  with ',' Ex: indianWriting,classical,school,lifeslice " required></textarea>
+      <textarea
+        class="textarea"
+        (change)="handleChange($event)"
+        type="text"
+        name="genre"
+        [(value)]="genre"
+        placeholder="Enter genre  with ',' Ex: indianWriting,classical,school,lifeslice "
+        required
+      ></textarea>
     </div>
 
     <div class="inputfield">
       <label>Enter Category</label>
-      <input class="input" (change)="handleChange($event)" type="text" name="category" [(value)]="category"
-        placeholder="BestSeller" />
+      <input
+        class="input"
+        (change)="handleChange($event)"
+        type="text"
+        name="category"
+        [(value)]="category"
+        placeholder="BestSeller"
+      />
     </div>
 
     <button id="form-add" type="submit">
-      {{flag?'Add New Book':'Update Book'}}
+      {{ flag ? "Add New Book" : "Update Book" }}
     </button>
   </form>
 </div>

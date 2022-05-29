@@ -1,54 +1,72 @@
 <div class="navbar">
-    <div class="left-div" (click)="toggledrop()">
-        <div></div>
-        <span>MENU</span>
-    </div>
-    <div class="right-div">
-        <div id="search-bar">
-            <img src="../../assets/search.png" alt="" srcset="">
-            &nbsp;
-            <input (input)="search($event)" [value]="textVal"  type="text" name="" id="" placeholder="Find your best book">
-            <div *ngIf="cardFlag" id="search-bar-con">
-                <div (click)="searchCard()" routerLink="allbooks/bookdetails" class="cards" *ngFor="let item of searchData; let i = index" [state]="{data:item}">
-                    <img src="{{item.images[0]}}" alt="" srcset="">
-                    <div class="card-data">
-                        <p>{{item.title}}</p>
-                        <h4>₹ {{item.price}}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="logo">
-            <span routerLink="">BookFactory..</span>
-        </div>
-        <div id="login-user">
-            <span *ngIf="!loginFlag" routerLink="register" [state]="{ flag:true}">REGISTER /&nbsp;</span>
-            <span *ngIf="!loginFlag" routerLink="login" [state]="{ flag:false}">LOGIN</span>
-            <div (click)="toggleDrop()" *ngIf="loginFlag" id="logout-box">
-                <div *ngIf="toggleflag" id="login-dropdown">
-                    <p routerLink="userdetails">Profile</p>
-                    <p (click)="handleLogout()">Logout</p>
-                </div>
-            </div>
-            <div *ngIf="!adminFlag" id="cart" routerLink="cart">
-                <div id="cart-icon"></div>
-                <span>cart</span>
-            </div>
-        </div>
-    </div>
-    <span *ngIf="!adminFlag" id="cart-count">{{cartVal}}
-    </span>
+  <div class="left-div" (click)="toggledrop()">
+    <div></div>
+    <span>MENU</span>
   </div>
-  <div class="dropdown-con" *ngIf="dropFlag">
-      <div id="drop1">
-          <div (click)="handleClose()" id="close-btn">CLOSE<span>X</span></div>
-        <div id="items">
-            <div class="item" (click)="handleAdmin()" routerLink="">Admin</div>
-            <div class="item"(click)="handleClose()" routerLink="">Home</div>
-            <div class="item" (click)="handleClose()" routerLink="allbooks">All Books</div>
-            <div class="item">Trending Books</div>
-            <div class="item">About Us</div>
-    </div>
+  <div class="right-div">
+    <div id="search-bar">
+      <img src="../../assets/search.png" alt="" srcset="" />
+      &nbsp;
+      <input
+        (input)="search($event)"
+        [value]="textVal"
+        type="text"
+        name=""
+        id=""
+        placeholder="Find your best book"
+      />
+      <div *ngIf="cardFlag" id="search-bar-con">
+        <div
+          (click)="searchCard()"
+          routerLink="allbooks/bookdetails"
+          class="cards"
+          *ngFor="let item of searchData; let i = index"
+          [state]="{ data: item }"
+        >
+          <img src="{{ item.images[0] }}" alt="" srcset="" />
+          <div class="card-data">
+            <p>{{ item.title }}</p>
+            <h4>₹ {{ item.price }}</h4>
+          </div>
+        </div>
       </div>
-      <div id="drop2"></div>
-  </div>    
+    </div>
+    <div id="logo">
+      <span routerLink="">BookFactory..</span>
+    </div>
+    <div id="login-user">
+      <span *ngIf="!loginFlag" routerLink="register" [state]="{ flag: true }"
+        >REGISTER /&nbsp;</span
+      >
+      <span *ngIf="!loginFlag" routerLink="login" [state]="{ flag: false }"
+        >LOGIN</span
+      >
+      <div (click)="toggleDrop()" *ngIf="loginFlag" id="logout-box">
+        <div *ngIf="toggleflag" id="login-dropdown">
+          <p routerLink="userdetails">Profile</p>
+          <p (click)="handleLogout()">Logout</p>
+        </div>
+      </div>
+      <div *ngIf="!adminFlag" id="cart" routerLink="cart">
+        <div id="cart-icon"></div>
+        <span>cart</span>
+      </div>
+    </div>
+  </div>
+  <span *ngIf="!adminFlag" id="cart-count">{{ cartVal }} </span>
+</div>
+<div class="dropdown-con" *ngIf="dropFlag">
+  <div id="drop1">
+    <div (click)="handleClose()" id="close-btn">CLOSE<span>X</span></div>
+    <div id="items">
+      <div class="item" (click)="handleAdmin()" routerLink="">Admin</div>
+      <div class="item" (click)="handleClose()" routerLink="">Home</div>
+      <div class="item" (click)="handleClose()" routerLink="allbooks">
+        All Books
+      </div>
+      <div class="item">Trending Books</div>
+      <div class="item">About Us</div>
+    </div>
+  </div>
+  <div id="drop2"></div>
+</div>

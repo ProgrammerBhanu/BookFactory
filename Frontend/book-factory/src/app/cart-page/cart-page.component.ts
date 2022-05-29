@@ -16,21 +16,20 @@ export class CartPageComponent implements OnInit {
   constructor(private bookService: BooksServiceService) {}
 
   ngOnInit(): void {
-    this.bookService
-      .getUserDetails()
-      .subscribe((data) => {this.setCartDataFromLocalStorage(data)});
+    this.bookService.getUserDetails().subscribe((data) => {
+      this.setCartDataFromLocalStorage(data);
+    });
   }
   checkCartIsEmpty() {
     let cart: any = localStorage.getItem('cart');
     cart = JSON.parse(cart);
     let name = this.user.username;
-    console.log('name', name);
 
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].hasOwnProperty(`${name}`) == true) {
         let x = cart[i];
-        if(x[name].length == 0){
-          this.emptyCart = true 
+        if (x[name].length == 0) {
+          this.emptyCart = true;
         }
         break;
       }
@@ -43,7 +42,6 @@ export class CartPageComponent implements OnInit {
     let cart: any = localStorage.getItem('cart');
     cart = JSON.parse(cart);
     let name = this.user.username;
-    console.log('name', name);
 
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].hasOwnProperty(`${name}`) == true) {
@@ -66,7 +64,7 @@ export class CartPageComponent implements OnInit {
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].hasOwnProperty(`${name}`) == true) {
         let x = cart[i];
-        x[name].splice(index,1);
+        x[name].splice(index, 1);
         break;
       }
     }
@@ -76,24 +74,15 @@ export class CartPageComponent implements OnInit {
       this.total = (this.total * 0.7).toFixed(2);
     }
 
-    
-
     this.checkCartIsEmpty();
   }
   changeQuantity(value: any, index: number) {
-
-
-
     this.cart[index].quantity = value.target.value;
     this.findTotal();
-   
-
- 
 
     let cart: any = localStorage.getItem('cart');
     cart = JSON.parse(cart);
     let name = this.user.username;
-    console.log('name', name);
 
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].hasOwnProperty(`${name}`) == true) {
@@ -103,14 +92,12 @@ export class CartPageComponent implements OnInit {
       }
     }
 
-    
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   findTotal() {
     let sum: number = 0;
     for (let i = 0; i < this.cart.length; i++) {
-      console.log(this.cart[i].quantity);
       sum += this.cart[i].price * this.cart[i].quantity;
     }
     this.subTotal = sum;

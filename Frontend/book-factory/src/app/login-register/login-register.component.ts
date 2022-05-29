@@ -10,7 +10,7 @@ export class LoginRegisterComponent implements OnInit {
   flag: boolean = false;
   token: any;
   user: any;
-  checkValue :boolean= false;
+  checkValue: boolean = false;
   constructor(
     private router: Router,
     private bookService: BooksServiceService
@@ -24,7 +24,6 @@ export class LoginRegisterComponent implements OnInit {
     this.token = data;
   }
   handleLogin(data: any) {
-    console.log(data);
     if (data.username === '') {
       alert('plz enter a valid username ');
       return;
@@ -34,16 +33,15 @@ export class LoginRegisterComponent implements OnInit {
       return;
     }
     this.bookService.loginUser(data).subscribe((data) => {
-      console.log('token', data), this.setToken(data);
+      this.setToken(data);
     });
-    console.log('setToken', this.token);
     localStorage.setItem('token', JSON.stringify(this.token));
-    
-    if(this.token != null){
+
+    if (this.token != null) {
       this.bookService.changeInFlag(true);
-      this.router.navigateByUrl("");
-    }else{
-      alert("Invalid Credential!!");
+      this.router.navigateByUrl('');
+    } else {
+      alert('Invalid Credential!!');
     }
 
     this.bookService.getUserDetails().subscribe((data) => this.setUser(data));
@@ -51,26 +49,22 @@ export class LoginRegisterComponent implements OnInit {
   setUser(data: any) {
     this.user = data;
 
-    
     let x: any = localStorage.getItem('cart');
     x = JSON.parse(x);
-    if(x == null){
+    if (x == null) {
       localStorage.setItem('cart', JSON.stringify([]));
     }
     let cart: any = localStorage.getItem('cart');
     cart = JSON.parse(cart);
     let name = this.user.username;
-    console.log("name",name);
-   
 
-    for(let i =0 ;i< cart.length ;i++){
-        if(cart[i].hasOwnProperty(`${name}`) == true ){
-           this.checkValue = true ;
-        }
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        this.checkValue = true;
+      }
     }
-    if(this.checkValue !== true ){
-
-      let newObj = { [name]: []}
+    if (this.checkValue !== true) {
+      let newObj = { [name]: [] };
       cart.push(newObj);
     }
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -98,7 +92,6 @@ export class LoginRegisterComponent implements OnInit {
     }
 
     this.bookService.registerUser(data).subscribe((data) => {
-      console.log(data);
       alert('You have registered successfully!!');
     });
     this.router.navigateByUrl('/login');
@@ -118,4 +111,3 @@ export class LoginRegisterComponent implements OnInit {
 function newObj(newObj: any) {
   throw new Error('Function not implemented.');
 }
-

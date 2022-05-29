@@ -9,7 +9,6 @@ export class PostNewBookFormComponent implements OnInit {
   public flag: Boolean = false;
   obj: any;
 
-
   // Update book - connect element's with two way binding
   id: any;
   isbn: any = '';
@@ -25,11 +24,7 @@ export class PostNewBookFormComponent implements OnInit {
   genre: any = '';
   category: any = 'BestSeller';
 
-
-
-
   constructor(private bookService: BooksServiceService) {
-
     this.flag = history.state.flag;
     if (!this.flag) {
       let val = history.state.data;
@@ -48,44 +43,39 @@ export class PostNewBookFormComponent implements OnInit {
     this.publisher = val.publisher;
     this.publisherCity = val.publisherCity;
     this.physicalDescription = val.physicalDescription;
-    this.images = val.images.join(",");
-    this.genre = val.genre.join(",");
+    this.images = val.images.join(',');
+    this.genre = val.genre.join(',');
     this.category = val.category;
   }
 
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
   handleChange(e: any) {
-    // console.log(e.target.value);
-    if (e.target.name === "isbn") {
+    if (e.target.name === 'isbn') {
       this.isbn = e.target.value;
-    } else if (e.target.name === "lang") {
+    } else if (e.target.name === 'lang') {
       this.lang = e.target.value;
-    } else if (e.target.name === "year") {
+    } else if (e.target.name === 'year') {
       this.year = e.target.value;
-    } else if (e.target.name === "title") {
+    } else if (e.target.name === 'title') {
       this.title = e.target.value;
-    } else if (e.target.name === "author") {
+    } else if (e.target.name === 'author') {
       this.author = e.target.value;
-    } else if (e.target.name === "price") {
+    } else if (e.target.name === 'price') {
       this.price = e.target.value;
-    } else if (e.target.name === "publisher") {
+    } else if (e.target.name === 'publisher') {
       this.publisher = e.target.value;
-    } else if (e.target.name === "publisherCity") {
+    } else if (e.target.name === 'publisherCity') {
       this.publisherCity = e.target.value;
-    } else if (e.target.name === "physicalDescription") {
+    } else if (e.target.name === 'physicalDescription') {
       this.physicalDescription = e.target.value;
-    } else if (e.target.name === "images") {
+    } else if (e.target.name === 'images') {
       this.images = e.target.value;
-    } else if (e.target.name === "genre") {
+    } else if (e.target.name === 'genre') {
       this.genre = e.target.value;
-    } else if (e.target.name === "category") {
+    } else if (e.target.name === 'category') {
       this.category = e.target.value;
     }
   }
-
 
   updateBook(val: any) {
     let newObj = {
@@ -101,18 +91,14 @@ export class PostNewBookFormComponent implements OnInit {
       physicalDescription: this.physicalDescription,
       images: this.images,
       genre: this.genre,
-      category: this.category
-    }
-    console.log("Nwww", newObj);
+      category: this.category,
+    };
 
-    this.bookService.putBooks(newObj).subscribe(res => {
-      console.log(res)
-      alert(`${this.title} updated Successfully!!`)
-    })
-
-  };
+    this.bookService.putBooks(newObj).subscribe((res) => {
+      alert(`${this.title} updated Successfully!!`);
+    });
+  }
   addBook(val: any) {
-
     if (this.isbn === '') {
       alert('plz enter a valid isbn  ');
       return;
@@ -183,15 +169,12 @@ export class PostNewBookFormComponent implements OnInit {
       physicalDescription: this.physicalDescription,
       images: this.images,
       genre: this.genre,
-      category: this.category
-    }
-    console.log("Nwww", newObj);
-    this.bookService
-      .addBooks(newObj)
-      .subscribe((data) => {
-        console.log('form post request', data);
-        alert("You have successfully added new Book!!");
-      });
+      category: this.category,
+    };
 
+    this.bookService.addBooks(newObj).subscribe((data) => {
+      console.log('form post request', data);
+      alert('You have successfully added new Book!!');
+    });
   }
 }

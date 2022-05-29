@@ -1,92 +1,117 @@
 <div id="main">
-<div id="allBook-con">
+  <div id="allBook-con">
     <div id="filter-div">
-        <div class="filter_">
-            <img src="../../assets/filter.png" alt="">
-        </div>
-        <div class="filter_h">
-            <p>Filter By </p>
-        </div>
-        <div class="filter_" (click)="handleFilters('a')">
-            <p>PRICE ▾</p>
-        </div>
-        <div class="filter_" (click)="handleFilters('b')">
-            <p>GENRE ▾</p>
-        </div>
-        <div class="filter_" (click)="handleFilters('c')">
-            <p>LANGUAGE ▾</p>
-        </div>
-        <div class="filter_" (click)="handleFilters('d')">
-           <p> PUBLISHED YEAR ▾</p>
-        </div>
-        <div class="filter_h" (click)="handleFilters('e')">
-           <p> Sort by</p>
-           </div>
-           <div routerLink="addnewbook" [state]="{flag:true}" class="filter_h add-new" (click)="addNewBook()">
-            <p> Add New Book</p>
-            </div>
+      <div class="filter_">
+        <img src="../../assets/filter.png" alt="" />
+      </div>
+      <div class="filter_h">
+        <p>Filter By</p>
+      </div>
+      <div class="filter_" (click)="handleFilters('a')">
+        <p>PRICE ▾</p>
+      </div>
+      <div class="filter_" (click)="handleFilters('b')">
+        <p>GENRE ▾</p>
+      </div>
+      <div class="filter_" (click)="handleFilters('c')">
+        <p>LANGUAGE ▾</p>
+      </div>
+      <div class="filter_" (click)="handleFilters('d')">
+        <p>PUBLISHED YEAR ▾</p>
+      </div>
+      <div class="filter_h" (click)="handleFilters('e')">
+        <p>Sort by</p>
+      </div>
+      <div
+        routerLink="addnewbook"
+        [state]="{ flag: true }"
+        class="filter_h add-new"
+        (click)="addNewBook()"
+      >
+        <p>Add New Book</p>
+      </div>
     </div>
     <div *ngIf="filterFlag" id="filter-dropdowns" [ngSwitch]="filterFlag">
-        <div class="dropdown price" *ngSwitchCase="'a'">
-          <p (click)="setPriceLessThanWithPageNo(100, 0)">Under ₹100</p>
-          <p (click)="setPriceLessThanWithPageNo(200, 0)">₹100 - ₹200</p>
-          <p (click)="setPriceLessThanWithPageNo(500, 1)">₹200 - ₹500</p>
-          <p (click)="setPriceLessThanWithPageNo(1000, 3)">₹500 - ₹1,000</p>
-          <p (click)="setPriceLessThanWithPageNo(100000, 5)">Over ₹1,000</p>
-          <div class="close-btn" (click)="handleFilters('')">X</div>
-        </div>
-        <div class="dropdown price" *ngSwitchCase="'b'">
-          <p (click)="filterByGenre('literature')">Literature & Fiction</p>
-          <p (click)="filterByGenre('crime')">Crime & thriller</p>
-          <p (click)="filterByGenre('romance')">Romance</p>
-          <p (click)="filterByGenre('horror')">Horror</p>
-          <p (click)="filterByGenre('classics')">Classics</p>
-          <p (click)="filterByGenre('indianWriting')">Indian writing</p>
-          <p (click)="filterByGenre('biological')">Biographical</p>
-          <p (click)="filterByGenre('business')">Bussiness & Economics</p>
-          <p (click)="filterByGenre('selfHelp')">Self help, Personality development</p>
-          <div class="close-btn" (click)="handleFilters('')">X</div>
-        </div>
-        <div class="dropdown price" *ngSwitchCase="'c'">
-          <p (click)="setLanguage('hindi', 0)">Hindi</p>
-          <p (click)="setLanguage('english', 0)">English</p>
-          <p (click)="setLanguage('marathi', 0)">Marathi</p>
-          <p (click)="setLanguage('gujrati', 0)">Gujraati</p>
-          <p (click)="setLanguage('bangla', 0)">Bangla</p>
-          <p (click)="setLanguage('telgu', 0)">Other Languages</p>
-          <div class="close-btn" (click)="handleFilters('')">X</div>
-        </div>
-        <div class="dropdown price" *ngSwitchCase="'d'">
-          <p>Under 2000</p>
-          <p>2000 - 2005</p>
-          <p>2006 - 2010</p>
-          <p>2011 - 2015</p>
-          <p>2016 - 2020</p>
-          <p>2021 - present</p>
-          <div class="close-btn" (click)="handleFilters('')">X</div>
-        </div>
-        <div class="dropdown price" *ngSwitchCase="'e'">
-          <p>Low - High (price)</p>
-          <p>High - low (price)</p>
-          <p>Low - High (year)</p>
-          <p>High - low (year)</p>
-          <div class="close-btn" (click)="handleFilters('')">X</div>
-        </div>
+      <div class="dropdown price" *ngSwitchCase="'a'">
+        <p (click)="setPriceLessThanWithPageNo(100, 0)">Under ₹100</p>
+        <p (click)="setPriceLessThanWithPageNo(200, 0)">₹100 - ₹200</p>
+        <p (click)="setPriceLessThanWithPageNo(500, 1)">₹200 - ₹500</p>
+        <p (click)="setPriceLessThanWithPageNo(1000, 3)">₹500 - ₹1,000</p>
+        <p (click)="setPriceLessThanWithPageNo(100000, 5)">Over ₹1,000</p>
+        <div class="close-btn" (click)="handleFilters('')">X</div>
       </div>
-</div>
-<div id="main-body">
-    <div  class="book-card"  *ngFor="let item of booksData | paginate: { id: 'foo',
-    itemsPerPage: 10,
-    currentPage: CurrentPageNo,
-    totalItems: TotalRecords }">
-        <img src="{{item.images[0]}}" alt="" srcset="" routerLink="bookdetails" [state]="{data:item}">
-        <h4>{{item.title}}</h4>
-        <strong>{{item.publisher}}</strong>
-        <p class="price-data">₹ {{item.price}}<span>.00</span></p>
-        <p class="rating">⭐⭐⭐⭐⭐</p>
+      <div class="dropdown price" *ngSwitchCase="'b'">
+        <p (click)="filterByGenre('literature')">Literature & Fiction</p>
+        <p (click)="filterByGenre('crime')">Crime & thriller</p>
+        <p (click)="filterByGenre('romance')">Romance</p>
+        <p (click)="filterByGenre('horror')">Horror</p>
+        <p (click)="filterByGenre('classics')">Classics</p>
+        <p (click)="filterByGenre('indianWriting')">Indian writing</p>
+        <p (click)="filterByGenre('biological')">Biographical</p>
+        <p (click)="filterByGenre('business')">Bussiness & Economics</p>
+        <p (click)="filterByGenre('selfHelp')">
+          Self help, Personality development
+        </p>
+        <div class="close-btn" (click)="handleFilters('')">X</div>
+      </div>
+      <div class="dropdown price" *ngSwitchCase="'c'">
+        <p (click)="setLanguage('hindi', 0)">Hindi</p>
+        <p (click)="setLanguage('english', 0)">English</p>
+        <p (click)="setLanguage('marathi', 0)">Marathi</p>
+        <p (click)="setLanguage('gujrati', 0)">Gujraati</p>
+        <p (click)="setLanguage('bangla', 0)">Bangla</p>
+        <p (click)="setLanguage('telgu', 0)">Other Languages</p>
+        <div class="close-btn" (click)="handleFilters('')">X</div>
+      </div>
+      <div class="dropdown price" *ngSwitchCase="'d'">
+        <p>Under 2000</p>
+        <p>2000 - 2005</p>
+        <p>2006 - 2010</p>
+        <p>2011 - 2015</p>
+        <p>2016 - 2020</p>
+        <p>2021 - present</p>
+        <div class="close-btn" (click)="handleFilters('')">X</div>
+      </div>
+      <div class="dropdown price" *ngSwitchCase="'e'">
+        <p>Low - High (price)</p>
+        <p>High - low (price)</p>
+        <p>Low - High (year)</p>
+        <p>High - low (year)</p>
+        <div class="close-btn" (click)="handleFilters('')">X</div>
+      </div>
     </div>
-</div>
-<div id="pagination" >
-    <pagination-controls (pageChange)="handlePageChange($event)" id="foo" ></pagination-controls>
-</div>
+  </div>
+  <div id="main-body">
+    <div
+      class="book-card"
+      *ngFor="
+        let item of booksData
+          | paginate
+            : {
+                id: 'foo',
+                itemsPerPage: 10,
+                currentPage: CurrentPageNo,
+                totalItems: TotalRecords
+              }
+      "
+    >
+      <img
+        src="{{ item.images[0] }}"
+        alt=""
+        srcset=""
+        routerLink="bookdetails"
+        [state]="{ data: item }"
+      />
+      <h4>{{ item.title }}</h4>
+      <strong>{{ item.publisher }}</strong>
+      <p class="price-data">₹ {{ item.price }}<span>.00</span></p>
+      <p class="rating">⭐⭐⭐⭐⭐</p>
+    </div>
+  </div>
+  <div id="pagination">
+    <pagination-controls
+      (pageChange)="handlePageChange($event)"
+      id="foo"
+    ></pagination-controls>
+  </div>
 </div>

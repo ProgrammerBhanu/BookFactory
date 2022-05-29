@@ -39,12 +39,12 @@ const routes: Routes = [
     ],
   },
   {
-    path:"updatebook",
-    component: PostNewBookFormComponent
+    path: 'updatebook',
+    component: PostNewBookFormComponent,
   },
   {
-    path:'allbooks/addnewbook',
-    component: PostNewBookFormComponent
+    path: 'allbooks/addnewbook',
+    component: PostNewBookFormComponent,
   },
   {
     path: 'cart',
@@ -59,7 +59,7 @@ const routes: Routes = [
   {
     path: 'cart/payment',
     component: PaymentPageComponent,
-  }
+  },
 ];
 
 @NgModule({

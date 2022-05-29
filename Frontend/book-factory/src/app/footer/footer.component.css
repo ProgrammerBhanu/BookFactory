@@ -131,10 +131,9 @@ footer {
   background-repeat: no-repeat;
 }
 
-
 /* Suggestion Start */
 .emailBox {
-  position:absolute;
+  position: absolute;
   right: 3vw;
   border: 1px solid #d5dbd9;
   width: 500px;
@@ -160,7 +159,7 @@ footer {
 
 .emailboxBtn {
   width: 450px;
-  
+
   padding: 8px 10px;
   font-size: 15px;
   border: 0px;
