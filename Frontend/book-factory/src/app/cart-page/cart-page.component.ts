@@ -18,13 +18,22 @@ export class CartPageComponent implements OnInit {
   ngOnInit(): void {
     this.bookService
       .getUserDetails()
-      .subscribe((data) => this.setCartDataFromLocalStorage(data));
+      .subscribe((data) => {this.setCartDataFromLocalStorage(data)});
   }
   checkCartIsEmpty() {
-    if (this.cart.length == 0) {
-      this.emptyCart = true;
-    } else {
-      this.emptyCart = false;
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    let name = this.user.username;
+    console.log('name', name);
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        if(x[name] == null){
+          this.emptyCart = true 
+        }
+        break;
+      }
     }
   }
 
@@ -50,14 +59,25 @@ export class CartPageComponent implements OnInit {
 
   deleteItem(index: number) {
     this.cart.splice(index, 1);
-    let data: any = localStorage.getItem('cart');
-    data = JSON.parse(data);
-    data.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(data));
+    let name = this.user.username;
+
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        x[name].splice(index,1);
+        break;
+      }
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
     this.findTotal();
     if (this.discount == true) {
       this.total = (this.total * 0.7).toFixed(2);
     }
+
+    
+
     this.checkCartIsEmpty();
   }
   changeQuantity(value: any, index: number) {
