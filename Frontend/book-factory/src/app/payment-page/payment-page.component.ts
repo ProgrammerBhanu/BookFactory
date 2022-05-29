@@ -40,7 +40,7 @@ export class PaymentPageComponent implements OnInit {
       .getUserDetails()
       .subscribe((data) => this.setCartValuetoZeroFromLocalStorage(data));
 
-      
+
     console.log(this.user.email);
     this.bookService.sendEmailWithThankyou(this.user.email);
   }
@@ -70,5 +70,7 @@ export class PaymentPageComponent implements OnInit {
         break;
       }
     }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 }
