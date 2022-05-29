@@ -59,7 +59,7 @@ export class BookDetailsComponent implements OnInit {
   addToCart(): void {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-
+//hgga
     if(token === null){
       this.router.navigateByUrl("/login")
       return;
