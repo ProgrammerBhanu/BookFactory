@@ -47,23 +47,9 @@ public class BookService{
 		}
 	}
 
-	public ResponseEntity<?> update(Book cont, int pageNo, int pageSize, String sortBy) {
+	public ResponseEntity<?> update(Book cont) {
 		try {
-			bookRepository.save(cont);
-
-			Map<String, Object> response = new HashMap<String, Object>();
-
-			Sort sort = Sort.by(sortBy);
-			Pageable page = PageRequest.of(pageNo, pageSize, sort);
-
-			Page<Book> employePage = bookRepository.findAll(page);
-
-			response.put("data", employePage.getContent());
-			response.put("TotalPage", employePage.getTotalPages());
-			response.put("TotalElement", employePage.getTotalElements());
-			response.put("CurrentPage", employePage.getNumber());
-
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+			return new ResponseEntity<Book>(	bookRepository.save(cont), HttpStatus.OK);
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);

@@ -81,4 +81,8 @@ export class AllBookComponent implements OnInit {
     this.CurrentPageNo = 0;
     this.TotalRecords = 1;
   }
+
+  addNewBook():void{
+
+  }
 }

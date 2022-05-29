@@ -79,6 +79,10 @@
     border:1px solid #49c5b6;
     color: #49c5b6;
 }
+.add-new{
+    margin-left: 100px;
+    border-left: 1px solid gainsboro;
+}
 /* Filter dropdwon end */
 /* Body part start*/
 #main-body{

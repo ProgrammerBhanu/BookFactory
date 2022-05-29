@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class BooksServiceService {
   private cartValue: number = 0;
+  userRole:any ;
   someData:any;
   private adminFlag: boolean = false;
-  private loginFlag:boolean = true;
+  
   someState:any;
   constructor(private http: HttpClient) {}
  
@@ -18,11 +20,31 @@ export class BooksServiceService {
    return this.someState;
   }
 
+
+
+  // Login
+  private loginFlag = new BehaviorSubject<boolean>(false);
+  newLoginFlag = this.loginFlag.asObservable();
+
+  changeInFlag(val:boolean){
+    this.loginFlag.next(val);
+  }
+ 
+
+
+
+
   getCartVal() {
     return this.cartValue;
   }
 
+  setRole(val:string){
+    this.userRole = val;
+  }
   
+  getRole(){
+    return this.userRole;
+  }
   setloginFlag(val:any): void {
     this.loginFlag = val;
   }
@@ -45,10 +67,7 @@ export class BooksServiceService {
     //get all books with out pagination
     return this.http.get('http://localhost:8080/book/');
   }
-  // public getContactById(id: string) {
 
-  //   return this.http.get("http://localhost:8080/getContact/" + id);
-  // }
   public addBooks(data: any) {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
@@ -62,15 +81,17 @@ export class BooksServiceService {
     return this.http.post('http://localhost:8080/book/add', data,{headers});
   }
   public putBooks(data: any) {
-    let token: any = localStorage.getItem('token');
-    token = JSON.parse(token);
+    console.log(data,"yess")
+    // let token: any = localStorage.getItem('token');
+    // token = JSON.parse(token);
 
-    console.log(token.response);
+    // console.log(token.response);
 
     let headers = new HttpHeaders()
     .set('content-type','application/json')
-    .set('Authorization',  `Bearer ${token.response}`)
-    return this.http.put('http://localhost:8080/book/update', data);
+    .set('Access-Control-Allow-Origin','*')
+    // .set('Authorization',  `Bearer ${token.response}`)
+    return this.http.put('http://localhost:8080/book/update', data,{headers});
   }
   public delete(id: string) {
     let token: any = localStorage.getItem('token');
@@ -146,5 +167,17 @@ export class BooksServiceService {
   }
   public getDataToPost(){
     return this.someData 
+}
+
+public getUserDetails(){
+  let token: any = localStorage.getItem('token');
+    token = JSON.parse(token);
+
+    console.log(token.response);
+
+    let headers = new HttpHeaders()
+    .set('content-type','application/json')
+    .set('Authorization',  `Bearer ${token.response}`)
+  return this.http.get('http://localhost:8080/userdetails',{headers});
 }
 }

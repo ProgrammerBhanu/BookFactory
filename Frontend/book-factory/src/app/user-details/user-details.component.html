@@ -2,7 +2,7 @@
     <div class="header-details">
         <div id="contact-fullname">
             <img src="../../assets/user.png" alt="">
-            <h3>Bhanu prag Solanki</h3>
+            <h3>{{userData.username}}</h3>
         </div>
         <div id="edit-box">
             <div id="edit-pen"></div>
@@ -17,13 +17,13 @@
     </div>
     <div id="user-other-detail">
         <div class="other-con"><img src="../../assets/email.png">
-            <p id="other-con">bhanu.solanki@omnicell.com</p>
+            <p id="other-con">{{userData.email}}</p>
         </div>
         <div class="other-con"><img src="../../assets/telephone.png">
-            <p class="outer-mob">9720898512</p>
+            <p class="outer-mob">{{userData.mobileno}}</p>
         </div>
         <div class="other-con"><img src="../../assets/userrole.png">
-            <p class="outer-mob">User</p>
+            <p class="outer-mob">{{userData.role}}</p>
         </div>
     </div>
 

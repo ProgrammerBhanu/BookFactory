@@ -21,6 +21,10 @@ import com.bookfactory.backend.model.UserModel;
 import com.bookfactory.backend.repository.UserRepository;
 import com.bookfactory.backend.service.UserService;
 
+import io.jsonwebtoken.Claims;
+
+
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class JwtController {
@@ -79,10 +83,16 @@ public class JwtController {
 		System.out.print("ksjhfskjfhdkfghjdfjghjkdfghjkdfghkjdfgh");
 
 		try {
-
-			return new ResponseEntity<>(jwtUtils.extractAllClaims(token), HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>("Error during client Subscription ", HttpStatus.NOT_FOUND);
+			System.out.print("rrr");
+			String removeBearer = token.substring(7);
+			Claims data = jwtUtils.extractAllClaims(removeBearer);	
+			
+			
+			return new ResponseEntity<>(userRepo.findByUsername(data.get("sub")),HttpStatus.OK);
+		}catch (Exception e) {
+			return new ResponseEntity<>("Error during client Subscription ",HttpStatus.NOT_FOUND);
 		}
 	}
+	
+
 }

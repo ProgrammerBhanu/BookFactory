@@ -35,15 +35,20 @@ export class LoginRegisterComponent implements OnInit {
     this.bookService.loginUser(data).subscribe((data) => {
       console.log('token', data), this.setToken(data);
     });
-
+    console.log("setToken",this.token);
     localStorage.setItem('token', JSON.stringify(this.token));
     let cart: any = localStorage.getItem('cart');
     cart = JSON.parse(cart);
     
+    if(this.token != null){
+      console.log("fjkdgjlkdfjg")
+      this.bookService.changeInFlag(true);
+      this.router.navigateByUrl("");
+    }
+
   }
   handleRegister(data: any) {
-    console.log(data);
-    console.log(data.mobile.length);
+   
     if (data.username === '') {
       alert('plz enter a valid username  ');
       return;
@@ -53,9 +58,9 @@ export class LoginRegisterComponent implements OnInit {
       return;
     }
     if (
-      data.mobile === '' ||
-      data.mobile <= 999999999 ||
-      data.mobile > 9999999999
+      data.mobileno === '' ||
+      data.mobileno <= 999999999 ||
+      data.mobileno > 9999999999
     ) {
       alert('plz enter a valid mobile');
       return;
@@ -65,18 +70,23 @@ export class LoginRegisterComponent implements OnInit {
       return;
     }
 
-    this.bookService.registerUser(data).subscribe((data) => console.log(data));
+    this.bookService.registerUser(data).subscribe((data) =>{
+      console.log(data);
+      alert("You have registered successfully!!");
+    });
+    this.router.navigateByUrl("/login");
     this.bookService.sendEmailWithUserEmail(data.email).subscribe(data=> console.log(data))
+    
   }
   registerRoute() {
 
     
     this.flag = true;
-    this.router.navigateByUrl('register');
+    this.router.navigateByUrl('/register');
    
   }
   loginRoute() {
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('/login');
     this.flag = false;
   }
 }

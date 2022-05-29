@@ -44,11 +44,10 @@ public class BookController {
 
 	// update
 	@PutMapping("/update")
-	public ResponseEntity<?> update(@RequestBody Book book,
-			@RequestParam(name = "pageno", defaultValue = "0") int pageNo,
-			@RequestParam(name = "pagesize", defaultValue = "10") int pageSize,
-			@RequestParam(name = "sortby", defaultValue = "id") String sortBy) {
-		return bookService.update(book, pageNo, pageSize, sortBy);
+	public ResponseEntity<?> update(@RequestBody Book book
+			) {
+		
+;		return bookService.update(book);
 	}
 
 	// delete

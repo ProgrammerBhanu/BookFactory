@@ -43,6 +43,10 @@ const routes: Routes = [
     component: PostNewBookFormComponent
   },
   {
+    path:'allbooks/addnewbook',
+    component: PostNewBookFormComponent
+  },
+  {
     path: 'cart',
     component: CartPageComponent,
     children: [

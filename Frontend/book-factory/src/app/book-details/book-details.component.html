@@ -1,42 +1,16 @@
 <div id="book-details">
   <div id="left">
-    <img
-      (click)="changeImg(0)"
-      class="img"
-      src="{{ bookDetail.images[0] }}"
-      alt=""
-      srcset=""
-    />
-    <img
-      (click)="changeImg(1)"
-      class="img"
-      src="{{ bookDetail.images[1] }}"
-      alt=""
-      srcset=""
-    />
-    <img
-      (click)="changeImg(2)"
-      class="img"
-      src="{{ bookDetail.images[2] }}"
-      alt=""
-      srcset=""
-    />
+    <img (click)="changeImg(0)" class="img" src="{{ bookDetail.images[0] }}" alt="" srcset="" />
+    <img (click)="changeImg(1)" class="img" src="{{ bookDetail.images[1] }}" alt="" srcset="" />
+    <img (click)="changeImg(2)" class="img" src="{{ bookDetail.images[2] }}" alt="" srcset="" />
   </div>
   <div id="middle">
     <img id="render-img" src="{{ imageSrc }}" alt="" srcset="" />
     <div id="buy-btn">
-      <button
-        (click)="!adminFlag ? addToCart() : deleteBook(bookDetail.id)"
-        id="btn1"
-      >
+      <button (click)="!adminFlag ? addToCart() : deleteBook(bookDetail.id)" id="btn1">
         {{ !adminFlag ? "Add to Cart" : "Delete" }}
       </button>
-      <button
-        id="btn2"
-        
-        (click)="!adminFlag ? buyNow() : updateBook(bookDetail)"
-        id="btn1"
-      >
+      <button id="btn2" (click)="!adminFlag ? buyNow() : updateBook(bookDetail)" id="btn1">
         {{ !adminFlag ? "BuyNow" : "UpdateBook" }}
       </button>
     </div>
