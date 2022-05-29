@@ -18,7 +18,11 @@ export class BookDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.adminFlag = this.dataService.getAdminFlag();
+    this.dataService.newAdminFlag.subscribe({
+      next:(data)=>{
+        this.adminFlag = data;
+      }
+    })
     let data:any = localStorage.getItem("cart");
     if(JSON.parse(data) == null){
         localStorage.setItem("cart",JSON.stringify([]));

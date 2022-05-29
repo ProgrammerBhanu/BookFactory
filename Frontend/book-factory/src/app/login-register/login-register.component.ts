@@ -37,10 +37,12 @@ export class LoginRegisterComponent implements OnInit {
     });
     console.log("setToken",this.token);
     localStorage.setItem('token', JSON.stringify(this.token));
+    
     if(this.token != null){
-      console.log("fjkdgjlkdfjg")
       this.bookService.changeInFlag(true);
       this.router.navigateByUrl("");
+    }else{
+      alert("Invalid Credential!!");
     }
 
   }

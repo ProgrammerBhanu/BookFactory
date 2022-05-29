@@ -33,6 +33,13 @@ export class NavbarComponent implements OnInit {
       }
     })
 
+    // admin login
+    this.dataService.newAdminFlag.subscribe({
+      next:(data)=>{
+        this.adminFlag = data;
+      }
+    })
+
   }
 
   toggledrop(): void {
@@ -74,33 +81,25 @@ export class NavbarComponent implements OnInit {
       this.dataService.getUserDetails().subscribe((res) => {
         this.userDataAssign(res)
       })
-
     } else {
       this.router.navigateByUrl("/login");
       this.handleClose();
     }
+    setTimeout(()=>{
+      if (this.userDetails.role !== 'admin') {
 
-    console.log("User Details", this.userDetails)
-    console.log(this.userDetails.role, "dd")
-
-    if (this.userDetails.role !== 'admin') {
-
-      console.log("User data", this.userDetails.role);
-      alert("You are not Admin !! Plz login!!");
-      this.router.navigateByUrl("/login");
-      this.handleClose();
-    } else {
-
-      this.dataService.setAdminFlag(true);
-      alert("You are in admin Panel!!");
-      this.handleClose();
-
-    }
-
-    // console.log(token.response);
-    // // alert("Welcome to Admin Panel");
-    // // this.adminFlag = true
-    // // this.dataService.setAdminFlag(true);
+        console.log("User data", this.userDetails.role);
+        alert("You are not Admin !! Plz login!!");
+        this.router.navigateByUrl("/login");
+        this.handleClose();
+      } else {
+  
+        this.dataService.changeInAdminFlag(true);
+        alert("You are in admin Panel!!");
+        this.handleClose();
+  
+      }
+    },1000);
 
   }
 
@@ -111,7 +110,7 @@ export class NavbarComponent implements OnInit {
 
   handleLogout(): void {
     localStorage.setItem('token', JSON.stringify(null));
-    this.dataService.setAdminFlag(false);
+    this.dataService.changeInAdminFlag(false);
     this.dataService.changeInFlag(false);
 
   }

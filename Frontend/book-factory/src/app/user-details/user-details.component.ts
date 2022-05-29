@@ -19,8 +19,6 @@ export class UserDetailsComponent implements OnInit {
 
   setuserData(data: any) {
     this.userData = data;
-    this.bookService.setRole(this.userData.role);
-    console.log(this.userData, "xx")
   }
 
 }

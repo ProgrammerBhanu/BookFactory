@@ -8,7 +8,7 @@ export class BooksServiceService {
   private cartValue: number = 0;
   userRole:any ;
   someData:any;
-  private adminFlag: boolean = false;
+  // private adminFlag: boolean = false;
   constructor(private http: HttpClient) {}
 
 
@@ -19,6 +19,13 @@ export class BooksServiceService {
   changeInFlag(val:boolean){
     this.loginFlag.next(val);
   }
+
+  private adminFlag = new BehaviorSubject<boolean>(false);
+  newAdminFlag = this.adminFlag.asObservable();
+
+  changeInAdminFlag(val:boolean){
+    this.adminFlag.next(val);
+  }
  
 
 
@@ -28,13 +35,7 @@ export class BooksServiceService {
     return this.cartValue;
   }
 
-  setRole(val:string){
-    this.userRole = val;
-  }
-  
-  getRole(){
-    return this.userRole;
-  }
+
   setloginFlag(val:any): void {
     this.loginFlag = val;
   }
@@ -42,13 +43,13 @@ export class BooksServiceService {
   getloginFlag() {
     return this.loginFlag;
   }
-  setAdminFlag(val:any): void {
-    this.adminFlag = val;
-  }
+  // setAdminFlag(val:any): void {
+  //   this.adminFlag = val;
+  // }
 
-  getAdminFlag() {
-    return this.adminFlag;
-  }
+  // getAdminFlag() {
+  //   return this.adminFlag;
+  // }
 
   setCardVal(val: number): void {
     this.cartValue = val;
@@ -92,7 +93,7 @@ export class BooksServiceService {
     let headers = new HttpHeaders()
     .set('content-type','application/json')
     .set('Authorization',  `Bearer ${token.response}`)
-    return this.http.delete('http://localhost:8080/book/delete/?id=' + id,{headers});
+    return this.http.delete('http://localhost:8080/book/delete?id=' + id,{headers});
   }
   public getAllBooksWithPaggination() {
     

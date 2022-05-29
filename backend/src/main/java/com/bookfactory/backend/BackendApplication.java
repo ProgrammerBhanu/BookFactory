@@ -34,16 +34,17 @@ public class BackendApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
-
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/userdetails").allowedOrigins("http://localhost:4200");
+				registry.addMapping("/*").allowedHeaders("*").allowedOrigins("http://localhost:8080")
+						.allowedMethods("*").allowCredentials(true);
 			}
 		};
 	}
+
 		
 	@Override
 	public void run(String... args) throws Exception {

@@ -2,6 +2,7 @@
     width: 100vw;
     position:rel;
     z-index: -1;
+    scroll-behavior: 0px;
 }
 #allBook-con{
     width: 100%;
