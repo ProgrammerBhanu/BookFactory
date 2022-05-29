@@ -12,14 +12,13 @@ export class CartPageComponent implements OnInit {
   discount: boolean = false;
   cart: any;
   emptyCart: Boolean = false;
+  user: any;
   constructor(private bookService: BooksServiceService) {}
 
   ngOnInit(): void {
-    let data: any = localStorage.getItem('cart');
-    this.cart = JSON.parse(data);
-    this.checkCartIsEmpty();
-    this.findTotal();
-    this.setCartDataFromLocalStorage();
+    this.bookService
+      .getUserDetails()
+      .subscribe((data) => this.setCartDataFromLocalStorage(data));
   }
   checkCartIsEmpty() {
     if (this.cart.length == 0) {
@@ -29,10 +28,24 @@ export class CartPageComponent implements OnInit {
     }
   }
 
-  setCartDataFromLocalStorage() {
-    let data: any = localStorage.getItem('cart');
-    data = JSON.parse(data);
-    this.cart = data;
+  setCartDataFromLocalStorage(data: any) {
+    this.user = data;
+
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    let name = this.user.username;
+    console.log('name', name);
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        this.cart = x[name];
+        break;
+      }
+    }
+
+    this.checkCartIsEmpty();
+    this.findTotal();
   }
 
   deleteItem(index: number) {

@@ -9,7 +9,8 @@ import { BooksServiceService } from '../services/books-service.service';
 export class LoginRegisterComponent implements OnInit {
   flag: boolean = false;
   token: any;
-
+  user: any;
+  checkValue :boolean= false;
   constructor(
     private router: Router,
     private bookService: BooksServiceService
@@ -35,20 +36,45 @@ export class LoginRegisterComponent implements OnInit {
     this.bookService.loginUser(data).subscribe((data) => {
       console.log('token', data), this.setToken(data);
     });
-    console.log("setToken",this.token);
+    console.log('setToken', this.token);
     localStorage.setItem('token', JSON.stringify(this.token));
-    let cart: any = localStorage.getItem('cart');
-    cart = JSON.parse(cart);
-    
-    if(this.token != null){
-      console.log("fjkdgjlkdfjg")
+
+    if (this.token != null) {
+      console.log('fjkdgjlkdfjg');
       this.bookService.changeInFlag(true);
-      this.router.navigateByUrl("");
+      this.router.navigateByUrl('');
     }
 
+    this.bookService.getUserDetails().subscribe((data) => this.setUser(data));
+  }
+  setUser(data: any) {
+    this.user = data;
+
+    
+    let x: any = localStorage.getItem('cart');
+    x = JSON.parse(x);
+    if(x == null){
+      localStorage.setItem('cart', JSON.stringify([]));
+    }
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    let name = this.user.username;
+    console.log("name",name);
+   
+
+    for(let i =0 ;i< cart.length ;i++){
+        if(cart[i].hasOwnProperty(`${name}`) == true ){
+           this.checkValue = true ;
+        }
+    }
+    if(this.checkValue !== true ){
+
+      let newObj = { [name]: []}
+      cart.push(newObj);
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
   handleRegister(data: any) {
-   
     if (data.username === '') {
       alert('plz enter a valid username  ');
       return;
@@ -65,28 +91,30 @@ export class LoginRegisterComponent implements OnInit {
       alert('plz enter a valid mobile');
       return;
     }
-    if (data.password === '' ) {
+    if (data.password === '') {
       alert('plz enter a valid password  ');
       return;
     }
 
-    this.bookService.registerUser(data).subscribe((data) =>{
+    this.bookService.registerUser(data).subscribe((data) => {
       console.log(data);
-      alert("You have registered successfully!!");
+      alert('You have registered successfully!!');
     });
-    this.router.navigateByUrl("/login");
-    this.bookService.sendEmailWithUserEmail(data.email).subscribe(data=> console.log(data))
-    
+    this.router.navigateByUrl('/login');
+    this.bookService
+      .sendEmailWithUserEmail(data.email)
+      .subscribe((data) => console.log(data));
   }
   registerRoute() {
-
-    
     this.flag = true;
     this.router.navigateByUrl('/register');
-   
   }
   loginRoute() {
     this.router.navigateByUrl('/login');
     this.flag = false;
   }
 }
+function newObj(newObj: any) {
+  throw new Error('Function not implemented.');
+}
+
