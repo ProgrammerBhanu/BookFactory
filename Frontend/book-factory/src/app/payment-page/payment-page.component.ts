@@ -9,7 +9,7 @@ import { BooksServiceService } from '../services/books-service.service';
 export class PaymentPageComponent implements OnInit {
   public selectedNumber: String = 'a';
   public finalPayment = false;
-  user:any;
+  user: any;
   finalTotal: number = 0;
   constructor(
     private bookService: BooksServiceService,
@@ -37,24 +37,25 @@ export class PaymentPageComponent implements OnInit {
     this.finalPayment = true;
 
     this.bookService
-    .getUserDetails()
-    .subscribe((data) => this.setCartValuetoZeroFromLocalStorage(data));
+      .getUserDetails()
+      .subscribe((data) => this.setCartValuetoZeroFromLocalStorage(data));
+
+      
+    console.log(this.user.email);
+    this.bookService.sendEmailWithThankyou(this.user.email);
   }
 
   handleThanku(): void {
-    // localStorage.setItem('cart', JSON.stringify([]));
     this.bookService
-    .getUserDetails()
-    .subscribe((data) => this.setCartValuetoZeroFromLocalStorage(data));
-
+      .getUserDetails()
+      .subscribe((data) => this.setCartValuetoZeroFromLocalStorage(data));
 
     setTimeout(() => {
       this.router.navigateByUrl('');
-    }, 2000);
+    }, 1000);
   }
 
-
-  setCartValuetoZeroFromLocalStorage(data:any){
+  setCartValuetoZeroFromLocalStorage(data: any) {
     this.user = data;
 
     let cart: any = localStorage.getItem('cart');
@@ -65,10 +66,9 @@ export class PaymentPageComponent implements OnInit {
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].hasOwnProperty(`${name}`) == true) {
         let x = cart[i];
-          x[name] = [];
+        x[name] = [];
         break;
       }
     }
   }
-  
 }
