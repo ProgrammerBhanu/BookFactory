@@ -81,12 +81,30 @@ export class CartPageComponent implements OnInit {
     this.checkCartIsEmpty();
   }
   changeQuantity(value: any, index: number) {
+
+
+
     this.cart[index].quantity = value.target.value;
     this.findTotal();
-    let data: any = localStorage.getItem('cart');
-    data = JSON.parse(data);
-    data[index].quantity = value.target.value;
-    localStorage.setItem('cart', JSON.stringify(data));
+   
+
+ 
+
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    let name = this.user.username;
+    console.log('name', name);
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        x[name][index].quantity = value.target.value;
+        break;
+      }
+    }
+
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   findTotal() {
