@@ -14,8 +14,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.bookfactory.backend.model.Book;
 import com.bookfactory.backend.repository.BookRepository;
 import com.bookfactory.backend.repository.UserRepository;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
+
+@CrossOrigin(origins = "http://localhost:4200")
 @SpringBootApplication
 public class BackendApplication implements CommandLineRunner {
 

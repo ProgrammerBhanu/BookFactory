@@ -21,6 +21,8 @@ import com.bookfactory.backend.model.UserModel;
 import com.bookfactory.backend.repository.UserRepository;
 import com.bookfactory.backend.service.UserService;
 
+import io.jsonwebtoken.Claims;
+
 
 
 @RestController
@@ -81,10 +83,17 @@ public class JwtController {
 		System.out.println(token);
 		System.out.print("ksjhfskjfhdkfghjdfjghjkdfghjkdfghkjdfgh");
 		try {
-			return new ResponseEntity<>("working fine",HttpStatus.OK);
+			System.out.print("rrr");
+			String removeBearer = token.substring(7);
+			Claims data = jwtUtils.extractAllClaims(removeBearer);	
+			
+			
+			return new ResponseEntity<>(userRepo.findByUsername(data.get("sub")),HttpStatus.OK);
 		}catch (Exception e) {
 			return new ResponseEntity<>("Error during client Subscription ",HttpStatus.NOT_FOUND);
 		}
 	}
+	
+
 }
 

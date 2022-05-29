@@ -6,152 +6,192 @@ import { BooksServiceService } from '../../services/books-service.service';
   styleUrls: ['./post-new-book-form.component.css'],
 })
 export class PostNewBookFormComponent implements OnInit {
-  flag: Boolean = false;
+  flag: Boolean = true;
   obj: any;
-  bookData: any;
+
+
+  // Update book - connect element's with two way binding
+  id: any;
+  isbn: any = '';
+  lang: any = '';
+  year: any = '';
+  title: any = '';
+  author: any = '';
+  price: any = null;
+  publisher: any = '';
+  publisherCity: any = '';
+  physicalDescription: any = '';
+  images: any = '';
+  genre: any = '';
+  category: any = 'BestSeller';
 
 
 
-  @ViewChild('isbn', { static: true }) isbnElement: ElementRef;
-  @ViewChild('lang', { static: true }) langElement: ElementRef;
-  @ViewChild('year', { static: true }) yearElement: ElementRef;
-  @ViewChild('title', { static: true }) titleElement: ElementRef;
-  @ViewChild('price', { static: true }) priceElement: ElementRef;
-  @ViewChild('author', { static: true }) authorElement: ElementRef;
-  @ViewChild('publisher', { static: true }) publisherElement: ElementRef;
-  @ViewChild('publisherCity', { static: true })
-  publisherCityElement: ElementRef;
-  @ViewChild('physicalDescription', { static: true })
-  physicalDescriptionElement: ElementRef;
-  @ViewChild('images', { static: true }) imagesElement: ElementRef;
-  @ViewChild('genre', { static: true }) genreElement: ElementRef;
-  @ViewChild('category', { static: true }) categoryElement: ElementRef;
 
-  constructor(
-    isbnElement: ElementRef,
-    langElement: ElementRef,
-    yearElement: ElementRef,
-    titleElement: ElementRef,
-    priceElement: ElementRef,
-    authorElement: ElementRef,
-    publisherElement: ElementRef,
-    publisherCityElement: ElementRef,
-    physicalDescriptionElement: ElementRef,
-    imagesElement: ElementRef,
-    genreElement: ElementRef,
-    categoryElement: ElementRef,
-    private bookService: BooksServiceService
-  ) {
-    this.isbnElement = isbnElement;
-    this.langElement = langElement;
-    this.yearElement = yearElement;
-    this.titleElement = titleElement;
-    this.priceElement = priceElement;
-    this.authorElement = authorElement;
-    this.publisherElement = publisherElement;
-    this.publisherCityElement = publisherCityElement;
-    this.physicalDescriptionElement = physicalDescriptionElement;
-    this.imagesElement = imagesElement;
-    this.genreElement = genreElement;
-    this.categoryElement = categoryElement;
+  constructor(private bookService: BooksServiceService) {
+
+    this.flag = history.state.flag;
+    if (!this.flag) {
+      let val = history.state.data;
+      this.handleInit(val);
+    }
+  }
+
+  handleInit(val: any): void {
+    this.id = val.id;
+    this.isbn = val.isbn;
+    this.lang = val.lang;
+    this.year = val.lang;
+    this.title = val.title;
+    this.author = val.author;
+    this.price = val.price;
+    this.publisher = val.publisher;
+    this.publisherCity = val.publisherCity;
+    this.physicalDescription = val.physicalDescription;
+    this.images = val.images.join(",");
+    this.genre = val.genre.join(",");
+    this.category = val.category;
   }
 
   ngOnInit(): void {
-    this.flag = history.state.flag;
-    this.obj = history.state.data;
-    this.bookData = this.bookService.getDataToPost();
 
- 
+
+  }
+  handleChange(e: any) {
+    // console.log(e.target.value);
+    if (e.target.name === "isbn") {
+      this.isbn = e.target.value;
+    } else if (e.target.name === "lang") {
+      this.lang = e.target.value;
+    } else if (e.target.name === "year") {
+      this.year = e.target.value;
+    } else if (e.target.name === "title") {
+      this.title = e.target.value;
+    } else if (e.target.name === "author") {
+      this.author = e.target.value;
+    } else if (e.target.name === "price") {
+      this.price = e.target.value;
+    } else if (e.target.name === "publisher") {
+      this.publisher = e.target.value;
+    } else if (e.target.name === "publisherCity") {
+      this.publisherCity = e.target.value;
+    } else if (e.target.name === "physicalDescription") {
+      this.physicalDescription = e.target.value;
+    } else if (e.target.name === "images") {
+      this.images = e.target.value;
+    } else if (e.target.name === "genre") {
+      this.genre = e.target.value;
+    } else if (e.target.name === "category") {
+      this.category = e.target.value;
+    }
   }
 
-  getValue(val: any) {
-    this.obj = {
-      ...val,
-    };
 
-    if (this.obj.isbn === '') {
+  updateBook(val: any) {
+    let newObj = {
+      id: this.id,
+      isbn: this.isbn,
+      lang: this.lang,
+      year: this.year,
+      title: this.title,
+      author: this.author,
+      price: this.price,
+      publisher: this.publisher,
+      publisherCity: this.publisherCity,
+      physicalDescription: this.physicalDescription,
+      images: this.images,
+      genre: this.genre,
+      category: this.category
+    }
+    console.log("Nwww", newObj);
+
+    this.bookService.putBooks(newObj).subscribe(res => {
+      console.log(res)
+      alert(`${this.title} updated Successfully!!`)
+    })
+
+  };
+  addBook(val: any) {
+
+    if (this.isbn === '') {
       alert('plz enter a valid isbn  ');
       return;
     }
-    if (this.obj.lang === '') {
+    if (this.lang === '') {
       alert('plz enter a valid language  ');
       return;
     }
-    if (this.obj.year === '') {
+    if (this.year === '') {
       alert('plz enter a valid year  ');
       return;
     }
-    if (this.obj.title === '') {
+    if (this.title === '') {
       alert('plz enter a valid title  ');
       return;
     }
-    if (this.obj.price === '' || this.obj.price < 0) {
+    if (this.price === '' || this.price < 0) {
       alert('plz enter a valid price  ');
       return;
     }
-    if (this.obj.author === '') {
+    if (this.author === '') {
       alert('plz enter a valid author  ');
       return;
     }
-    if (this.obj.publisher === '') {
+    if (this.publisher === '') {
       alert('plz enter a valid publisher  ');
       return;
     }
-    if (this.obj.publisherCity === '') {
+    if (this.publisherCity === '') {
       alert('plz enter a valid publisherCity  ');
       return;
     }
-    if (this.obj.physicalDescription === '') {
+    if (this.physicalDescription === '') {
       alert('plz enter a valid physicalDescription  ');
       return;
     }
-    if (this.obj.images === '') {
+    if (this.images === '') {
       alert('plz enter a valid images  ');
       return;
     }
-    if (this.obj.genre === '') {
+    if (this.genre === '') {
       alert('plz enter a valid genre  ');
       return;
     }
-    if (this.obj.category === '') {
+    if (this.category === '') {
       alert('plz enter a valid categoryame  ');
       return;
     }
-    this.obj.images = this.obj.images.trim().split(',');
-    for (let i = 0; i < this.obj.images.length; i++) {
-      this.obj.images[i] = this.obj.images[i].trim();
+    this.images = this.images.trim().split(',');
+    for (let i = 0; i < this.images.length; i++) {
+      this.images[i] = this.images[i].trim();
     }
 
-    this.obj.genre = this.obj.genre.trim().split(',');
-    for (let i = 0; i < this.obj.genre.length; i++) {
-      this.obj.genre[i] = this.obj.genre[i].trim();
+    this.genre = this.genre.trim().split(',');
+    for (let i = 0; i < this.genre.length; i++) {
+      this.genre[i] = this.genre[i].trim();
     }
 
-    console.log(this.obj);
-
-    if (this.flag === true) {
-      this.bookService
-        .addBooks(this.obj)
-        .subscribe((data) => console.log('form post request', data));
-    } else {
-      this.bookService
-        .putBooks(this.obj)
-        .subscribe((data) => console.log('form update request', data));
+    let newObj = {
+      isbn: this.isbn,
+      lang: this.lang,
+      year: this.year,
+      title: this.title,
+      author: this.author,
+      price: this.price,
+      publisher: this.publisher,
+      publisherCity: this.publisherCity,
+      physicalDescription: this.physicalDescription,
+      images: this.images,
+      genre: this.genre,
+      category: this.category
     }
+    console.log("Nwww", newObj);
+    this.bookService
+      .addBooks(newObj)
+      .subscribe((data) => {
+        console.log('form post request', data);
+        alert("You have successfully added new Book!!");
+      });
 
-    // this.isbnElement.nativeElement.value = null;
-    // this.langElement.nativeElement.value = null;
-    // this.yearElement.nativeElement.value = null;
-    // this.titleElement.nativeElement.value = null;
-    // this.priceElement.nativeElement.value = null;
-    // this.authorElement.nativeElement.value = null;
-    // this.publisherElement.nativeElement.value = null;
-    // this.publisherCityElement.nativeElement.value = null;
-    // this.physicalDescriptionElement.nativeElement.value = null;
-    // this.imagesElement.nativeElement.value = null;
-    // this.genreElement.nativeElement.value = null;
-    // this.categoryElement.nativeElement.value = null;
-
-    //  alert('book '+ {{this.flag ? "posted" : "updated"}}+' successfully');
   }
 }

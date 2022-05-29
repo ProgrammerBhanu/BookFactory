@@ -22,6 +22,9 @@
         <div class="filter_h" (click)="handleFilters('e')">
            <p> Sort by</p>
            </div>
+           <div routerLink="addnewbook" [state]="{flag:true}" class="filter_h add-new" (click)="addNewBook()">
+            <p> Add New Book</p>
+            </div>
     </div>
     <div *ngIf="filterFlag" id="filter-dropdowns" [ngSwitch]="filterFlag">
         <div class="dropdown price" *ngSwitchCase="'a'">
@@ -72,11 +75,11 @@
       </div>
 </div>
 <div id="main-body">
-    <div routerLink="bookdetails" class="book-card"  *ngFor="let item of booksData | paginate: { id: 'foo',
+    <div  class="book-card"  *ngFor="let item of booksData | paginate: { id: 'foo',
     itemsPerPage: 10,
     currentPage: CurrentPageNo,
-    totalItems: TotalRecords }" [state]="{data:item}" >
-        <img src="{{item.images[0]}}" alt="" srcset="">
+    totalItems: TotalRecords }">
+        <img src="{{item.images[0]}}" alt="" srcset="" routerLink="bookdetails" [state]="{data:item}">
         <h4>{{item.title}}</h4>
         <strong>{{item.publisher}}</strong>
         <p class="price-data">₹ {{item.price}}<span>.00</span></p>

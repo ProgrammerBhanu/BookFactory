@@ -11,6 +11,7 @@ export class BookDetailsComponent implements OnInit {
   bookDetail:any;
   imageSrc:any;
   adminFlag:boolean = false;
+  userDetails:any;
   constructor(private dataService: BooksServiceService, private router:Router) {
     this.bookDetail = history.state.data;
     this.imageSrc = history.state.data.images[0];
@@ -44,9 +45,8 @@ export class BookDetailsComponent implements OnInit {
   buyNow():void{
 
   }
-  updateBook(data:any):void{
-      this.dataService.sendDataToPost(data);
-
-      this.router.navigateByUrl("/updatebook");
+  updateBook(val:any):void{
+      // this.dataService.sendDataToPost(data);
+        this.router.navigate(['updatebook'], { state: {data: val,flag:false} });
   }
 }

@@ -8,6 +8,6 @@ import com.bookfactory.backend.model.UserModel;
 @Repository
 public interface UserRepository extends MongoRepository<UserModel, String> {
 
-	UserModel findByUsername(String username);
+	UserModel findByUsername(Object object);
 	
 }
