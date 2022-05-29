@@ -29,7 +29,7 @@ export class CartPageComponent implements OnInit {
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].hasOwnProperty(`${name}`) == true) {
         let x = cart[i];
-        if(x[name] == null){
+        if(x[name].length == 0){
           this.emptyCart = true 
         }
         break;
