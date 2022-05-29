@@ -28,60 +28,60 @@ import io.jsonwebtoken.Claims;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class JwtController {
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
-	@Autowired 
+
+	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private JwtUtils jwtUtils;
-	
-	
+
 	@GetMapping("/dashboard")
 	private String testingToken() {
-		return "Welcome to the Dashboard "+SecurityContextHolder.getContext().getAuthentication().getName();
+		return "Welcome to the Dashboard " + SecurityContextHolder.getContext().getAuthentication().getName();
 	}
-	
+
 	@PostMapping("/register")
-	private ResponseEntity<?> subscribeClient(@RequestBody UserModel authenticationRequest){
-		
+	private ResponseEntity<?> subscribeClient(@RequestBody UserModel authenticationRequest) {
+
 		try {
 			userService.findDuplicate(authenticationRequest);
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			return ResponseEntity.ok(new AuthenticationResponse("Error during client Register "));
 		}
 		return ResponseEntity.ok(new AuthenticationResponse("Succesfull Registered client "));
 	}
-	
+
 	@PostMapping("/login")
-	private ResponseEntity<?> authenticateClient(@RequestBody AuthenticationRequest authenticationRequest){
+	private ResponseEntity<?> authenticateClient(@RequestBody AuthenticationRequest authenticationRequest) {
 		String username = authenticationRequest.getUsername();
 		String password = authenticationRequest.getPassword();
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 //			return ResponseEntity.ok(new AuthenticationResponse("Succesfull authentication of client "+username));
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return ResponseEntity.ok(new AuthenticationResponse("Error during client authentication"));
 		}
 
 		UserDetails loadedUser = userService.loadUserByUsername(username);
 		String generatedToken = jwtUtils.generateToken(loadedUser);
-		
+
 		return ResponseEntity.ok(new AuthenticationResponse(generatedToken));
-		
+
 //		return ResponseEntity.ok(new AuthenticationResponse("Success"));
 	}
-	
+
 	@GetMapping("/userdetails")
-	public ResponseEntity<?> user(@RequestHeader(value="Authorization") String token ) {
+	public ResponseEntity<?> user(@RequestHeader(value = "Authorization") String token) {
 		System.out.println(token);
 		System.out.print("ksjhfskjfhdkfghjdfjghjkdfghjkdfghkjdfgh");
+
 		try {
 			System.out.print("rrr");
 			String removeBearer = token.substring(7);
@@ -96,4 +96,3 @@ public class JwtController {
 	
 
 }
-

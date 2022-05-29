@@ -9,7 +9,18 @@ export class BooksServiceService {
   userRole:any ;
   someData:any;
   // private adminFlag: boolean = false;
+
+  
+  someState:any;
   constructor(private http: HttpClient) {}
+ 
+  setState(data:any){
+    this.someState = data;
+  }
+  getState(){
+   return this.someState;
+  }
+
 
 
   // Login
@@ -140,6 +151,9 @@ export class BooksServiceService {
 
   public sendEmailWithUserEmail(toEmail: string) {
     return this.http.get('http://localhost:8080/book/sendEmail/?toemail=' + toEmail);
+  }
+  public sendEmailWithThankyou(toEmail: string) {
+    return this.http.get('http://localhost:8080/book/sendEmailThankyou/?toemail=' + toEmail);
   }
   public sendEmailWithBody(body: string) {
     return this.http.get(

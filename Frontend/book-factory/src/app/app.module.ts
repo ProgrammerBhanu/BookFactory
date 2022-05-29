@@ -8,7 +8,6 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { AllBookComponent } from './all-book/all-book.component';
-
 import { PostNewBookFormComponent } from './Admin/post-new-book-form/post-new-book-form.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';

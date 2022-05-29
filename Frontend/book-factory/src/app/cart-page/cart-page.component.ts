@@ -11,34 +11,74 @@ export class CartPageComponent implements OnInit {
   total: any;
   discount: boolean = false;
   cart: any;
-  
-
+  emptyCart: Boolean = false;
+  user: any;
   constructor(private bookService: BooksServiceService) {}
 
   ngOnInit(): void {
-    let data:any = localStorage.getItem("cart");
-    this.cart = JSON.parse(data);
-    
-    this.findTotal();
-    this.setCartDataFromLocalStorage();
+    this.bookService
+      .getUserDetails()
+      .subscribe((data) => {this.setCartDataFromLocalStorage(data)});
+  }
+  checkCartIsEmpty() {
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    let name = this.user.username;
+    console.log('name', name);
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        if(x[name] == null){
+          this.emptyCart = true 
+        }
+        break;
+      }
+    }
   }
 
-  setCartDataFromLocalStorage() {
-    let data: any = localStorage.getItem('cart');
-    data = JSON.parse(data);
-    this.cart = data;
+  setCartDataFromLocalStorage(data: any) {
+    this.user = data;
+
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    let name = this.user.username;
+    console.log('name', name);
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        this.cart = x[name];
+        break;
+      }
+    }
+
+    this.checkCartIsEmpty();
+    this.findTotal();
   }
 
   deleteItem(index: number) {
     this.cart.splice(index, 1);
-    let data: any = localStorage.getItem('cart');
-    data = JSON.parse(data);
-    data.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(data));
+    let name = this.user.username;
+
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        x[name].splice(index,1);
+        break;
+      }
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
     this.findTotal();
     if (this.discount == true) {
       this.total = (this.total * 0.7).toFixed(2);
     }
+
+    
+
+    this.checkCartIsEmpty();
   }
   changeQuantity(value: any, index: number) {
     this.cart[index].quantity = value.target.value;

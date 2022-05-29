@@ -9,11 +9,20 @@ import { BooksServiceService } from '../services/books-service.service';
 export class PaymentPageComponent implements OnInit {
   public selectedNumber: String = 'a';
   public finalPayment = false;
+  user: any;
   finalTotal: number = 0;
-  constructor(private bookService: BooksServiceService, private router:Router) {}
+  constructor(
+    private bookService: BooksServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.finalTotal = history.state.val;
+    if (history.state.val == undefined) {
+      this.finalTotal = this.bookService.getState();
+    } else {
+      this.finalTotal = history.state.val;
+      console.log('val', history.state.val);
+    }
   }
 
   showBlock(value: String) {
@@ -26,12 +35,42 @@ export class PaymentPageComponent implements OnInit {
   toggle() {
     console.log(this.finalPayment);
     this.finalPayment = true;
+
+    this.bookService
+      .getUserDetails()
+      .subscribe((data) => this.setCartValuetoZeroFromLocalStorage(data));
+
+
+    console.log(this.user.email);
+    this.bookService.sendEmailWithThankyou(this.user.email);
   }
 
-  handleThanku():void{
-    localStorage.setItem("cart",JSON.stringify([]));
-    setTimeout(()=>{
-        this.router.navigateByUrl("");
-    },2000)
+  handleThanku(): void {
+    this.bookService
+      .getUserDetails()
+      .subscribe((data) => this.setCartValuetoZeroFromLocalStorage(data));
+
+    setTimeout(() => {
+      this.router.navigateByUrl('');
+    }, 1000);
+  }
+
+  setCartValuetoZeroFromLocalStorage(data: any) {
+    this.user = data;
+
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    let name = this.user.username;
+    console.log('name', name);
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        x[name] = [];
+        break;
+      }
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 }

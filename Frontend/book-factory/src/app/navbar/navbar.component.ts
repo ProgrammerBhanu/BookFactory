@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   searchData: any;
   cardFlag: boolean = false;
   loginFlag: boolean = false;
-
+  user:any;
   userDetails: any;
 
   toggleflag: boolean = false;
@@ -24,8 +24,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let data: any = localStorage.getItem('cart');
-    this.cartVal = JSON.parse(data).length;
+    this.dataService
+    .getUserDetails()
+    .subscribe((data) => this.setCartValFromLocalStorage(data));
     this.dataService.newLoginFlag.subscribe({
       next: (data) => {
         console.log("newLogin", data)
@@ -40,6 +41,23 @@ export class NavbarComponent implements OnInit {
       }
     })
 
+  }
+
+  setCartValFromLocalStorage(data:any){
+    this.user = data;
+
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    let name = this.user.username;
+    console.log('name', name);
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart[i];
+        this.cartVal=  x[name].length;
+        break;
+      }
+    }
   }
 
   toggledrop(): void {
@@ -106,6 +124,7 @@ export class NavbarComponent implements OnInit {
   userDataAssign(input: any) {
     this.userDetails = input
   }
+
 
 
   handleLogout(): void {

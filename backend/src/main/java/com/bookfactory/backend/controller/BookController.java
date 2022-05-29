@@ -118,5 +118,10 @@ public class BookController {
 				"registration completed");
 	  }
 	
-
+	@GetMapping("/sendEmailThankyou")
+	public void EmailAfterBuying(@RequestParam(name = "toemail") String toEmail) {
+	service.sendSimpleEmail(toEmail,
+			 "Thankyou for buying product from our website ",
+			"Brought Product ");
+  }
 }

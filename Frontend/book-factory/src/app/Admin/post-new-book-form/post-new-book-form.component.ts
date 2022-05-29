@@ -6,7 +6,7 @@ import { BooksServiceService } from '../../services/books-service.service';
   styleUrls: ['./post-new-book-form.component.css'],
 })
 export class PostNewBookFormComponent implements OnInit {
-  flag: Boolean = true;
+  public flag: Boolean = false;
   obj: any;
 
 
