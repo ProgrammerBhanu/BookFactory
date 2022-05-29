@@ -1,7 +1,13 @@
 <div class="container">
   <h1>Shopping Cart</h1>
   <hr />
-  <div class="cart">
+
+  <div *ngIf="emptyCart" class="emptyCart">
+    <img
+      src="https://mir-s3-cdn-cf.behance.net/projects/404/95974e121862329.Y3JvcCw5MjIsNzIxLDAsMTM5.png"
+    />
+  </div>
+  <div class="cart" *ngIf="!emptyCart">
     <div class="products">
       <div class="product" *ngFor="let item of cart; let i = index">
         <div class="product-image">
@@ -59,7 +65,11 @@
         <span>₹ {{ total }}</span>
       </p>
 
-      <div class="proceed-to-checkout" routerLink="payment" [state]="{val:total}">
+      <div
+        class="proceed-to-checkout"
+        routerLink="payment"
+        [state]="{ val: total }"
+      >
         Proceed to Checkout
       </div>
     </div>

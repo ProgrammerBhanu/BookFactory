@@ -10,10 +10,18 @@ export class PaymentPageComponent implements OnInit {
   public selectedNumber: String = 'a';
   public finalPayment = false;
   finalTotal: number = 0;
-  constructor(private bookService: BooksServiceService, private router:Router) {}
+  constructor(
+    private bookService: BooksServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.finalTotal = history.state.val;
+    if (history.state.val == undefined) {
+      this.finalTotal = this.bookService.getState();
+    } else {
+      this.finalTotal = history.state.val;
+      console.log('val', history.state.val);
+    }
   }
 
   showBlock(value: String) {
@@ -28,10 +36,10 @@ export class PaymentPageComponent implements OnInit {
     this.finalPayment = true;
   }
 
-  handleThanku():void{
-    localStorage.setItem("cart",JSON.stringify([]));
-    setTimeout(()=>{
-        this.router.navigateByUrl("");
-    },2000)
+  handleThanku(): void {
+    localStorage.setItem('cart', JSON.stringify([]));
+    setTimeout(() => {
+      this.router.navigateByUrl('');
+    }, 2000);
   }
 }

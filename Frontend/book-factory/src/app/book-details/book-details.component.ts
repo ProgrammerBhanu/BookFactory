@@ -36,13 +36,15 @@ export class BookDetailsComponent implements OnInit {
 
   deleteBook(id:any):void{
     console.log(id);
-    alert("You have deleted bookv successfully!!");
+    alert("You have deleted book successfully!!");
     this.dataService.delete(id).subscribe(res=>console.log(res));
     this.router.navigateByUrl("");
   }
 
   buyNow():void{
-
+    this.dataService.setState(this.bookDetail.price)
+    
+    this.router.navigateByUrl("/cart/payment");
   }
   updateBook(data:any):void{
       this.dataService.sendDataToPost(data);

@@ -79,7 +79,7 @@ handleUser():void{
 
 
 handleLogout():void{
-  
+  localStorage.setItem('token', JSON.stringify(null));
 }
 
 toggleDrop():void{

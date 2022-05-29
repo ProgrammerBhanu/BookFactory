@@ -11,16 +11,22 @@ export class CartPageComponent implements OnInit {
   total: any;
   discount: boolean = false;
   cart: any;
-  
-
+  emptyCart: Boolean = false;
   constructor(private bookService: BooksServiceService) {}
 
   ngOnInit(): void {
-    let data:any = localStorage.getItem("cart");
+    let data: any = localStorage.getItem('cart');
     this.cart = JSON.parse(data);
-    
+    this.checkCartIsEmpty();
     this.findTotal();
     this.setCartDataFromLocalStorage();
+  }
+  checkCartIsEmpty() {
+    if (this.cart.length == 0) {
+      this.emptyCart = true;
+    } else {
+      this.emptyCart = false;
+    }
   }
 
   setCartDataFromLocalStorage() {
@@ -39,6 +45,7 @@ export class CartPageComponent implements OnInit {
     if (this.discount == true) {
       this.total = (this.total * 0.7).toFixed(2);
     }
+    this.checkCartIsEmpty();
   }
   changeQuantity(value: any, index: number) {
     this.cart[index].quantity = value.target.value;

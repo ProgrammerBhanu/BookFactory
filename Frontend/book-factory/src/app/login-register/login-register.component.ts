@@ -37,7 +37,9 @@ export class LoginRegisterComponent implements OnInit {
     });
 
     localStorage.setItem('token', JSON.stringify(this.token));
-
+    let cart: any = localStorage.getItem('cart');
+    cart = JSON.parse(cart);
+    
   }
   handleRegister(data: any) {
     console.log(data);

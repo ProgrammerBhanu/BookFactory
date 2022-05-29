@@ -178,6 +178,12 @@ p {
   display: block;
 }
 
+.emptyCart {
+  display: grid;
+  place-items: center;
+  margin-top: 15vh;
+  margin-bottom: 20vh;
+}
 @media screen and (max-width: 900px) {
   .cart {
     flex-direction: column;

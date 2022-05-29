@@ -7,11 +7,16 @@ export class BooksServiceService {
   private cartValue: number = 0;
   someData:any;
   private adminFlag: boolean = false;
-  constructor(private http: HttpClient) {}
   private loginFlag:boolean = true;
-
-
-
+  someState:any;
+  constructor(private http: HttpClient) {}
+ 
+  setState(data:any){
+    this.someState = data;
+  }
+  getState(){
+   return this.someState;
+  }
 
   getCartVal() {
     return this.cartValue;
