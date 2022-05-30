@@ -78,6 +78,16 @@ export class PostNewBookFormComponent implements OnInit {
   }
 
   updateBook(val: any) {
+
+    this.images = this.images.trim().split(',');
+    for (let i = 0; i < this.images.length; i++) {
+      this.images[i] = this.images[i].trim();
+    }
+
+    this.genre = this.genre.trim().split(',');
+    for (let i = 0; i < this.genre.length; i++) {
+      this.genre[i] = this.genre[i].trim();
+    }
     let newObj = {
       id: this.id,
       isbn: this.isbn,
@@ -94,9 +104,16 @@ export class PostNewBookFormComponent implements OnInit {
       category: this.category,
     };
 
-    this.bookService.putBooks(newObj).subscribe((res) => {
-      alert(`${this.title} updated Successfully!!`);
-    });
+   
+
+    this.bookService.putBook(newObj).subscribe(
+      (res) => {
+        alert(`${this.title} updated Successfully!!`);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
   addBook(val: any) {
     if (this.isbn === '') {

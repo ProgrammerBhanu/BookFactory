@@ -43,6 +43,7 @@ export class LoginRegisterComponent implements OnInit {
     }
 
     this.bookService.getUserDetails().subscribe((data) => this.setUser(data));
+    window.location.reload();
   }
   setUser(data: any) {
     this.user = data;
@@ -78,7 +79,6 @@ export class LoginRegisterComponent implements OnInit {
         break;
       }
     }
-    window.location.reload();
 
   }
   handleRegister(data: any) {
