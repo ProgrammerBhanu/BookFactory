@@ -5,12 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class BooksServiceService {
-  private cartValue: number = 0;
   userRole:any ;
   someData:any;
-  // private adminFlag: boolean = false;
-
   
+
+  // --------------Some State Data---------------------
   someState:any;
   constructor(private http: HttpClient) {}
  
@@ -23,7 +22,7 @@ export class BooksServiceService {
 
 
 
-  // Login
+  // -------------Login----------------------------
   private loginFlag = new BehaviorSubject<boolean>(false);
   newLoginFlag = this.loginFlag.asObservable();
 
@@ -38,33 +37,18 @@ export class BooksServiceService {
     this.adminFlag.next(val);
   }
  
+// ------------- Cart flag -------------------------
 
+private cartValue = new BehaviorSubject<number>(0);
+  newCartValue = this.cartValue.asObservable();
 
-
-
-  getCartVal() {
-    return this.cartValue;
+  noOfBook:number = 0;
+  changeInCartVal(val:number){
+    this.cartValue.next(val);
+    this.noOfBook = val;
   }
 
-
-  setloginFlag(val:any): void {
-    this.loginFlag = val;
-  }
-
-  getloginFlag() {
-    return this.loginFlag;
-  }
-  // setAdminFlag(val:any): void {
-  //   this.adminFlag = val;
-  // }
-
-  // getAdminFlag() {
-  //   return this.adminFlag;
-  // }
-
-  setCardVal(val: number): void {
-    this.cartValue = val;
-  }
+// ------------- CRUD API's ---------------------------
   public getAllBooks() {
     //get all books with out pagination
     return this.http.get('http://localhost:8080/book/');
@@ -83,17 +67,15 @@ export class BooksServiceService {
     return this.http.post('http://localhost:8080/book/add', data,{headers});
   }
   public putBooks(data: any) {
-    console.log(data,"yess")
-    // let token: any = localStorage.getItem('token');
-    // token = JSON.parse(token);
+    let token: any = localStorage.getItem('token');
+    token = JSON.parse(token);
 
-    // console.log(token.response);
+    console.log(token.response);
 
     let headers = new HttpHeaders()
     .set('content-type','application/json')
-    .set('Access-Control-Allow-Origin','*')
-    // .set('Authorization',  `Bearer ${token.response}`)
-    return this.http.put('http://localhost:8080/book/update', data,{headers});
+    .set('Authorization',  `Bearer ${token.response}`)
+    return this.http.post('http://localhost:8080/book/update', data,{headers});
   }
   public delete(id: string) {
     let token: any = localStorage.getItem('token');
@@ -104,7 +86,7 @@ export class BooksServiceService {
     let headers = new HttpHeaders()
     .set('content-type','application/json')
     .set('Authorization',  `Bearer ${token.response}`)
-    return this.http.delete('http://localhost:8080/book/delete?id=' + id,{headers});
+    return this.http.get('http://localhost:8080/book/delete?id=' + id,{headers});
   }
   public getAllBooksWithPaggination() {
     

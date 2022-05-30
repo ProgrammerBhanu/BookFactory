@@ -22,7 +22,7 @@
         <div class="filter_h" (click)="handleFilters('e')">
            <p> Sort by</p>
            </div>
-           <div routerLink="addnewbook" [state]="{flag:true}" class="filter_h add-new" (click)="addNewBook()">
+           <div *ngIf="adminFlag" routerLink="addnewbook" [state]="{flag:true}" class="filter_h add-new" (click)="addNewBook()">
             <p> Add New Book</p>
             </div>
     </div>

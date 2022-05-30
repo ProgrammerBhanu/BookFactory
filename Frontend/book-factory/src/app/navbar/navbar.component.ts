@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit {
 
   toggleflag: boolean = false;
   constructor(private dataService: BooksServiceService, private router: Router) {
-    // this.showLength();
   }
 
   ngOnInit(): void {
@@ -34,15 +33,22 @@ export class NavbarComponent implements OnInit {
       }
     })
 
-    // admin login
+    //---------------- admin login flag -----------------------
     this.dataService.newAdminFlag.subscribe({
       next:(data)=>{
         this.adminFlag = data;
       }
+    });
+
+    // -------- cart Value -------------------
+    this.dataService.newCartValue.subscribe({
+      next:(data)=>{
+        this.cartVal = data;
+      }
     })
 
   }
-
+  
   setCartValFromLocalStorage(data:any){
     this.user = data;
 
@@ -67,29 +73,32 @@ export class NavbarComponent implements OnInit {
     this.dropFlag = false;
   }
 
-  // SEARCHING AND DEBOUNCING START
+  // -----------------SEARCHING AND DEBOUNCING START-------------------
   setData(data: any) {
     this.searchData = data;
   }
   search(evt: any) {
     const searchText = evt.target.value;
     console.log(searchText)
-    this.dataService.getDataWithSearch(searchText).subscribe(
-      (data) => {
-        this.setData(data);
-      }
-    )
-    this.cardFlag = true;
+    if(searchText.length > 1){
+      this.dataService.getDataWithSearch(searchText).subscribe(
+        (data) => {
+          this.setData(data);
+        }
+      )
+      this.cardFlag = true;
+    }
+    
 
   }
   searchCard(): void {
     this.cardFlag = false;
     this.textVal = "";
   }
-  // SEARCHING AND DEBOUNCING END
+  //------------------ SEARCHING AND DEBOUNCING END-------------------------
 
 
-  // Admin part starts
+  //------------------ Admin part starts ------------------------------------
 
   handleAdmin(): void {
 
@@ -108,7 +117,6 @@ export class NavbarComponent implements OnInit {
 
         console.log("User data", this.userDetails.role);
         alert("You are not Admin !! Plz login!!");
-        this.router.navigateByUrl("/login");
         this.handleClose();
       } else {
   
@@ -126,11 +134,12 @@ export class NavbarComponent implements OnInit {
   }
 
 
-
+// -------------- logout ------------------------------------
   handleLogout(): void {
     localStorage.setItem('token', JSON.stringify(null));
     this.dataService.changeInAdminFlag(false);
     this.dataService.changeInFlag(false);
+    window.location.reload();
 
   }
 

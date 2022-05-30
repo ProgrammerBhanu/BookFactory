@@ -50,6 +50,8 @@ export class BookDetailsComponent implements OnInit {
       if (cart[i].hasOwnProperty(`${name}`) == true) {
         let x = cart[i];
         x[name].push(this.bookDetail);
+        let len = x[name].length;
+        this.dataService.changeInCartVal(len);
         break;
       }
     }
@@ -59,7 +61,6 @@ export class BookDetailsComponent implements OnInit {
   addToCart(): void {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-//hgga
     if(token === null){
       this.router.navigateByUrl("/login")
       return;
@@ -83,7 +84,6 @@ export class BookDetailsComponent implements OnInit {
     this.router.navigateByUrl('/cart/payment');
   }
   updateBook(val: any): void {
-    // this.dataService.sendDataToPost(data);
     this.router.navigate(['updatebook'], { state: { data: val, flag: false } });
   }
 }

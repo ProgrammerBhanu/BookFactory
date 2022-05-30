@@ -43,7 +43,7 @@ public class BookController {
 	}
 
 	// update
-	@PutMapping("/update")
+	@PostMapping("/update")
 	public ResponseEntity<?> update(@RequestBody Book book
 			) {
 		
@@ -51,7 +51,7 @@ public class BookController {
 	}
 
 	// delete
-	@DeleteMapping("/delete")
+	@GetMapping("/delete")
 	public ResponseEntity<?> delete(@PathParam("id") String id) {
 		return bookService.delete(id);
 	}

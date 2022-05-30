@@ -42,8 +42,6 @@ export class LoginRegisterComponent implements OnInit {
     if(this.token != null){
       this.bookService.changeInFlag(true);
       this.router.navigateByUrl("");
-    }else{
-      alert("Invalid Credential!!");
     }
 
     this.bookService.getUserDetails().subscribe((data) => this.setUser(data));
@@ -69,11 +67,24 @@ export class LoginRegisterComponent implements OnInit {
         }
     }
     if(this.checkValue !== true ){
-
       let newObj = { [name]: []}
       cart.push(newObj);
+      
     }
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    let cart1: any = localStorage.getItem('cart');
+    cart1 = JSON.parse(cart1);
+
+    for (let i = 0; i < cart1.length; i++) {
+      if (cart1[i].hasOwnProperty(`${name}`) == true) {
+        let x = cart1[i];
+          this.bookService.changeInCartVal(x[name].length);
+        break;
+      }
+    }
+    window.location.reload();
+
   }
   handleRegister(data: any) {
     if (data.username === '') {

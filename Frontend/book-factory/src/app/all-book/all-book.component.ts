@@ -11,6 +11,7 @@ export class AllBookComponent implements OnInit {
   booksData: Array<any>;
   TotalRecords: any;
   CurrentPageNo: any = 1;
+  adminFlag:boolean = false;
   constructor(private bookService: BooksServiceService) {
     this.booksData = new Array<any>();
   }
@@ -33,6 +34,13 @@ export class AllBookComponent implements OnInit {
     this.TotalRecords = data.TotalElement;
   }
   ngOnInit(): void {
+    this.bookService.newAdminFlag.subscribe({
+      next:(data)=>{
+        this.adminFlag = data;
+      }
+    })
+
+    // ------------Admin flag end-----------------
     if (history.state.val == '' || history.state.val == undefined) {
       this.bookService
         .getAllBooksWithPaggination()
