@@ -23,12 +23,11 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.newAdminFlag.subscribe({
-      next:(data)=>{
+      next: (data) => {
         this.adminFlag = data;
-      }
-    })
+      },
+    });
 
- 
     let data: any = localStorage.getItem('cart');
     if (JSON.parse(data) == null) {
       localStorage.setItem('cart', JSON.stringify([]));
@@ -44,7 +43,6 @@ export class BookDetailsComponent implements OnInit {
     let cart: any = localStorage.getItem('cart');
     cart = JSON.parse(cart);
     let name = this.user.username;
-    console.log('name', name);
 
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].hasOwnProperty(`${name}`) == true) {
@@ -61,18 +59,17 @@ export class BookDetailsComponent implements OnInit {
   addToCart(): void {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-    if(token === null){
-      this.router.navigateByUrl("/login")
+    if (token === null) {
+      this.router.navigateByUrl('/login');
       return;
     }
 
-    this.dataService.getUserDetails().subscribe((data) => this.setUserBookInCart(data));
-
-
+    this.dataService
+      .getUserDetails()
+      .subscribe((data) => this.setUserBookInCart(data));
   }
 
   deleteBook(id: any): void {
-    console.log(id);
     alert('You have deleted book successfully!!');
     this.dataService.delete(id).subscribe((res) => console.log(res));
     this.router.navigateByUrl('');
@@ -80,7 +77,6 @@ export class BookDetailsComponent implements OnInit {
 
   buyNow(): void {
     this.dataService.setState(this.bookDetail.price);
-
     this.router.navigateByUrl('/cart/payment');
   }
   updateBook(val: any): void {

@@ -24,8 +24,6 @@ export class AllBookComponent implements OnInit {
 
   setAllBook(data: any) {
     this.AllBook = data.body;
-    console.log(this.AllBook);
-    // fdskhfewrhoirewo
   }
 
   setBookdata(data: any) {
@@ -47,17 +45,14 @@ export class AllBookComponent implements OnInit {
         .subscribe((data) => this.setBookdata(data));
       this.bookService.getAllBooks().subscribe((data) => this.setAllBook(data));
     } else if (typeof history.state.val == 'number') {
-      console.log(history.state.val);
       this.setPriceLessThanWithPageNo(history.state.val, history.state.val2);
     } else if (
       typeof history.state.val == 'string' &&
       typeof history.state.val2 == 'number'
     ) {
-      console.log(history.state.val);
       // this.bookService.getAllBooks().subscribe((data) => this.setAllBook(data));
       // this.filterByGenre(history.state.val);
     } else if (typeof history.state.val == 'string') {
-      console.log(history.state.val);
       this.setLanguage(history.state.val, 0);
     }
   }
@@ -82,15 +77,11 @@ export class AllBookComponent implements OnInit {
 
   filterByGenre(gen: string) {
     let myData = this.AllBook;
-    console.log('myData', myData);
     let arr = myData.filter((el: any) => el.genre.includes(gen) === true);
-    console.log('arr', arr);
     this.booksData = arr.slice(0, 10);
     this.CurrentPageNo = 0;
     this.TotalRecords = 1;
   }
 
-  addNewBook():void{
-
-  }
+  addNewBook(): void {}
 }

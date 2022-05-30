@@ -11,11 +11,10 @@ import { AllBookComponent } from './all-book/all-book.component';
 import { PostNewBookFormComponent } from './Admin/post-new-book-form/post-new-book-form.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
-import { HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-
 
 @NgModule({
   declarations: [
@@ -30,8 +29,6 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     PaymentPageComponent,
     BookDetailsComponent,
     UserDetailsComponent,
-    
-
   ],
   imports: [
     BrowserModule,
@@ -41,6 +38,6 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     NgxPaginationModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

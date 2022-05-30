@@ -56,7 +56,7 @@
   height: 22px;
 }
 
-#search-bar-con{
+#search-bar-con {
   width: 28.5vw;
   position: absolute;
   height: 200px;
@@ -67,7 +67,7 @@
   background-color: #fff;
   overflow-x: scroll;
 }
-.cards{
+.cards {
   display: flex;
   width: 98%;
   height: 100px;
@@ -77,13 +77,13 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.cards:hover{
+.cards:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
-.card-data{
+.card-data {
   width: 70%;
 }
-.cards>img{
+.cards > img {
   width: 70px;
   height: 98%;
   border: 1px solid gray;
@@ -222,11 +222,10 @@ input:focus {
 }
 /* DropDown End */
 
-
 /* Logout Box Start */
-#logout-box{
+#logout-box {
   width: 40px;
-  height:40px;
+  height: 40px;
   background-image: url(../../assets/account.png);
   background-size: 100% 100%;
   margin-right: 5.5vw;
@@ -234,39 +233,38 @@ input:focus {
   cursor: pointer;
 }
 
-#login-dropdown{
-    position: absolute;
-    background-color: white;
-    right: 11vw;
-    top: 65px;
-    width: 180px;
-    height: 120px;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    text-align: center;
+#login-dropdown {
+  position: absolute;
+  background-color: white;
+  right: 11vw;
+  top: 65px;
+  width: 180px;
+  height: 120px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  text-align: center;
 }
-#login-dropdown::after{
-  content: ' ';
-    width: 0px;
-    height: 0px;
-    border-top: 10px solid transparent;
-    border-left: 10px solid transparent;
-    border-bottom: 10px solid white;
-    border-right: 10px solid transparent;
-    position: absolute;
-    bottom: 100%;
-    left: 41%;
+#login-dropdown::after {
+  content: " ";
+  width: 0px;
+  height: 0px;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid white;
+  border-right: 10px solid transparent;
+  position: absolute;
+  bottom: 100%;
+  left: 41%;
 }
-#login-dropdown p{
+#login-dropdown p {
   cursor: pointer;
   line-height: 30px;
   font-size: 18px;
   font-weight: 500;
   width: 80%;
   margin: 20px auto;
-  
 }
-#login-dropdown p:hover{
+#login-dropdown p:hover {
   border: 1px solid #49c5b6;
   border-radius: 10px;
   box-shadow: #37afa1 0px 2px 8px 0px;

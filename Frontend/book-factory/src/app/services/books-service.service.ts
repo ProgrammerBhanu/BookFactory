@@ -12,12 +12,12 @@ export class BooksServiceService {
   // --------------Some State Data---------------------
   someState:any;
   constructor(private http: HttpClient) {}
- 
-  setState(data:any){
+
+  setState(data: any) {
     this.someState = data;
   }
-  getState(){
-   return this.someState;
+  getState() {
+    return this.someState;
   }
 
 
@@ -26,14 +26,14 @@ export class BooksServiceService {
   private loginFlag = new BehaviorSubject<boolean>(false);
   newLoginFlag = this.loginFlag.asObservable();
 
-  changeInFlag(val:boolean){
+  changeInFlag(val: boolean) {
     this.loginFlag.next(val);
   }
 
   private adminFlag = new BehaviorSubject<boolean>(false);
   newAdminFlag = this.adminFlag.asObservable();
 
-  changeInAdminFlag(val:boolean){
+  changeInAdminFlag(val: boolean) {
     this.adminFlag.next(val);
   }
  
@@ -57,14 +57,11 @@ private cartValue = new BehaviorSubject<number>(0);
   public addBooks(data: any) {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-
-    console.log(token.response);
-
     let headers = new HttpHeaders()
-    .set('content-type','application/json')
-    .set('Authorization',  `Bearer ${token.response}`)
+      .set('content-type', 'application/json')
+      .set('Authorization', `Bearer ${token.response}`);
 
-    return this.http.post('http://localhost:8080/book/add', data,{headers});
+    return this.http.post('http://localhost:8080/book/add', data, { headers });
   }
   public putBooks(data: any) {
     let token: any = localStorage.getItem('token');
@@ -81,21 +78,17 @@ private cartValue = new BehaviorSubject<number>(0);
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
 
-    console.log(token.response);
-
     let headers = new HttpHeaders()
     .set('content-type','application/json')
     .set('Authorization',  `Bearer ${token.response}`)
     return this.http.get('http://localhost:8080/book/delete?id=' + id,{headers});
   }
   public getAllBooksWithPaggination() {
-    
     //get all books with  pagination
     return this.http.get('http://localhost:8080/book/page');
   }
 
   public getBookWithGivenPage(pageno: number) {
-    
     //get  books with  pagination
     return this.http.get('http://localhost:8080/book/page/?pageno=' + pageno);
   }
@@ -132,14 +125,17 @@ private cartValue = new BehaviorSubject<number>(0);
   }
 
   public sendEmailWithUserEmail(toEmail: string) {
-    return this.http.get('http://localhost:8080/book/sendEmail/?toemail=' + toEmail);
+    return this.http.get(
+      'http://localhost:8080/book/sendEmail/?toemail=' + toEmail
+    );
   }
   public sendEmailWithThankyou(toEmail: string) {
-    return this.http.get('http://localhost:8080/book/sendEmailThankyou/?toemail=' + toEmail);
+    return this.http.get(
+      'http://localhost:8080/book/sendEmailThankyou/?toemail=' + toEmail
+    );
   }
   public sendEmailWithBody(body: string) {
-    return this.http.get(
-      'http://localhost:8080/book/suggestion/?body=' + body);
+    return this.http.get('http://localhost:8080/book/suggestion/?body=' + body);
   }
 
   public registerUser(data: any) {
@@ -149,22 +145,19 @@ private cartValue = new BehaviorSubject<number>(0);
     return this.http.post('http://localhost:8080/login', data);
   }
 
-  public sendDataToPost(data:any){
-       this.someData = data 
+  public sendDataToPost(data: any) {
+    this.someData = data;
   }
-  public getDataToPost(){
-    return this.someData 
-}
+  public getDataToPost() {
+    return this.someData;
+  }
 
-public getUserDetails(){
-  let token: any = localStorage.getItem('token');
+  public getUserDetails() {
+    let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-
-    console.log(token.response);
-
     let headers = new HttpHeaders()
-    .set('content-type','application/json')
-    .set('Authorization',  `Bearer ${token.response}`)
-  return this.http.get('http://localhost:8080/userdetails',{headers});
-}
+      .set('content-type', 'application/json')
+      .set('Authorization', `Bearer ${token.response}`);
+    return this.http.get('http://localhost:8080/userdetails', { headers });
+  }
 }
