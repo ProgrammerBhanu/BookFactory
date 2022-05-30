@@ -16,11 +16,10 @@ export class BooksServiceService {
   setState(data: any) {
     this.someState = data;
   }
+
   getState() {
     return this.someState;
   }
-
-
 
   // -------------Login----------------------------
   private loginFlag = new BehaviorSubject<boolean>(false);
@@ -66,9 +65,7 @@ private cartValue = new BehaviorSubject<number>(0);
   public putBooks(data: any) {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-
     console.log(token.response);
-
     let headers = new HttpHeaders()
     .set('content-type','application/json')
     .set('Authorization',  `Bearer ${token.response}`)

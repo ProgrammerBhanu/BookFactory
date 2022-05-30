@@ -31,6 +31,7 @@ export class PostNewBookFormComponent implements OnInit {
       this.handleInit(val);
     }
   }
+  
 
   handleInit(val: any): void {
     this.id = val.id;
@@ -78,6 +79,16 @@ export class PostNewBookFormComponent implements OnInit {
   }
 
   updateBook(val: any) {
+
+    this.images = this.images.trim().split(',');
+    for (let i = 0; i < this.images.length; i++) {
+      this.images[i] = this.images[i].trim();
+    }
+
+    this.genre = this.genre.trim().split(',');
+    for (let i = 0; i < this.genre.length; i++) {
+      this.genre[i] = this.genre[i].trim();
+    }
     let newObj = {
       id: this.id,
       isbn: this.isbn,
@@ -95,8 +106,15 @@ export class PostNewBookFormComponent implements OnInit {
     };
 
     this.bookService.putBooks(newObj).subscribe((res) => {
+      
       alert(`${this.title} updated Successfully!!`);
-    });
+    },
+    (err)=>{
+      console.log(newObj,"obj")
+      console.log(err,"Errorrr")
+    }
+    
+    );
   }
   addBook(val: any) {
     if (this.isbn === '') {

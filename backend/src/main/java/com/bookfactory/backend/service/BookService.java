@@ -23,7 +23,7 @@ import com.bookfactory.backend.model.Book;
 import com.bookfactory.backend.repository.BookRepository;
 
 @Service
-public class BookService{
+public class BookService {
 
 	@Autowired
 	BookRepository bookRepository;
@@ -49,7 +49,8 @@ public class BookService{
 
 	public ResponseEntity<?> update(Book cont) {
 		try {
-			return new ResponseEntity<Book>(	bookRepository.save(cont), HttpStatus.OK);
+			System.out.println("yes i reached");
+			return new ResponseEntity<Book>(bookRepository.save(cont), HttpStatus.OK);
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -158,7 +159,7 @@ public class BookService{
 			Sort sort = Sort.by(sortBy);
 			Pageable page = PageRequest.of(pageNo, pageSize, sort);
 
-			Page<Book> employePage = bookRepository.findByLangStartingWith(word,page);
+			Page<Book> employePage = bookRepository.findByLangStartingWith(word, page);
 
 			response.put("data", employePage.getContent());
 			response.put("TotalPage", employePage.getTotalPages());
@@ -170,8 +171,7 @@ public class BookService{
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}
-		
-//------------------------------Security part Start ----------------------------------------------------------------------------//
 
+//------------------------------Security part Start ----------------------------------------------------------------------------//
 
 }
