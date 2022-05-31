@@ -44,9 +44,7 @@ public class BookController {
 
 	// update
 	@PostMapping("/update")
-	public ResponseEntity<?> update(@RequestBody Book book
-			) {
-		
+	public ResponseEntity<?> update(@RequestBody Book book) {
 ;		return bookService.update(book);
 	}
 

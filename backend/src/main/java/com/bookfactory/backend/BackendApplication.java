@@ -26,10 +26,9 @@ public class BackendApplication implements CommandLineRunner {
 	@Autowired
 	BookRepository bookRepository;
 	
-	@Autowired
-	private static UserRepository userRepo;
+//	@Autowired
+//	private static UserRepository userRepo;
 
-	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
@@ -44,7 +43,8 @@ public class BackendApplication implements CommandLineRunner {
 			}
 		};
 	}
-		
+
+	
 	@Override
 	public void run(String... args) throws Exception {
 		List<Book> listOfBooks = new ArrayList<Book>();

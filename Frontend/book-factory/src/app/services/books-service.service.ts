@@ -15,6 +15,7 @@ export class BooksServiceService {
   setState(data: any) {
     this.someState = data;
   }
+
   getState() {
     return this.someState;
   }
@@ -63,9 +64,7 @@ export class BooksServiceService {
   public putBook(data: any) {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
-
     console.log(token.response);
-
     let headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Authorization', `Bearer ${token.response}`);

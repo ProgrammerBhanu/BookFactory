@@ -1,7 +1,5 @@
 package com.bookfactory.backend.config;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,10 +25,9 @@ import com.bookfactory.backend.service.UserService;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private JwtFilterRequest jwtFilterRequest;
 
@@ -42,29 +39,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().disable();
-		http
-		.csrf()
-		.disable()
-		.authorizeRequests()
-		.antMatchers("/login","/book/suggestion/","/book/sendEmail/", "/register","/book/","/book/page","/book/page/","/book/sortby/","/book/search/","/book/search/language/","/book/price/").permitAll()
-		.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-		.anyRequest().authenticated()
-		.and()
-		.sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        
-		
-		http
-		.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
+		http.csrf().disable().authorizeRequests()
+				.antMatchers("/login", "/book/suggestion/", "/book/sendEmail/", "/register", "/book/",
+						"/book/page", "/book/page/", "/book/sortby/", "/book/search/", "/book/search/language/",
+						"/book/price/")
+				.permitAll().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated().and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
 		http
 		.cors();
-		
-	
-        
 	}
+
 	
-	//to not encode password
-	@Bean
+	// to not encode password
+	@Bean 
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
 	}
@@ -75,12 +63,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        UrlBasedCorsConfigurationSource source = new
-                UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-        return source;
-    }
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		return source;
+	}
 
 }

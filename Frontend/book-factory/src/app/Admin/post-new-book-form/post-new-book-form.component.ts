@@ -31,6 +31,7 @@ export class PostNewBookFormComponent implements OnInit {
       this.handleInit(val);
     }
   }
+  
 
   handleInit(val: any): void {
     this.id = val.id;
