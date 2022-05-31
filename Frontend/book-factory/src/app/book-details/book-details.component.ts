@@ -33,10 +33,12 @@ export class BookDetailsComponent implements OnInit {
       localStorage.setItem('cart', JSON.stringify([]));
     }
   }
+
+  // ------------change value of img -----------------
   changeImg(idx: any): void {
     this.imageSrc = this.bookDetail.images[idx];
   }
-
+  // ------------set user name in cart   -----------------
   setUserBookInCart(data: any) {
     this.user = data;
 
@@ -55,7 +57,7 @@ export class BookDetailsComponent implements OnInit {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
   }
-
+  // ------------ add book object to cart -----------------
   addToCart(): void {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);
@@ -68,17 +70,18 @@ export class BookDetailsComponent implements OnInit {
       .getUserDetails()
       .subscribe((data) => this.setUserBookInCart(data));
   }
-
+  // ------------delete book object in cart -----------------
   deleteBook(id: any): void {
     alert('You have deleted book successfully!!');
     this.dataService.delete(id).subscribe((res) => console.log(res));
     this.router.navigateByUrl('');
   }
-
+  // ------------buy book directly -----------------
   buyNow(): void {
     this.dataService.setState(this.bookDetail.price);
     this.router.navigateByUrl('/cart/payment');
   }
+
   updateBook(val: any): void {
     this.router.navigate(['updatebook'], { state: { data: val, flag: false } });
   }

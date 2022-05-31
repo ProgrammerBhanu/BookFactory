@@ -31,7 +31,6 @@ export class PostNewBookFormComponent implements OnInit {
       this.handleInit(val);
     }
   }
-  
 
   handleInit(val: any): void {
     this.id = val.id;
@@ -50,6 +49,8 @@ export class PostNewBookFormComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+   // ------------form data-----------------
   handleChange(e: any) {
     if (e.target.name === 'isbn') {
       this.isbn = e.target.value;
@@ -77,9 +78,8 @@ export class PostNewBookFormComponent implements OnInit {
       this.category = e.target.value;
     }
   }
-
+ // ------------updateBook-----------------
   updateBook(val: any) {
-
     this.images = this.images.trim().split(',');
     for (let i = 0; i < this.images.length; i++) {
       this.images[i] = this.images[i].trim();
@@ -105,8 +105,6 @@ export class PostNewBookFormComponent implements OnInit {
       category: this.category,
     };
 
-   
-
     this.bookService.putBook(newObj).subscribe(
       (res) => {
         alert(`${this.title} updated Successfully!!`);
@@ -116,6 +114,7 @@ export class PostNewBookFormComponent implements OnInit {
       }
     );
   }
+   // ------------post from form----------------
   addBook(val: any) {
     if (this.isbn === '') {
       alert('plz enter a valid isbn  ');
@@ -191,7 +190,6 @@ export class PostNewBookFormComponent implements OnInit {
     };
 
     this.bookService.addBooks(newObj).subscribe((data) => {
-      console.log('form post request', data);
       alert('You have successfully added new Book!!');
     });
   }

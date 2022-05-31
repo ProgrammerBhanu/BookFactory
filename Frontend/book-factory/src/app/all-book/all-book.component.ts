@@ -11,21 +11,21 @@ export class AllBookComponent implements OnInit {
   booksData: Array<any>;
   TotalRecords: any;
   CurrentPageNo: any = 1;
-  adminFlag:boolean = false;
+  adminFlag: boolean = false;
   constructor(private bookService: BooksServiceService) {
     this.booksData = new Array<any>();
   }
-
+  // ------------get all book-----------------
   getAllBooks() {
     this.bookService
       .getBookWithGivenPage(this.CurrentPageNo)
       .subscribe((data) => this.setBookdata(data));
   }
-
+  // ------------setBook to a variable -----------------
   setAllBook(data: any) {
     this.AllBook = data.body;
   }
-
+  // ------------setdata to bookData variable----------------
   setBookdata(data: any) {
     this.booksData = data.data;
     this.CurrentPageNo = data.CurrentPage;
@@ -33,12 +33,11 @@ export class AllBookComponent implements OnInit {
   }
   ngOnInit(): void {
     this.bookService.newAdminFlag.subscribe({
-      next:(data)=>{
+      next: (data) => {
         this.adminFlag = data;
-      }
-    })
+      },
+    });
 
-    // ------------Admin flag end-----------------
     if (history.state.val == '' || history.state.val == undefined) {
       this.bookService
         .getAllBooksWithPaggination()
@@ -56,25 +55,30 @@ export class AllBookComponent implements OnInit {
       this.setLanguage(history.state.val, 0);
     }
   }
+
+   // ------------filter flag-----------------
   handleFilters(val: any): void {
     this.filterFlag = val;
   }
+
+   // ------------method to change page no.-----------------
   handlePageChange(data: any) {
     this.CurrentPageNo = data;
     this.getAllBooks();
   }
+ // ------------get value of price to variable-----------------
   setPriceLessThanWithPageNo(price: number, pageno: number) {
     this.bookService
       .getBooksForLessThanPrice(price, pageno)
       .subscribe((data) => this.setBookdata(data));
   }
-
+ // ------------ set array of language Bookdata-----------------
   setLanguage(lang: string, pageno: number) {
     this.bookService
       .getBooksForLanguage(lang, pageno)
       .subscribe((data) => this.setBookdata(data));
   }
-
+ // ------------set bookdata  with given filter value -----------------
   filterByGenre(gen: string) {
     let myData = this.AllBook;
     let arr = myData.filter((el: any) => el.genre.includes(gen) === true);
