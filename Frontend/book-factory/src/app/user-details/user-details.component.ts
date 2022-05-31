@@ -17,6 +17,7 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
+  // ------------ set User Data --------------------------
   setuserData(data: any) {
     this.userData = data;
   }

@@ -47,6 +47,8 @@ export class NavbarComponent implements OnInit {
     })
 
   }
+
+  // ---------- Set Cart Value ------------------------
   
   setCartValFromLocalStorage(data:any){
     this.user = data;
@@ -76,7 +78,6 @@ export class NavbarComponent implements OnInit {
   }
   search(evt: any) {
     const searchText = evt.target.value;
-    console.log(searchText)
     if(searchText.length > 1){
       this.dataService.getDataWithSearch(searchText).subscribe(
         (data) => {
@@ -111,7 +112,6 @@ export class NavbarComponent implements OnInit {
     setTimeout(() => {
       if (this.userDetails.role !== 'admin') {
 
-        console.log("User data", this.userDetails.role);
         alert("You are not Admin !! Plz login!!");
         this.handleClose();
       } else {

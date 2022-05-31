@@ -20,6 +20,8 @@ export class CartPageComponent implements OnInit {
       this.setCartDataFromLocalStorage(data);
     });
   }
+
+  // ---------------- Check Cart Details empty -----------------------
   checkCartIsEmpty() {
     let cart: any = localStorage.getItem('cart');
     cart = JSON.parse(cart);
@@ -35,6 +37,8 @@ export class CartPageComponent implements OnInit {
       }
     }
   }
+
+  //  ------------------ set Cart Value -----------------------------------
 
   setCartDataFromLocalStorage(data: any) {
     this.user = data;
@@ -54,6 +58,8 @@ export class CartPageComponent implements OnInit {
     this.checkCartIsEmpty();
     this.findTotal();
   }
+
+  // -------------- detele Item -----------------------------
 
   deleteItem(index: number) {
     this.cart.splice(index, 1);
@@ -76,6 +82,8 @@ export class CartPageComponent implements OnInit {
 
     this.checkCartIsEmpty();
   }
+
+  // --------------- Change Quantity -------------------------
   changeQuantity(value: any, index: number) {
     this.cart[index].quantity = value.target.value;
     this.findTotal();
@@ -94,6 +102,9 @@ export class CartPageComponent implements OnInit {
 
     localStorage.setItem('cart', JSON.stringify(cart));
   }
+
+
+  // ----------------- Find Total Value -------------------------
 
   findTotal() {
     let sum: number = 0;
@@ -120,7 +131,6 @@ export class CartPageComponent implements OnInit {
   }
 
   setToPaymentVariable() {
-    // this.bookService.setToPaymentPage(this.total);
     let data: any = localStorage.getItem('total');
     if (JSON.parse(data) == null) {
       localStorage.setItem('total', JSON.stringify(this.total));

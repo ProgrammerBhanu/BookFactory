@@ -37,6 +37,8 @@ export class PaymentPageComponent implements OnInit {
     this.bookService.sendEmailWithThankyou(this.user.email);
   }
 
+  // ----------- Thank you Button ----------------
+
   handleThanku(): void {
     this.bookService
       .getUserDetails()

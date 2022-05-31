@@ -10,6 +10,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // ------------------ Suggestion Box --------------------------------
   suggestionBoxContaint(data: any) {
     this.bookService
       .sendEmailWithBody(data.value)

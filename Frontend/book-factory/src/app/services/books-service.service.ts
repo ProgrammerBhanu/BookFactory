@@ -152,6 +152,9 @@ export class BooksServiceService {
     return this.someData;
   }
 
+
+  // ----------------- Get User Details from Server --------------------------------
+
   public getUserDetails() {
     let token: any = localStorage.getItem('token');
     token = JSON.parse(token);

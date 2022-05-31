@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(private dataService: BooksServiceService) {
     let token = localStorage.getItem('token');
     if (token != null) {
-      // token = JSON.parse(token);
       this.dataService.changeInFlag(true);
     }
   }
